@@ -1,7 +1,7 @@
 
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { User, Target, Zap, Heart } from "lucide-react";
+import { User, Target, Zap, Heart, Coffee, Code, Clock, Sparkles } from "lucide-react";
 
 export function About() {
   const highlights = [
@@ -46,9 +46,9 @@ export function About() {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-16 items-center mb-20">
-          {/* Content */}
-          <div className="space-y-8">
+        <div className="grid lg:grid-cols-3 gap-16 items-start mb-20">
+          {/* Content - Takes 2 columns */}
+          <div className="lg:col-span-2 space-y-8">
             <div className="space-y-6">
               <p className="text-lg leading-relaxed text-muted-foreground">
                 I'm a dedicated Software Developer with a strong foundation in full-stack development 
@@ -80,19 +80,42 @@ export function About() {
             </div>
           </div>
 
-          {/* Stats Grid */}
-          <div className="grid grid-cols-2 gap-6">
+          {/* Stats Grid - Takes 1 column */}
+          <div className="grid grid-cols-2 gap-4">
             {[
-              { number: "3+", label: "Years Experience", color: "from-emerald-400 to-green-500" },
-              { number: "15+", label: "Projects Completed", color: "from-green-400 to-teal-500" },
-              { number: "5+", label: "Technologies", color: "from-teal-400 to-cyan-500" },
-              { number: "100%", label: "Commitment", color: "from-cyan-400 to-blue-500" },
+              { 
+                number: "3+", 
+                label: "Years Experience", 
+                color: "from-emerald-400 to-green-500",
+                icon: Clock
+              },
+              { 
+                number: "15+", 
+                label: "Projects Completed", 
+                color: "from-green-400 to-teal-500",
+                icon: Code
+              },
+              { 
+                number: "500+", 
+                label: "Coffee Cups", 
+                color: "from-teal-400 to-cyan-500",
+                icon: Coffee
+              },
+              { 
+                number: "1000+", 
+                label: "Lines of Code", 
+                color: "from-cyan-400 to-blue-500",
+                icon: Sparkles
+              },
             ].map((stat) => (
-              <Card key={stat.label} className="neo-card p-8 text-center hover:scale-105 transition-all duration-300 group">
-                <div className={`text-3xl md:text-4xl font-black bg-gradient-to-r ${stat.color} bg-clip-text text-transparent mb-2`}>
+              <Card key={stat.label} className="neo-card p-6 text-center hover:scale-105 transition-all duration-300 group">
+                <div className="flex justify-center mb-3">
+                  <stat.icon className={`h-6 w-6 bg-gradient-to-r ${stat.color} bg-clip-text text-transparent`} />
+                </div>
+                <div className={`text-2xl md:text-3xl font-black bg-gradient-to-r ${stat.color} bg-clip-text text-transparent mb-2`}>
                   {stat.number}
                 </div>
-                <div className="text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors">
+                <div className="text-xs font-medium text-muted-foreground group-hover:text-foreground transition-colors">
                   {stat.label}
                 </div>
               </Card>

@@ -1,42 +1,59 @@
 
 import { Card } from "@/components/ui/card";
-import { Zap, Star } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { Zap, Star, Code, Database, Smartphone, Cpu } from "lucide-react";
 
 const skillCategories = [
   {
     title: "Frontend Development",
+    icon: Code,
+    color: "from-emerald-400 to-green-500",
     skills: [
       { name: "React/Next.js", level: "Expert" },
       { name: "TypeScript", level: "Advanced" },
       { name: "Tailwind CSS", level: "Expert" },
-      { name: "JavaScript", level: "Expert" }
+      { name: "JavaScript", level: "Expert" },
+      { name: "HTML/CSS", level: "Expert" },
+      { name: "Vue.js", level: "Intermediate" }
     ]
   },
   {
     title: "Backend Development",
+    icon: Database,
+    color: "from-green-400 to-teal-500",
     skills: [
       { name: "Node.js", level: "Advanced" },
       { name: "Express.js", level: "Advanced" },
       { name: "Python", level: "Intermediate" },
-      { name: "RESTful APIs", level: "Expert" }
+      { name: "RESTful APIs", level: "Expert" },
+      { name: "GraphQL", level: "Intermediate" },
+      { name: "MongoDB", level: "Advanced" }
     ]
   },
   {
-    title: "Database & Tools",
-    skills: [
-      { name: "MongoDB", level: "Advanced" },
-      { name: "PostgreSQL", level: "Intermediate" },
-      { name: "Git/GitHub", level: "Expert" },
-      { name: "Docker", level: "Intermediate" }
-    ]
-  },
-  {
-    title: "Mobile & Emerging Tech",
+    title: "Mobile & Cloud",
+    icon: Smartphone,
+    color: "from-teal-400 to-cyan-500",
     skills: [
       { name: "React Native", level: "Advanced" },
+      { name: "Firebase", level: "Advanced" },
+      { name: "AWS", level: "Intermediate" },
+      { name: "Docker", level: "Intermediate" },
+      { name: "PostgreSQL", level: "Intermediate" },
+      { name: "Git/GitHub", level: "Expert" }
+    ]
+  },
+  {
+    title: "AI & Emerging Tech",
+    icon: Cpu,
+    color: "from-cyan-400 to-blue-500",
+    skills: [
       { name: "AI/ML Integration", level: "Intermediate" },
+      { name: "TensorFlow", level: "Intermediate" },
       { name: "IoT Development", level: "Intermediate" },
-      { name: "Firebase", level: "Advanced" }
+      { name: "Blockchain", level: "Beginner" },
+      { name: "WebRTC", level: "Intermediate" },
+      { name: "PWA", level: "Advanced" }
     ]
   }
 ];
@@ -44,13 +61,13 @@ const skillCategories = [
 const getLevelColor = (level: string) => {
   switch (level) {
     case "Expert":
-      return "bg-emerald-500 text-white";
+      return "bg-emerald-500/20 text-emerald-400 border-emerald-500/30";
     case "Advanced":
-      return "bg-green-500 text-white";
+      return "bg-green-500/20 text-green-400 border-green-500/30";
     case "Intermediate":
-      return "bg-teal-500 text-white";
+      return "bg-teal-500/20 text-teal-400 border-teal-500/30";
     default:
-      return "bg-gray-500 text-white";
+      return "bg-gray-500/20 text-gray-400 border-gray-500/30";
   }
 };
 
@@ -84,34 +101,46 @@ export function Skills() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-8">
           {skillCategories.map((category, index) => (
-            <Card key={index} className="neo-card p-8 hover:scale-[1.02] transition-all duration-300 group">
-              <h3 className="text-2xl font-bold mb-8 text-center group-hover:gradient-text transition-all duration-300">
-                {category.title}
-              </h3>
+            <Card key={index} className="neo-card p-6 hover:scale-[1.02] transition-all duration-300 group">
+              <div className="text-center mb-6">
+                <div className={`inline-flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-r ${category.color} mb-4 group-hover:scale-110 transition-transform`}>
+                  <category.icon className="h-6 w-6 text-white" />
+                </div>
+                <h3 className="text-lg font-bold group-hover:gradient-text transition-all duration-300">
+                  {category.title}
+                </h3>
+              </div>
               
-              <div className="space-y-6">
+              <div className="space-y-3">
                 {category.skills.map((skill, skillIndex) => (
-                  <div key={skillIndex} className="flex items-center justify-between p-4 rounded-xl glass-card hover:scale-[1.02] transition-all duration-200">
+                  <div key={skillIndex} className="flex items-center justify-between">
                     <div className="flex-1">
-                      <span className="font-medium text-lg">{skill.name}</span>
-                      <div className="flex items-center gap-1 mt-2">
-                        {[...Array(5)].map((_, starIndex) => (
-                          <Star
-                            key={starIndex}
-                            className={`h-4 w-4 ${
-                              starIndex < getLevelStars(skill.level)
-                                ? "text-emerald-500 fill-emerald-500"
-                                : "text-gray-300 dark:text-gray-600"
-                            }`}
-                          />
-                        ))}
+                      <div className="flex items-center gap-2">
+                        <span className="text-sm font-medium">{skill.name}</span>
+                        <div className="flex items-center gap-1">
+                          {[...Array(getLevelStars(skill.level))].map((_, starIndex) => (
+                            <Star
+                              key={starIndex}
+                              className="h-3 w-3 text-emerald-400 fill-emerald-400"
+                            />
+                          ))}
+                          {[...Array(5 - getLevelStars(skill.level))].map((_, starIndex) => (
+                            <Star
+                              key={starIndex + getLevelStars(skill.level)}
+                              className="h-3 w-3 text-gray-600"
+                            />
+                          ))}
+                        </div>
                       </div>
                     </div>
-                    <div className={`px-3 py-1 rounded-full text-sm font-semibold ${getLevelColor(skill.level)}`}>
+                    <Badge 
+                      variant="outline" 
+                      className={`text-xs ${getLevelColor(skill.level)} border`}
+                    >
                       {skill.level}
-                    </div>
+                    </Badge>
                   </div>
                 ))}
               </div>

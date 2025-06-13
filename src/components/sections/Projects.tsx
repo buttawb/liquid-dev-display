@@ -1,13 +1,19 @@
+import { useState, useEffect } from "react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Github, ExternalLink, Eye, Folder } from "lucide-react";
+import { Github, ExternalLink, Eye, Folder, ChevronLeft, ChevronRight } from "lucide-react";
 
 const projects = [
   {
     title: "AI-UX",
     description: "An innovative AI-powered user experience platform that leverages machine learning to enhance user interactions and provide personalized experiences.",
-    image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&h=500&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&h=500&fit=crop",
+      "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=800&h=500&fit=crop",
+      "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&h=500&fit=crop",
+      "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=800&h=500&fit=crop"
+    ],
     tech: ["React", "Python", "TensorFlow", "Node.js", "MongoDB"],
     github: "https://github.com/buttawb/AI-UX",
     live: "#",
@@ -40,6 +46,32 @@ const projects = [
 ];
 
 export function Projects() {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const featuredProject = projects[0];
+
+  // Auto-slide functionality
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => 
+        (prevIndex + 1) % featuredProject.images.length
+      );
+    }, 4000); // Change image every 4 seconds
+
+    return () => clearInterval(interval);
+  }, [featuredProject.images.length]);
+
+  const nextImage = () => {
+    setCurrentImageIndex((prevIndex) => 
+      (prevIndex + 1) % featuredProject.images.length
+    );
+  };
+
+  const prevImage = () => {
+    setCurrentImageIndex((prevIndex) => 
+      prevIndex === 0 ? featuredProject.images.length - 1 : prevIndex - 1
+    );
+  };
+
   return (
     <section id="projects" className="py-32 px-6">
       <div className="max-w-7xl mx-auto">
@@ -56,17 +88,50 @@ export function Projects() {
           </p>
         </div>
 
-        {/* Featured Project */}
+        {/* Featured Project with Image Slider */}
         <div className="mb-16">
           <Card className="neo-card group hover:scale-[1.02] transition-all duration-500 overflow-hidden">
             <div className="grid lg:grid-cols-2 gap-0">
-              {/* Project Image */}
+              {/* Project Image Slider */}
               <div className="relative overflow-hidden order-2 lg:order-1">
-                <img
-                  src={projects[0].image}
-                  alt={projects[0].title}
-                  className="w-full h-64 lg:h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
+                <div className="relative h-64 lg:h-full">
+                  <img
+                    src={featuredProject.images[currentImageIndex]}
+                    alt={`${featuredProject.title} - Image ${currentImageIndex + 1}`}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  
+                  {/* Navigation Arrows */}
+                  <button
+                    onClick={prevImage}
+                    className="absolute left-4 top-1/2 -translate-y-1/2 glass-button p-2 rounded-full hover:scale-110 transition-all duration-200 opacity-0 group-hover:opacity-100"
+                  >
+                    <ChevronLeft className="h-4 w-4" />
+                  </button>
+                  
+                  <button
+                    onClick={nextImage}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 glass-button p-2 rounded-full hover:scale-110 transition-all duration-200 opacity-0 group-hover:opacity-100"
+                  >
+                    <ChevronRight className="h-4 w-4" />
+                  </button>
+
+                  {/* Image Indicators */}
+                  <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+                    {featuredProject.images.map((_, index) => (
+                      <button
+                        key={index}
+                        onClick={() => setCurrentImageIndex(index)}
+                        className={`w-2 h-2 rounded-full transition-all duration-200 ${
+                          index === currentImageIndex 
+                            ? 'bg-white' 
+                            : 'bg-white/50 hover:bg-white/75'
+                        }`}
+                      />
+                    ))}
+                  </div>
+                </div>
+
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <div className="absolute bottom-6 left-6 right-6 flex gap-3">
                     <Button size="sm" variant="secondary" className="glass-button">
@@ -82,10 +147,10 @@ export function Projects() {
                 <div className="space-y-4">
                   <Badge className="gradient-green text-white border-0">Featured Project</Badge>
                   <h3 className="text-3xl font-bold group-hover:gradient-text transition-all duration-300">
-                    {projects[0].title}
+                    {featuredProject.title}
                   </h3>
                   <p className="text-muted-foreground text-lg leading-relaxed">
-                    {projects[0].description}
+                    {featuredProject.description}
                   </p>
                 </div>
 
@@ -93,7 +158,7 @@ export function Projects() {
                 <div className="space-y-3">
                   <h4 className="font-semibold">Tech Stack</h4>
                   <div className="flex flex-wrap gap-2">
-                    {projects[0].tech.map((tech) => (
+                    {featuredProject.tech.map((tech) => (
                       <Badge key={tech} variant="outline" className="glass-card">
                         {tech}
                       </Badge>
@@ -104,13 +169,13 @@ export function Projects() {
                 {/* Project Links */}
                 <div className="flex gap-4 pt-4">
                   <Button variant="outline" className="glass-button" asChild>
-                    <a href={projects[0].github} target="_blank" rel="noopener noreferrer">
+                    <a href={featuredProject.github} target="_blank" rel="noopener noreferrer">
                       <Github className="h-4 w-4 mr-2" />
                       Code
                     </a>
                   </Button>
                   <Button className="gradient-green text-white border-0" asChild>
-                    <a href={projects[0].live} target="_blank" rel="noopener noreferrer">
+                    <a href={featuredProject.live} target="_blank" rel="noopener noreferrer">
                       <ExternalLink className="h-4 w-4 mr-2" />
                       Live Demo
                     </a>
