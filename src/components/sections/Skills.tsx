@@ -101,7 +101,7 @@ export function Skills() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
           {skillCategories.map((category, index) => (
             <Card key={index} className="neo-card p-6 hover:scale-[1.02] transition-all duration-300 group">
               <div className="text-center mb-6">
@@ -113,23 +113,23 @@ export function Skills() {
                 </h3>
               </div>
               
-              <div className="space-y-3">
+              <div className="space-y-2">
                 {category.skills.map((skill, skillIndex) => (
                   <div key={skillIndex} className="flex items-center justify-between">
-                    <div className="flex-1">
+                    <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2">
-                        <span className="text-sm font-medium">{skill.name}</span>
-                        <div className="flex items-center gap-1">
+                        <span className="text-sm font-medium truncate">{skill.name}</span>
+                        <div className="flex items-center gap-0.5 flex-shrink-0">
                           {[...Array(getLevelStars(skill.level))].map((_, starIndex) => (
                             <Star
                               key={starIndex}
-                              className="h-3 w-3 text-emerald-400 fill-emerald-400"
+                              className="h-2.5 w-2.5 text-emerald-400 fill-emerald-400"
                             />
                           ))}
                           {[...Array(5 - getLevelStars(skill.level))].map((_, starIndex) => (
                             <Star
                               key={starIndex + getLevelStars(skill.level)}
-                              className="h-3 w-3 text-gray-600"
+                              className="h-2.5 w-2.5 text-gray-600"
                             />
                           ))}
                         </div>
@@ -137,7 +137,7 @@ export function Skills() {
                     </div>
                     <Badge 
                       variant="outline" 
-                      className={`text-xs ${getLevelColor(skill.level)} border`}
+                      className={`text-xs ${getLevelColor(skill.level)} border ml-2 flex-shrink-0`}
                     >
                       {skill.level}
                     </Badge>

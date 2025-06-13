@@ -1,13 +1,16 @@
+
 import { useState, useEffect } from "react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Github, ExternalLink, Eye, Folder, ChevronLeft, ChevronRight } from "lucide-react";
+import { Github, ExternalLink, Eye, Folder, ChevronLeft, ChevronRight, Info } from "lucide-react";
+import { ProjectDetailsModal } from "@/components/ProjectDetailsModal";
 
 const projects = [
   {
     title: "AI-UX",
     description: "An innovative AI-powered user experience platform that leverages machine learning to enhance user interactions and provide personalized experiences.",
+    fullDescription: "AI-UX is a comprehensive platform that combines artificial intelligence with user experience design to create intuitive and personalized digital experiences. The system analyzes user behavior patterns, preferences, and interactions to dynamically adapt interfaces and content delivery.",
     images: [
       "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&h=500&fit=crop",
       "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=800&h=500&fit=crop",
@@ -17,31 +20,73 @@ const projects = [
     tech: ["React", "Python", "TensorFlow", "Node.js", "MongoDB"],
     github: "https://github.com/buttawb/AI-UX",
     live: "#",
-    featured: true
+    featured: true,
+    developedDate: "2024",
+    purpose: "Enhance user experience through AI",
+    features: [
+      "AI-powered personalization",
+      "Real-time user behavior analysis",
+      "Dynamic interface adaptation",
+      "Machine learning recommendations",
+      "Advanced analytics dashboard"
+    ],
+    challenges: [
+      "Complex AI model integration",
+      "Real-time data processing",
+      "Scalable architecture design",
+      "User privacy considerations"
+    ]
   },
   {
     title: "Transporter Management System",
     description: "A comprehensive system for managing transportation logistics, including vehicle tracking, route optimization, and fleet management capabilities.",
+    fullDescription: "A complete transportation management solution that streamlines logistics operations for freight companies. Features real-time tracking, route optimization, and comprehensive fleet management tools.",
     image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=500&fit=crop",
     tech: ["React", "Express.js", "MySQL", "Socket.io", "Google Maps API"],
     github: "https://github.com/buttawb/Transporter-Management-System",
-    live: "#"
+    live: "#",
+    developedDate: "2023",
+    purpose: "Optimize transportation logistics",
+    features: [
+      "Real-time vehicle tracking",
+      "Route optimization algorithms",
+      "Fleet management dashboard",
+      "Automated scheduling system"
+    ]
   },
   {
     title: "Heavy Vehicle Safety Companion",
     description: "A mobile application designed to enhance safety for heavy vehicle operators with real-time monitoring, alerts, and safety protocols.",
+    fullDescription: "A comprehensive safety application for heavy vehicle operators featuring real-time monitoring, fatigue detection, emergency alerts, and compliance tracking.",
     image: "https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=800&h=500&fit=crop",
     tech: ["React Native", "Firebase", "IoT Integration", "Real-time Analytics"],
     github: "https://github.com/buttawb/Heavy-Vehicle-Safety-Companion",
-    live: "#"
+    live: "#",
+    developedDate: "2023",
+    purpose: "Improve heavy vehicle safety",
+    features: [
+      "Fatigue detection system",
+      "Emergency alert system",
+      "Compliance monitoring",
+      "Real-time safety analytics"
+    ]
   },
   {
     title: "Makkhimeter-FYP",
     description: "Final Year Project: An advanced measurement and monitoring system with IoT integration for industrial applications.",
+    fullDescription: "An IoT-based industrial monitoring system that provides real-time measurements and data analytics for manufacturing environments.",
     image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&h=500&fit=crop",
     tech: ["Arduino", "React", "Node.js", "IoT", "Data Visualization"],
     github: "https://github.com/buttawb/Makkhimeter-FYP",
-    live: "#"
+    live: "#",
+    developedDate: "2022",
+    purpose: "Industrial IoT monitoring",
+    features: [
+      "Real-time sensor monitoring",
+      "Data visualization dashboard",
+      "IoT device management",
+      "Automated alert system"
+    ]
   }
 ];
 
@@ -167,7 +212,13 @@ export function Projects() {
                 </div>
 
                 {/* Project Links */}
-                <div className="flex gap-4 pt-4">
+                <div className="flex flex-wrap gap-3 pt-4">
+                  <ProjectDetailsModal project={featuredProject}>
+                    <Button variant="outline" className="glass-button">
+                      <Info className="h-4 w-4 mr-2" />
+                      View Details
+                    </Button>
+                  </ProjectDetailsModal>
                   <Button variant="outline" className="glass-button" asChild>
                     <a href={featuredProject.github} target="_blank" rel="noopener noreferrer">
                       <Github className="h-4 w-4 mr-2" />
@@ -238,14 +289,20 @@ export function Projects() {
                 </div>
 
                 {/* Project Links */}
-                <div className="flex gap-2 pt-2">
-                  <Button variant="outline" size="sm" className="glass-button flex-1" asChild>
+                <div className="flex flex-wrap gap-2 pt-2">
+                  <ProjectDetailsModal project={project}>
+                    <Button variant="outline" size="sm" className="glass-button flex-1">
+                      <Info className="h-3 w-3 mr-1" />
+                      Details
+                    </Button>
+                  </ProjectDetailsModal>
+                  <Button variant="outline" size="sm" className="glass-button" asChild>
                     <a href={project.github} target="_blank" rel="noopener noreferrer">
                       <Github className="h-3 w-3 mr-1" />
                       Code
                     </a>
                   </Button>
-                  <Button size="sm" className="gradient-green text-white border-0 flex-1" asChild>
+                  <Button size="sm" className="gradient-green text-white border-0" asChild>
                     <a href={project.live} target="_blank" rel="noopener noreferrer">
                       <ExternalLink className="h-3 w-3 mr-1" />
                       Demo
