@@ -31,41 +31,45 @@ const courses = [
 
 export function Education() {
   return (
-    <section id="education" className="py-20 px-6">
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Education & <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Learning</span>
+    <section id="education" className="py-32 px-6">
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center mb-20">
+          <div className="inline-flex items-center gap-2 glass-card px-4 py-2 rounded-full text-sm font-medium mb-8">
+            <GraduationCap className="h-4 w-4 text-emerald-500" />
+            <span>Learning journey</span>
+          </div>
+          <h2 className="text-4xl md:text-6xl font-bold mb-6">
+            Education & <span className="gradient-text">Learning</span>
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             Committed to continuous learning and professional development
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid lg:grid-cols-3 gap-8">
           {/* Education */}
-          <div className="lg:col-span-2 space-y-6">
-            <h3 className="text-2xl font-semibold mb-6 flex items-center gap-2">
-              <GraduationCap className="h-6 w-6 text-blue-600" />
+          <div className="lg:col-span-2 space-y-8">
+            <h3 className="text-3xl font-bold mb-8 flex items-center gap-3">
+              <GraduationCap className="h-8 w-8 text-emerald-500" />
               Education
             </h3>
             
             {educationData.map((edu, index) => (
-              <Card key={index} className="glass-card p-6 hover:scale-[1.02] transition-all duration-300">
-                <div className="space-y-4">
+              <Card key={index} className="neo-card p-8 hover:scale-[1.02] transition-all duration-300 group">
+                <div className="space-y-6">
                   <div>
-                    <h4 className="text-xl font-semibold">{edu.degree}</h4>
-                    <p className="text-blue-600 font-medium">{edu.institution}</p>
-                    <p className="text-sm text-muted-foreground">{edu.duration}</p>
+                    <h4 className="text-2xl font-bold group-hover:gradient-text transition-all duration-300">{edu.degree}</h4>
+                    <p className="text-emerald-600 font-semibold text-lg">{edu.institution}</p>
+                    <p className="text-muted-foreground">{edu.duration}</p>
                   </div>
                   
-                  <p className="text-muted-foreground">{edu.description}</p>
+                  <p className="text-muted-foreground leading-relaxed">{edu.description}</p>
                   
-                  <div className="space-y-2">
-                    <h5 className="font-medium">Key Subjects</h5>
+                  <div className="space-y-3">
+                    <h5 className="font-semibold">Key Subjects</h5>
                     <div className="flex flex-wrap gap-2">
                       {edu.highlights.map((highlight) => (
-                        <Badge key={highlight} variant="secondary" className="text-xs">
+                        <Badge key={highlight} variant="secondary" className="glass-card">
                           {highlight}
                         </Badge>
                       ))}
@@ -79,32 +83,32 @@ export function Education() {
           {/* Certifications & Courses */}
           <div className="space-y-8">
             {/* Certifications */}
-            <Card className="glass-card p-6">
-              <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
-                <Award className="h-5 w-5 text-blue-600" />
+            <Card className="neo-card p-8">
+              <h3 className="text-2xl font-bold mb-6 flex items-center gap-3">
+                <Award className="h-6 w-6 text-emerald-500" />
                 Certifications
               </h3>
-              <div className="space-y-3">
+              <div className="space-y-4">
                 {certifications.map((cert, index) => (
-                  <div key={index} className="flex items-center gap-2 text-sm">
-                    <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
-                    {cert}
+                  <div key={index} className="flex items-center gap-3">
+                    <div className="w-3 h-3 gradient-green rounded-full"></div>
+                    <span className="text-sm">{cert}</span>
                   </div>
                 ))}
               </div>
             </Card>
 
             {/* Courses */}
-            <Card className="glass-card p-6">
-              <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
-                <BookOpen className="h-5 w-5 text-blue-600" />
+            <Card className="neo-card p-8">
+              <h3 className="text-2xl font-bold mb-6 flex items-center gap-3">
+                <BookOpen className="h-6 w-6 text-emerald-500" />
                 Courses
               </h3>
-              <div className="space-y-3">
+              <div className="space-y-4">
                 {courses.map((course, index) => (
-                  <div key={index} className="flex items-center gap-2 text-sm">
-                    <div className="w-2 h-2 bg-purple-600 rounded-full"></div>
-                    {course}
+                  <div key={index} className="flex items-center gap-3">
+                    <div className="w-3 h-3 bg-gradient-to-r from-teal-400 to-cyan-500 rounded-full"></div>
+                    <span className="text-sm">{course}</span>
                   </div>
                 ))}
               </div>

@@ -32,49 +32,53 @@ const experiences = [
 
 export function Experience() {
   return (
-    <section id="experience" className="py-20 px-6 bg-muted/30">
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            My <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Experience</span>
+    <section id="experience" className="py-32 px-6 bg-muted/30">
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center mb-20">
+          <div className="inline-flex items-center gap-2 glass-card px-4 py-2 rounded-full text-sm font-medium mb-8">
+            <Briefcase className="h-4 w-4 text-emerald-500" />
+            <span>Professional journey</span>
+          </div>
+          <h2 className="text-4xl md:text-6xl font-bold mb-6">
+            My <span className="gradient-text">Experience</span>
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             A journey of continuous learning and professional growth
           </p>
         </div>
 
         <div className="space-y-8">
           {experiences.map((exp, index) => (
-            <Card key={index} className="glass-card p-8 hover:scale-[1.02] transition-all duration-300">
-              <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
-                <div className="flex-1 space-y-4">
-                  <div className="flex items-start gap-4">
-                    <div className="glass-button p-2 rounded-lg">
-                      <Briefcase className="h-5 w-5 text-blue-600" />
+            <Card key={index} className="neo-card p-8 lg:p-12 hover:scale-[1.02] transition-all duration-300 group">
+              <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-8">
+                <div className="flex-1 space-y-6">
+                  <div className="flex items-start gap-6">
+                    <div className="gradient-green p-3 rounded-2xl group-hover:scale-110 transition-transform">
+                      <Briefcase className="h-6 w-6 text-white" />
                     </div>
                     <div className="flex-1">
-                      <h3 className="text-xl font-semibold">{exp.title}</h3>
-                      <p className="text-blue-600 font-medium">{exp.company}</p>
-                      <div className="flex items-center gap-2 mt-2 text-sm text-muted-foreground">
+                      <h3 className="text-2xl font-bold group-hover:gradient-text transition-all duration-300">{exp.title}</h3>
+                      <p className="text-emerald-600 font-semibold text-lg">{exp.company}</p>
+                      <div className="flex items-center gap-3 mt-3 text-muted-foreground">
                         <Calendar className="h-4 w-4" />
                         <span>{exp.duration}</span>
-                        <Badge variant="outline" className="ml-2">
+                        <Badge variant="outline" className="glass-card">
                           {exp.type}
                         </Badge>
                       </div>
                     </div>
                   </div>
                   
-                  <p className="text-muted-foreground leading-relaxed">
+                  <p className="text-muted-foreground text-lg leading-relaxed">
                     {exp.description}
                   </p>
                 </div>
 
-                <div className="space-y-2">
-                  <h4 className="text-sm font-medium text-muted-foreground">Skills Used</h4>
+                <div className="space-y-4 lg:min-w-[300px]">
+                  <h4 className="font-semibold text-muted-foreground">Skills Used</h4>
                   <div className="flex flex-wrap gap-2">
                     {exp.skills.map((skill) => (
-                      <Badge key={skill} variant="secondary" className="text-xs">
+                      <Badge key={skill} variant="secondary" className="glass-card">
                         {skill}
                       </Badge>
                     ))}

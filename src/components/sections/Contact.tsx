@@ -3,7 +3,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Mail, MapPin, Phone, Send } from "lucide-react";
+import { Mail, MapPin, Phone, Send, MessageCircle, Github, Linkedin, Twitter, Instagram } from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 
@@ -30,93 +30,128 @@ export function Contact() {
       icon: Mail,
       title: "Email",
       value: "buttawb@example.com",
-      href: "mailto:buttawb@example.com"
+      href: "mailto:buttawb@example.com",
+      description: "Drop me a line anytime"
     },
     {
       icon: Phone,
       title: "Phone",
       value: "+92 XXX XXXXXXX",
-      href: "tel:+92XXXXXXXXX"
+      href: "tel:+92XXXXXXXXX",
+      description: "Call for urgent matters"
     },
     {
       icon: MapPin,
       title: "Location",
       value: "Islamabad, Pakistan",
-      href: "#"
+      href: "#",
+      description: "Available for remote work"
     }
   ];
 
+  const socialLinks = [
+    { icon: Github, href: "https://github.com/buttawb", label: "GitHub", color: "hover:text-gray-600" },
+    { icon: Linkedin, href: "https://www.linkedin.com/in/buttawb/", label: "LinkedIn", color: "hover:text-blue-600" },
+    { icon: Twitter, href: "#", label: "Twitter", color: "hover:text-sky-500" },
+    { icon: Instagram, href: "#", label: "Instagram", color: "hover:text-pink-500" },
+  ];
+
   return (
-    <section id="contact" className="py-20 px-6 bg-muted/30">
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Get In <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Touch</span>
+    <section id="contact" className="py-32 px-6 bg-gradient-to-b from-muted/20 to-background">
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center mb-20">
+          <div className="inline-flex items-center gap-2 glass-card px-4 py-2 rounded-full text-sm font-medium mb-8">
+            <MessageCircle className="h-4 w-4 text-emerald-500" />
+            <span>Let's connect</span>
+          </div>
+          <h2 className="text-4xl md:text-6xl font-bold mb-6">
+            Get In <span className="gradient-text">Touch</span>
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Let's discuss how we can work together to bring your ideas to life
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+            Ready to bring your next project to life? Let's discuss how we can work together 
+            to create something amazing.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="grid lg:grid-cols-2 gap-16">
           {/* Contact Information */}
-          <div className="space-y-8">
+          <div className="space-y-12">
             <div>
-              <h3 className="text-2xl font-semibold mb-6">Let's Connect</h3>
-              <p className="text-muted-foreground leading-relaxed mb-8">
-                I'm always open to discussing new opportunities, collaborations, 
-                or just having a chat about technology and innovation. Feel free 
-                to reach out through any of the channels below.
+              <h3 className="text-3xl font-bold mb-6">Let's Start a Conversation</h3>
+              <p className="text-muted-foreground text-lg leading-relaxed mb-8">
+                I'm always excited to discuss new opportunities, collaborations, 
+                or just chat about the latest in technology and innovation. 
+                Choose your preferred way to connect below.
               </p>
             </div>
 
             <div className="space-y-6">
               {contactInfo.map((item, index) => (
-                <Card key={index} className="glass-card p-4 hover:scale-[1.02] transition-all duration-300">
+                <Card key={index} className="neo-card p-6 hover:scale-[1.02] transition-all duration-300 group">
                   <a 
                     href={item.href}
-                    className="flex items-center gap-4 group"
+                    className="flex items-center gap-6"
                   >
-                    <div className="glass-button p-3 rounded-lg group-hover:scale-110 transition-transform">
-                      <item.icon className="h-5 w-5 text-blue-600" />
+                    <div className="gradient-green p-4 rounded-2xl group-hover:scale-110 transition-transform">
+                      <item.icon className="h-6 w-6 text-white" />
                     </div>
-                    <div>
-                      <h4 className="font-medium">{item.title}</h4>
-                      <p className="text-muted-foreground text-sm">{item.value}</p>
+                    <div className="flex-1">
+                      <h4 className="font-semibold text-lg">{item.title}</h4>
+                      <p className="text-muted-foreground">{item.value}</p>
+                      <p className="text-sm text-muted-foreground/70">{item.description}</p>
                     </div>
                   </a>
                 </Card>
               ))}
             </div>
+
+            {/* Social Links */}
+            <div className="space-y-6">
+              <h4 className="text-xl font-semibold">Follow Me</h4>
+              <div className="flex gap-4">
+                {socialLinks.map(({ icon: Icon, href, label, color }) => (
+                  <a
+                    key={label}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`glass-button p-4 rounded-2xl hover:scale-110 transition-all duration-300 ${color}`}
+                    aria-label={label}
+                  >
+                    <Icon className="h-6 w-6" />
+                  </a>
+                ))}
+              </div>
+            </div>
           </div>
 
           {/* Contact Form */}
-          <Card className="glass-card p-8">
-            <h3 className="text-2xl font-semibold mb-6">Send a Message</h3>
+          <Card className="neo-card p-8 lg:p-12">
+            <h3 className="text-2xl font-bold mb-8">Send a Message</h3>
             
             <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label htmlFor="name" className="text-sm font-medium">
-                    Name
+                    Full Name
                   </label>
                   <Input
                     id="name"
-                    placeholder="Your Name"
+                    placeholder="John Doe"
                     required
-                    className="glass-card"
+                    className="glass-card h-12"
                   />
                 </div>
                 <div className="space-y-2">
                   <label htmlFor="email" className="text-sm font-medium">
-                    Email
+                    Email Address
                   </label>
                   <Input
                     id="email"
                     type="email"
-                    placeholder="your.email@example.com"
+                    placeholder="john@example.com"
                     required
-                    className="glass-card"
+                    className="glass-card h-12"
                   />
                 </div>
               </div>
@@ -127,9 +162,9 @@ export function Contact() {
                 </label>
                 <Input
                   id="subject"
-                  placeholder="What's this about?"
+                  placeholder="What would you like to discuss?"
                   required
-                  className="glass-card"
+                  className="glass-card h-12"
                 />
               </div>
 
@@ -149,13 +184,13 @@ export function Contact() {
               <Button
                 type="submit"
                 disabled={isLoading}
-                className="w-full glass-button bg-gradient-to-r from-blue-600 to-purple-600 text-white border-0 hover:scale-[1.02] transition-all duration-300"
+                className="w-full gradient-green text-white border-0 hover:scale-[1.02] transition-all duration-300 h-12 text-lg font-semibold"
               >
                 {isLoading ? (
                   "Sending..."
                 ) : (
                   <>
-                    <Send className="mr-2 h-4 w-4" />
+                    <Send className="mr-3 h-5 w-5" />
                     Send Message
                   </>
                 )}
@@ -164,11 +199,81 @@ export function Contact() {
           </Card>
         </div>
 
-        {/* Footer */}
-        <div className="text-center mt-16 pt-8 border-t border-border/50">
-          <p className="text-muted-foreground">
-            © 2024 Buttawb. Built with React, TypeScript, and Tailwind CSS.
-          </p>
+        {/* Enhanced Footer */}
+        <div className="mt-32 pt-16 border-t border-border/50">
+          <div className="grid md:grid-cols-4 gap-12 mb-12">
+            {/* Brand Section */}
+            <div className="md:col-span-2 space-y-6">
+              <div className="space-y-4">
+                <h4 className="text-2xl font-bold gradient-text">Buttawb</h4>
+                <p className="text-muted-foreground leading-relaxed">
+                  A passionate software developer dedicated to creating innovative solutions 
+                  and exceptional digital experiences. Based in Islamabad, Pakistan, 
+                  working with clients worldwide.
+                </p>
+              </div>
+              <div className="flex gap-4">
+                {socialLinks.map(({ icon: Icon, href, label, color }) => (
+                  <a
+                    key={label}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`glass-button p-3 rounded-xl hover:scale-110 transition-all duration-300 ${color}`}
+                    aria-label={label}
+                  >
+                    <Icon className="h-5 w-5" />
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            {/* Quick Links */}
+            <div className="space-y-4">
+              <h5 className="font-semibold">Quick Links</h5>
+              <div className="space-y-2">
+                {['About', 'Experience', 'Projects', 'Skills', 'Education'].map((link) => (
+                  <a
+                    key={link}
+                    href={`#${link.toLowerCase()}`}
+                    className="block text-muted-foreground hover:text-emerald-500 hover:translate-x-1 transition-all duration-200"
+                  >
+                    {link}
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            {/* Services */}
+            <div className="space-y-4">
+              <h5 className="font-semibold">Services</h5>
+              <div className="space-y-2">
+                {['Web Development', 'Mobile Apps', 'AI Integration', 'Consulting', 'UI/UX Design'].map((service) => (
+                  <span
+                    key={service}
+                    className="block text-muted-foreground text-sm"
+                  >
+                    {service}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom Footer */}
+          <div className="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-border/30">
+            <p className="text-muted-foreground text-sm">
+              © 2024 Buttawb. Built with React, TypeScript, and Tailwind CSS.
+            </p>
+            <div className="flex gap-6 mt-4 md:mt-0">
+              <a href="#" className="text-muted-foreground hover:text-emerald-500 text-sm transition-colors">
+                Privacy Policy
+              </a>
+              <a href="#" className="text-muted-foreground hover:text-emerald-500 text-sm transition-colors">
+                Terms of Service
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </section>
