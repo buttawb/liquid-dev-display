@@ -1,6 +1,6 @@
-
 import { Card } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
+import { Zap } from "lucide-react";
 
 const skillCategories = [
   {
