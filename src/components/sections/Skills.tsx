@@ -1,45 +1,71 @@
+
 import { Card } from "@/components/ui/card";
-import { Progress } from "@/components/ui/progress";
-import { Zap } from "lucide-react";
+import { Zap, Star } from "lucide-react";
 
 const skillCategories = [
   {
     title: "Frontend Development",
     skills: [
-      { name: "React/Next.js", level: 90 },
-      { name: "TypeScript", level: 85 },
-      { name: "Tailwind CSS", level: 90 },
-      { name: "JavaScript", level: 95 }
+      { name: "React/Next.js", level: "Expert" },
+      { name: "TypeScript", level: "Advanced" },
+      { name: "Tailwind CSS", level: "Expert" },
+      { name: "JavaScript", level: "Expert" }
     ]
   },
   {
     title: "Backend Development",
     skills: [
-      { name: "Node.js", level: 85 },
-      { name: "Express.js", level: 80 },
-      { name: "Python", level: 75 },
-      { name: "RESTful APIs", level: 90 }
+      { name: "Node.js", level: "Advanced" },
+      { name: "Express.js", level: "Advanced" },
+      { name: "Python", level: "Intermediate" },
+      { name: "RESTful APIs", level: "Expert" }
     ]
   },
   {
     title: "Database & Tools",
     skills: [
-      { name: "MongoDB", level: 80 },
-      { name: "PostgreSQL", level: 75 },
-      { name: "Git/GitHub", level: 90 },
-      { name: "Docker", level: 70 }
+      { name: "MongoDB", level: "Advanced" },
+      { name: "PostgreSQL", level: "Intermediate" },
+      { name: "Git/GitHub", level: "Expert" },
+      { name: "Docker", level: "Intermediate" }
     ]
   },
   {
     title: "Mobile & Emerging Tech",
     skills: [
-      { name: "React Native", level: 80 },
-      { name: "AI/ML Integration", level: 70 },
-      { name: "IoT Development", level: 65 },
-      { name: "Firebase", level: 85 }
+      { name: "React Native", level: "Advanced" },
+      { name: "AI/ML Integration", level: "Intermediate" },
+      { name: "IoT Development", level: "Intermediate" },
+      { name: "Firebase", level: "Advanced" }
     ]
   }
 ];
+
+const getLevelColor = (level: string) => {
+  switch (level) {
+    case "Expert":
+      return "bg-emerald-500 text-white";
+    case "Advanced":
+      return "bg-green-500 text-white";
+    case "Intermediate":
+      return "bg-teal-500 text-white";
+    default:
+      return "bg-gray-500 text-white";
+  }
+};
+
+const getLevelStars = (level: string) => {
+  switch (level) {
+    case "Expert":
+      return 5;
+    case "Advanced":
+      return 4;
+    case "Intermediate":
+      return 3;
+    default:
+      return 2;
+  }
+};
 
 export function Skills() {
   return (
@@ -67,15 +93,25 @@ export function Skills() {
               
               <div className="space-y-6">
                 {category.skills.map((skill, skillIndex) => (
-                  <div key={skillIndex} className="space-y-3">
-                    <div className="flex justify-between items-center">
-                      <span className="font-medium">{skill.name}</span>
-                      <span className="text-sm text-muted-foreground font-semibold">{skill.level}%</span>
+                  <div key={skillIndex} className="flex items-center justify-between p-4 rounded-xl glass-card hover:scale-[1.02] transition-all duration-200">
+                    <div className="flex-1">
+                      <span className="font-medium text-lg">{skill.name}</span>
+                      <div className="flex items-center gap-1 mt-2">
+                        {[...Array(5)].map((_, starIndex) => (
+                          <Star
+                            key={starIndex}
+                            className={`h-4 w-4 ${
+                              starIndex < getLevelStars(skill.level)
+                                ? "text-emerald-500 fill-emerald-500"
+                                : "text-gray-300 dark:text-gray-600"
+                            }`}
+                          />
+                        ))}
+                      </div>
                     </div>
-                    <Progress 
-                      value={skill.level} 
-                      className="h-3"
-                    />
+                    <div className={`px-3 py-1 rounded-full text-sm font-semibold ${getLevelColor(skill.level)}`}>
+                      {skill.level}
+                    </div>
                   </div>
                 ))}
               </div>

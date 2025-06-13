@@ -125,7 +125,7 @@ export function Contact() {
             </div>
           </div>
 
-          {/* Contact Form */}
+          {/* Contact Form - Simplified styling */}
           <Card className="neo-card p-8 lg:p-12">
             <h3 className="text-2xl font-bold mb-8">Send a Message</h3>
             
@@ -139,7 +139,7 @@ export function Contact() {
                     id="name"
                     placeholder="John Doe"
                     required
-                    className="glass-card h-12"
+                    className="h-12 border-border/50 bg-background/50 backdrop-blur-sm focus:border-emerald-500 transition-colors"
                   />
                 </div>
                 <div className="space-y-2">
@@ -151,7 +151,7 @@ export function Contact() {
                     type="email"
                     placeholder="john@example.com"
                     required
-                    className="glass-card h-12"
+                    className="h-12 border-border/50 bg-background/50 backdrop-blur-sm focus:border-emerald-500 transition-colors"
                   />
                 </div>
               </div>
@@ -164,7 +164,7 @@ export function Contact() {
                   id="subject"
                   placeholder="What would you like to discuss?"
                   required
-                  className="glass-card h-12"
+                  className="h-12 border-border/50 bg-background/50 backdrop-blur-sm focus:border-emerald-500 transition-colors"
                 />
               </div>
 
@@ -177,7 +177,7 @@ export function Contact() {
                   placeholder="Tell me about your project or just say hello!"
                   rows={6}
                   required
-                  className="glass-card resize-none"
+                  className="border-border/50 bg-background/50 backdrop-blur-sm focus:border-emerald-500 transition-colors resize-none"
                 />
               </div>
 
@@ -205,7 +205,7 @@ export function Contact() {
             {/* Brand Section */}
             <div className="md:col-span-2 space-y-6">
               <div className="space-y-4">
-                <h4 className="text-2xl font-bold gradient-text">Buttawb</h4>
+                <h4 className="text-2xl font-bold gradient-text">Abdul Wahab Butt</h4>
                 <p className="text-muted-foreground leading-relaxed">
                   A passionate software developer dedicated to creating innovative solutions 
                   and exceptional digital experiences. Based in Islamabad, Pakistan, 
@@ -263,7 +263,7 @@ export function Contact() {
           {/* Bottom Footer */}
           <div className="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-border/30">
             <p className="text-muted-foreground text-sm">
-              © 2024 Buttawb. Built with React, TypeScript, and Tailwind CSS.
+              © 2024 Abdul Wahab Butt. Built with React, TypeScript, and Tailwind CSS.
             </p>
             <div className="flex gap-6 mt-4 md:mt-0">
               <a href="#" className="text-muted-foreground hover:text-emerald-500 text-sm transition-colors">
