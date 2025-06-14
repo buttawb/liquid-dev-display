@@ -3,7 +3,13 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Updated Design System with Green Gradients */
+/* Global scaling to 90% */
+html {
+  zoom: 0.9;
+  scroll-behavior: smooth;
+}
+
+/* Updated Professional Design System */
 
 @layer base {
   :root {
@@ -19,13 +25,13 @@
     --primary: 142.1 76.2% 36.3%;
     --primary-foreground: 355.7 100% 97.3%;
 
-    --secondary: 210 40% 96.1%;
+    --secondary: 210 40% 98%;
     --secondary-foreground: 222.2 47.4% 11.2%;
 
-    --muted: 210 40% 96.1%;
+    --muted: 210 40% 98%;
     --muted-foreground: 215.4 16.3% 46.9%;
 
-    --accent: 210 40% 96.1%;
+    --accent: 210 40% 98%;
     --accent-foreground: 222.2 47.4% 11.2%;
 
     --destructive: 0 84.2% 60.2%;
@@ -35,7 +41,7 @@
     --input: 214.3 31.8% 91.4%;
     --ring: 142.1 76.2% 36.3%;
 
-    --radius: 0.75rem;
+    --radius: 0.5rem;
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -94,125 +100,68 @@
   body {
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
-  }
-
-  html {
-    scroll-behavior: smooth;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
   }
 }
 
 @layer components {
-  /* Modern Glass Effects */
+  /* Professional Glass Effects */
   .glass-card {
-    @apply backdrop-blur-xl bg-white/10 dark:bg-white/5 border border-white/20 shadow-2xl;
+    @apply backdrop-blur-lg bg-white/60 dark:bg-white/5 border border-white/20 shadow-lg;
   }
 
   .glass-button {
-    @apply backdrop-blur-md bg-white/20 dark:bg-white/10 border border-white/30 hover:bg-white/30 dark:hover:bg-white/20 transition-all duration-300;
+    @apply backdrop-blur-md bg-white/80 dark:bg-white/10 border border-white/30 hover:bg-white/90 dark:hover:bg-white/20 transition-all duration-200;
   }
 
-  .neo-card {
-    @apply bg-gradient-to-br from-white/90 to-white/70 dark:from-gray-900/90 dark:to-gray-800/70 
-           shadow-[8px_8px_16px_#bebebe,-8px_-8px_16px_#ffffff] 
-           dark:shadow-[8px_8px_16px_#0a0a0a,-8px_-8px_16px_#1a1a1a];
+  .professional-card {
+    @apply bg-white dark:bg-gray-900 shadow-sm border border-gray-200 dark:border-gray-800 hover:shadow-md transition-all duration-200;
   }
 
-  /* Gradient Effects */
+  /* Refined Gradient Effects */
   .gradient-green {
-    @apply bg-gradient-to-r from-emerald-400 via-green-500 to-teal-600;
-  }
-
-  .gradient-green-light {
-    @apply bg-gradient-to-r from-emerald-200 via-green-300 to-teal-400;
+    @apply bg-gradient-to-r from-emerald-500 to-green-600;
   }
 
   .gradient-text {
-    @apply bg-gradient-to-r from-emerald-400 via-green-500 to-teal-600 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-emerald-600 to-green-700 bg-clip-text text-transparent;
   }
 
-  /* Floating Animation */
+  /* Subtle Animations */
   .floating {
-    animation: floating 6s ease-in-out infinite;
+    animation: floating 8s ease-in-out infinite;
   }
 
   @keyframes floating {
-    0%, 100% { transform: translateY(0px) rotate(0deg); }
-    25% { transform: translateY(-10px) rotate(1deg); }
-    50% { transform: translateY(-15px) rotate(0deg); }
-    75% { transform: translateY(-5px) rotate(-1deg); }
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
   }
 
-  /* Typing Animation */
-  .typing-text {
-    overflow: hidden;
-    border-right: 2px solid;
-    white-space: nowrap;
-    animation: typing 3s steps(20, end), blink-caret 0.75s step-end infinite;
-  }
-
-  @keyframes typing {
-    from { width: 0; }
-    to { width: 100%; }
-  }
-
-  @keyframes blink-caret {
-    from, to { border-color: transparent; }
-    50% { border-color: currentColor; }
-  }
-
-  /* Custom Scrollbar */
+  /* Professional Scrollbar */
   ::-webkit-scrollbar {
-    width: 8px;
+    width: 6px;
   }
 
   ::-webkit-scrollbar-track {
-    @apply bg-muted/20;
+    @apply bg-gray-100 dark:bg-gray-800;
   }
 
   ::-webkit-scrollbar-thumb {
-    @apply bg-gradient-to-b from-emerald-400 to-green-600 rounded-full;
+    @apply bg-gray-300 dark:bg-gray-600 rounded-full;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    @apply from-emerald-500 to-green-700;
+    @apply bg-gray-400 dark:bg-gray-500;
   }
 
   /* Smooth transitions */
   button, a, input, textarea, .card {
-    @apply transition-all duration-300 ease-in-out;
+    @apply transition-all duration-200 ease-in-out;
   }
 
-  /* Focus styles */
+  /* Professional focus styles */
   button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visible {
-    @apply ring-2 ring-emerald-500 ring-offset-2 ring-offset-background outline-none;
-  }
-
-  /* Morphic shapes */
-  .blob-shape {
-    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-    animation: blob-morph 8s ease-in-out infinite;
-  }
-
-  @keyframes blob-morph {
-    0%, 100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
-    25% { border-radius: 58% 42% 75% 25% / 76% 46% 54% 24%; }
-    50% { border-radius: 50% 50% 33% 67% / 55% 27% 73% 45%; }
-    75% { border-radius: 33% 67% 58% 42% / 63% 68% 32% 37%; }
-  }
-}
-
-/* Performance optimizations */
-@layer utilities {
-  .will-change-transform {
-    will-change: transform;
-  }
-  
-  .will-change-auto {
-    will-change: auto;
-  }
-  
-  .hardware-accelerated {
-    transform: translateZ(0);
+    @apply ring-2 ring-emerald-500/50 ring-offset-2 ring-offset-background outline-none;
   }
 }
 
@@ -225,15 +174,6 @@
   }
   
   .floating {
-    animation: none;
-  }
-  
-  .typing-text {
-    animation: none;
-    border-right: none;
-  }
-  
-  .blob-shape {
     animation: none;
   }
 }
