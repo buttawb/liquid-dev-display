@@ -46,58 +46,109 @@ const projects = [
   },
   {
     title: "Transporter Management System",
-    description: "A comprehensive system for managing transportation logistics with real-time tracking capabilities.",
-    fullDescription: "A complete transportation management solution that streamlines logistics operations for freight companies. Features real-time tracking, route optimization, and comprehensive fleet management tools.",
+    description: "A comprehensive system designed to streamline transport operations for HGGC Transporters, managing fuel procurement and distribution nationwide.",
+    fullDescription: "The Transporter Management System is designed to streamline transport operations for HGGC Transporters. This system facilitates the logistical requirements of procuring fuel from various oil marketing companies such as Total Parco, Go, and others, and distributing it to pumps nationwide. The primary focus of the project includes managing drivers, vehicles, oil marketing companies, vehicle manufacturers, trip records, and expenses.",
     image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=500&fit=crop",
     images: [
       "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=500&fit=crop",
       "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=800&h=500&fit=crop",
       "https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=800&h=500&fit=crop"
     ],
-    tech: ["React", "Express.js", "MySQL", "Socket.io", "Google Maps API"],
-    github: "https://github.com/buttawb/Transporter-Management-System",
+    tech: ["Django", "MySQL", "HTML", "CSS", "JavaScript", "Git"],
+    github: "https://github.com/buttawb/HGGC-WebApp",
     live: "#",
-    developedDate: "2023",
-    purpose: "Optimize transportation logistics",
-    teamSize: "2 Developers",
+    developedDate: "2024",
+    purpose: "Streamline transport operations and fuel distribution",
+    teamSize: "Solo Developer",
     duration: "3 months",
-    role: "Lead Full-Stack Developer"
+    role: "Full-Stack Developer",
+    features: [
+      "Driver Management with comprehensive information tracking",
+      "Vehicle Management including maintenance records",
+      "Oil Marketing Companies integration (Total Parco, Go, etc.)",
+      "Vehicle Makers database management",
+      "Trip Records logging and management",
+      "Expense Management for transportation operations",
+      "User authentication and authorization",
+      "Database-driven architecture with MySQL"
+    ],
+    challenges: [
+      "Complex logistics management system design",
+      "Integration with multiple oil marketing companies",
+      "Database design for comprehensive transport operations",
+      "User interface for non-technical users",
+      "Data integrity and validation across multiple modules",
+      "Scalable architecture for nationwide operations"
+    ]
   },
   {
-    title: "Heavy Vehicle Safety Companion",
-    description: "A mobile application designed to enhance safety for heavy vehicle operators with real-time monitoring.",
-    fullDescription: "A comprehensive safety application for heavy vehicle operators featuring real-time monitoring, fatigue detection, emergency alerts, and compliance tracking.",
-    image: "https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=800&h=500&fit=crop",
+    title: "Driver Handbook (Android App)",
+    description: "Android app for heavy vehicle drivers, featuring video player, PDF reader, and text-to-speech for road safety.",
+    fullDescription: "Explore my latest venture into the mobile world with an Android app designed for heavy vehicle drivers at HGGC. Stepping outside my primary domain of web development, I developed this native app using Java, Kotlin, and XML. It features a video player, PDF reader, and text-to-speech functionalities, all within a user-friendly interface. The app is a private tool for HGGC, enhancing safety, productivity, and compliance on the road.",
+    image: "/public/hggc1.jpeg",
     images: [
-      "https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=800&h=500&fit=crop",
-      "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=800&h=500&fit=crop"
+      "/public/hggc1.jpeg",
+      "/public/hggc2.jpeg",
+      "/public/hggc3.jpeg",
+      "/public/hggc4.jpeg"
     ],
-    tech: ["React Native", "Firebase", "IoT Integration", "Real-time Analytics"],
-    github: "https://github.com/buttawb/Heavy-Vehicle-Safety-Companion",
-    live: "#",
+    tech: ["Java", "Kotlin", "XML", "Android SDK"],
+    github: "https://github.com/buttawb/HGGC-AndroidApp",
+    live: "https://play.google.com/store/apps/details?id=com.hggc.driverapp",
     developedDate: "2023",
-    purpose: "Improve heavy vehicle safety",
+    purpose: "Enhance road safety for heavy vehicle drivers",
     teamSize: "Solo Developer",
     duration: "2 months",
-    role: "Mobile App Developer"
+    role: "Android App Developer",
+    features: [
+      "Video Player for safety and training materials",
+      "PDF Reader for manuals and guides",
+      "Text-to-Speech for hands-free information",
+      "User-friendly and distraction-free interface",
+      "Private tool tailored for HGGC drivers",
+      "Stay informed and compliant with latest guidelines"
+    ],
+    challenges: [
+      "Developing a native Android app outside primary web domain",
+      "Integrating video, PDF, and TTS in a seamless UI",
+      "Ensuring usability for non-technical users",
+      "Maintaining security and privacy for a private tool"
+    ]
   },
   {
-    title: "Makkhimeter-FYP",
-    description: "Final Year Project: An advanced measurement and monitoring system with IoT integration.",
-    fullDescription: "An IoT-based industrial monitoring system that provides real-time measurements and data analytics for manufacturing environments.",
-    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&h=500&fit=crop",
+    title: "Drosometer (MakkhiMeter)",
+    description: "Automated Django-based system for rapid analysis and classification of Drosophila melanogaster (fruit fly) wing and eye features, revolutionizing genetic research.",
+    fullDescription: `Drosophila melanogaster, or the fruit fly, is a key model for genetic studies due to its short life span and close genetic relationship to humans. Traditionally, classifying new species and calculating their features is a manual, time-consuming process.\nMakkhiMeter solves this by providing a decision-based system that classifies the fly's family and calculates its features with just one click, enhancing efficiency and accuracy in genetic research.\nThe system allows for manual fine-tuning of wing vein structures, visualizes wing regions, enables bristle counting, and provides eye color analysis with pie charts.`,
+    image: "https://github.com/buttawb/Makkhimeter-FYP/assets/102326149/8a600cd4-2530-4dd7-8eed-f31c6877094d",
     images: [
-      "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&h=500&fit=crop",
-      "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&h=500&fit=crop"
+      "https://github.com/buttawb/Makkhimeter-FYP/assets/102326149/8a600cd4-2530-4dd7-8eed-f31c6877094d",
+      "https://github.com/buttawb/Makkhimeter-FYP/assets/102326149/56714ef8-9e18-4b21-a523-dcee34661c59",
+      "https://github.com/buttawb/Makkhimeter-FYP/assets/102326149/3862e442-e18a-484d-a13f-f9750d062061",
+      "https://github.com/buttawb/Makkhimeter-FYP/assets/102326149/6bc614c3-926a-4825-b625-761831caf9f4"
     ],
-    tech: ["Arduino", "React", "Node.js", "IoT", "Data Visualization"],
+    tech: ["Django", "Python", "OpenCV", "Data Visualization", "HTML", "CSS", "JavaScript"],
     github: "https://github.com/buttawb/Makkhimeter-FYP",
     live: "#",
-    developedDate: "2022",
-    purpose: "Industrial IoT monitoring",
+    developedDate: "2023",
+    purpose: "Revolutionize genetic research with automated, accurate, and rapid analysis of fruit fly features.",
     teamSize: "3 Developers",
     duration: "6 months",
-    role: "IoT Developer & Frontend Lead"
+    role: "Full-Stack Developer & Research Collaborator",
+    features: [
+      "Automated classification of fruit fly species",
+      "One-click feature calculation",
+      "Manual fine-tuning of wing vein structure",
+      "Visual region labeling on wing images",
+      "Bristle counting with adjustable on-screen box",
+      "Eye color analysis with pie chart visualization",
+      "Generates insightful reports in minutes"
+    ],
+    challenges: [
+      "Automating complex image analysis",
+      "Ensuring accuracy in biological feature extraction",
+      "User-friendly manual adjustment tools",
+      "Data visualization for scientific reporting"
+    ]
   }
 ];
 
@@ -244,7 +295,7 @@ export function Projects() {
           {projects.slice(1).map((project, index) => (
             <Card 
               key={index} 
-              className="neo-card group hover:scale-[1.02] transition-all duration-500 overflow-hidden"
+              className="neo-card group hover:scale-[1.02] transition-all duration-500 overflow-hidden h-full flex flex-col"
             >
               {/* Project Image */}
               <div className="relative overflow-hidden">
@@ -256,7 +307,7 @@ export function Projects() {
               </div>
 
               {/* Project Content */}
-              <div className="p-5 space-y-3">
+              <div className="p-5 flex flex-col flex-1">
                 <div className="space-y-2">
                   <h3 className="text-lg font-semibold group-hover:gradient-text transition-all duration-300">
                     {project.title}
@@ -267,7 +318,7 @@ export function Projects() {
                 </div>
 
                 {/* Tech Stack */}
-                <div className="flex flex-wrap gap-1">
+                <div className="flex flex-wrap gap-1 mt-2 mb-6">
                   {project.tech.slice(0, 3).map((tech) => (
                     <Badge key={tech} variant="outline" className="text-xs glass-card">
                       {tech}
@@ -281,7 +332,7 @@ export function Projects() {
                 </div>
 
                 {/* Project Links */}
-                <div className="flex gap-2 pt-2">
+                <div className="flex gap-2 pt-2 mt-auto">
                   <ProjectDetailsModal project={project}>
                     <Button variant="outline" size="sm" className="glass-button flex-1">
                       <Info className="h-3 w-3 mr-1" />

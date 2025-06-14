@@ -210,11 +210,13 @@ export function ProjectDetailsModal({ project, children }: ProjectDetailsModalPr
                     {/* Main Image Display */}
                     <div className="relative group mb-6">
                       <div className="relative overflow-hidden rounded-xl border shadow-lg">
-                        <img
-                          src={allImages[currentImageIndex]}
-                          alt={`${project.title} - Image ${currentImageIndex + 1}`}
-                          className="w-full h-96 object-cover"
-                        />
+                        <a href={allImages[currentImageIndex]} target="_blank" rel="noopener noreferrer">
+                          <img
+                            src={allImages[currentImageIndex]}
+                            alt={`${project.title} - Image ${currentImageIndex + 1}`}
+                            className="w-full h-96 object-cover cursor-zoom-in"
+                          />
+                        </a>
                         
                         {allImages.length > 1 && (
                           <>
@@ -245,21 +247,24 @@ export function ProjectDetailsModal({ project, children }: ProjectDetailsModalPr
                     {allImages.length > 1 && (
                       <div className="grid grid-cols-4 md:grid-cols-6 gap-3">
                         {allImages.map((image, index) => (
-                          <button
+                          <a
                             key={index}
-                            onClick={() => setCurrentImageIndex(index)}
+                            href={image}
+                            target="_blank"
+                            rel="noopener noreferrer"
                             className={`aspect-square rounded-lg overflow-hidden border-2 transition-all duration-200 ${
                               index === currentImageIndex 
                                 ? 'border-emerald-500 scale-105 shadow-md' 
                                 : 'border-gray-200 dark:border-gray-700 hover:border-emerald-300'
                             }`}
+                            onClick={e => { e.preventDefault(); setCurrentImageIndex(index); }}
                           >
                             <img
                               src={image}
                               alt={`Thumbnail ${index + 1}`}
-                              className="w-full h-full object-cover"
+                              className="w-full h-full object-cover cursor-zoom-in"
                             />
-                          </button>
+                          </a>
                         ))}
                       </div>
                     )}
