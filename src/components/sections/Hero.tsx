@@ -106,7 +106,7 @@ export function Hero() {
               {[
                 { icon: Github, href: "https://github.com/buttawb", label: "GitHub", color: "hover:text-gray-600" },
                 { icon: Linkedin, href: "https://www.linkedin.com/in/buttawb/", label: "LinkedIn", color: "hover:text-blue-600" },
-                { icon: Mail, href: "mailto:buttawb@gmail.com", label: "Email", color: "hover:text-emerald-600" },
+                // { icon: Mail, href: "mailto:buttawb@gmail.com", label: "Email", color: "hover:text-emerald-600" },
               ].map(({ icon: Icon, href, label, color }) => (
                 <a
                   key={label}
