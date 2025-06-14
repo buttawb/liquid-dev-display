@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
@@ -17,7 +18,13 @@ import {
   Clock,
   CheckCircle,
   AlertTriangle,
-  Briefcase
+  Briefcase,
+  Database,
+  Globe,
+  Smartphone,
+  Palette,
+  Server,
+  Zap
 } from "lucide-react";
 
 interface ProjectDetailsModalProps {
@@ -82,6 +89,61 @@ export function ProjectDetailsModal({ project, children }: ProjectDetailsModalPr
     { label: "Year", value: project.developedDate || "2024", icon: Calendar },
   ];
 
+  // Categorize technologies
+  const categorizeTech = (techArray: string[]) => {
+    const categories = {
+      frontend: [] as string[],
+      backend: [] as string[],
+      database: [] as string[],
+      mobile: [] as string[],
+      ai: [] as string[],
+      tools: [] as string[]
+    };
+
+    techArray.forEach(tech => {
+      const lowerTech = tech.toLowerCase();
+      if (['react', 'vue', 'angular', 'html', 'css', 'javascript', 'typescript', 'tailwind', 'bootstrap', 'jquery', 'next.js', 'figma'].some(t => lowerTech.includes(t))) {
+        categories.frontend.push(tech);
+      } else if (['django', 'flask', 'node.js', 'express', 'python', 'java', 'c#', 'ruby', 'php', 'rest', 'api', 'fastapi'].some(t => lowerTech.includes(t))) {
+        categories.backend.push(tech);
+      } else if (['mysql', 'postgresql', 'mongodb', 'sqlite', 'redis', 'firebase', 'supabase'].some(t => lowerTech.includes(t))) {
+        categories.database.push(tech);
+      } else if (['android', 'ios', 'react native', 'flutter', 'kotlin', 'swift', 'xml'].some(t => lowerTech.includes(t))) {
+        categories.mobile.push(tech);
+      } else if (['openai', 'gemini', 'gpt', 'ai', 'ml', 'opencv', 'tensorflow', 'pytorch'].some(t => lowerTech.includes(t))) {
+        categories.ai.push(tech);
+      } else {
+        categories.tools.push(tech);
+      }
+    });
+
+    return categories;
+  };
+
+  const techCategories = categorizeTech(project.tech);
+
+  const getCategoryIcon = (category: string) => {
+    switch (category) {
+      case 'frontend': return Globe;
+      case 'backend': return Server;
+      case 'database': return Database;
+      case 'mobile': return Smartphone;
+      case 'ai': return Zap;
+      default: return Code;
+    }
+  };
+
+  const getCategoryColor = (category: string) => {
+    switch (category) {
+      case 'frontend': return 'bg-blue-50 border-blue-200 text-blue-700';
+      case 'backend': return 'bg-green-50 border-green-200 text-green-700';
+      case 'database': return 'bg-purple-50 border-purple-200 text-purple-700';
+      case 'mobile': return 'bg-orange-50 border-orange-200 text-orange-700';
+      case 'ai': return 'bg-yellow-50 border-yellow-200 text-yellow-700';
+      default: return 'bg-gray-50 border-gray-200 text-gray-700';
+    }
+  };
+
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -100,7 +162,7 @@ export function ProjectDetailsModal({ project, children }: ProjectDetailsModalPr
                   </p>
                 </div>
                 <div className="w-[20%] flex-shrink-0">
-                  <Badge variant="secondary" className="bg-emerald-100 text-emerald-700 border-emerald-200 w-full text-center">
+                  <Badge variant="secondary" className="bg-blue-100 text-blue-700 border-blue-200 w-full text-center">
                     {project.purpose || "Innovation Project"}
                   </Badge>
                 </div>
@@ -132,7 +194,7 @@ export function ProjectDetailsModal({ project, children }: ProjectDetailsModalPr
                   onClick={() => setActiveTab(tab.id as any)}
                   className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-200 ${
                     activeTab === tab.id 
-                      ? 'bg-emerald-500 text-white shadow-sm' 
+                      ? 'bg-blue-500 text-white shadow-sm' 
                       : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
                   }`}
                 >
@@ -152,15 +214,15 @@ export function ProjectDetailsModal({ project, children }: ProjectDetailsModalPr
                 <div className="grid md:grid-cols-2 gap-8">
                   <Card className="professional-card p-6">
                     <div className="flex items-center gap-3 mb-6">
-                      <div className="p-2 bg-emerald-100 dark:bg-emerald-900 rounded-lg">
-                        <CheckCircle className="h-5 w-5 text-emerald-600 dark:text-emerald-400" />
+                      <div className="p-2 bg-green-100 dark:bg-green-900 rounded-lg">
+                        <CheckCircle className="h-5 w-5 text-green-600 dark:text-green-400" />
                       </div>
                       <h4 className="text-lg font-semibold text-gray-900 dark:text-white">Key Features</h4>
                     </div>
                     <div className="space-y-3">
                       {(project.features || defaultFeatures).map((feature, index) => (
                         <div key={index} className="flex items-start gap-3">
-                          <div className="w-2 h-2 rounded-full bg-emerald-500 mt-2 flex-shrink-0"></div>
+                          <div className="w-2 h-2 rounded-full bg-green-500 mt-2 flex-shrink-0"></div>
                           <span className="text-sm text-gray-600 dark:text-gray-300">{feature}</span>
                         </div>
                       ))}
@@ -203,7 +265,7 @@ export function ProjectDetailsModal({ project, children }: ProjectDetailsModalPr
                 {allImages.length > 0 && (
                   <div>
                     <h3 className="text-xl font-semibold mb-6 flex items-center gap-3 text-gray-900 dark:text-white">
-                      <Eye className="h-5 w-5 text-emerald-500" />
+                      <Eye className="h-5 w-5 text-blue-500" />
                       Project Screenshots
                     </h3>
                     
@@ -254,8 +316,8 @@ export function ProjectDetailsModal({ project, children }: ProjectDetailsModalPr
                             rel="noopener noreferrer"
                             className={`aspect-square rounded-lg overflow-hidden border-2 transition-all duration-200 ${
                               index === currentImageIndex 
-                                ? 'border-emerald-500 scale-105 shadow-md' 
-                                : 'border-gray-200 dark:border-gray-700 hover:border-emerald-300'
+                                ? 'border-blue-500 scale-105 shadow-md' 
+                                : 'border-gray-200 dark:border-gray-700 hover:border-blue-300'
                             }`}
                             onClick={e => { e.preventDefault(); setCurrentImageIndex(index); }}
                           >
@@ -275,7 +337,7 @@ export function ProjectDetailsModal({ project, children }: ProjectDetailsModalPr
                 {project.videos && project.videos.length > 0 && (
                   <div>
                     <h3 className="text-xl font-semibold mb-6 flex items-center gap-3 text-gray-900 dark:text-white">
-                      <Play className="h-5 w-5 text-emerald-500" />
+                      <Play className="h-5 w-5 text-blue-500" />
                       Demo Videos
                     </h3>
                     <div className="grid md:grid-cols-2 gap-6">
@@ -303,28 +365,44 @@ export function ProjectDetailsModal({ project, children }: ProjectDetailsModalPr
                 {/* Tech Stack */}
                 <div>
                   <h3 className="text-xl font-semibold mb-6 flex items-center gap-3 text-gray-900 dark:text-white">
-                    <Code className="h-5 w-5 text-emerald-500" />
+                    <Code className="h-5 w-5 text-blue-500" />
                     Technology Stack
                   </h3>
-                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                    {project.tech.map((tech) => (
-                      <div key={tech} className="professional-card p-4 text-center hover:scale-105 transition-transform">
-                        <Badge className="bg-emerald-500 text-white border-0 w-full">
-                          {tech}
-                        </Badge>
-                      </div>
-                    ))}
+                  
+                  <div className="space-y-6">
+                    {Object.entries(techCategories).map(([category, technologies]) => {
+                      if (technologies.length === 0) return null;
+                      
+                      const CategoryIcon = getCategoryIcon(category);
+                      const categoryName = category.charAt(0).toUpperCase() + category.slice(1);
+                      
+                      return (
+                        <div key={category} className="space-y-3">
+                          <div className="flex items-center gap-2">
+                            <CategoryIcon className="h-5 w-5 text-gray-600" />
+                            <h4 className="text-lg font-semibold text-gray-900 dark:text-white">
+                              {categoryName === 'Ai' ? 'AI & Machine Learning' : categoryName}
+                            </h4>
+                          </div>
+                          
+                          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+                            {technologies.map((tech, index) => (
+                              <div
+                                key={index}
+                                className={`p-3 rounded-lg border text-center transition-all duration-200 hover:shadow-sm ${getCategoryColor(category)}`}
+                              >
+                                <span className="text-sm font-medium">{tech}</span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
 
                 {/* Action Buttons */}
                 <div className="flex flex-wrap gap-4 pt-6 border-t">
-                  {/* <Button className="bg-emerald-500 hover:bg-emerald-600 text-white border-0 px-6" asChild>
-                    <a href={project.live} target="_blank" rel="noopener noreferrer">
-                      <ExternalLink className="h-4 w-4 mr-2" />
-                      Live Demo
-                    </a>
-                  </Button> */}
                   <Button variant="outline" className="border-gray-300 hover:bg-gray-50 px-6" asChild>
                     <a href={project.github} target="_blank" rel="noopener noreferrer">
                       <Github className="h-4 w-4 mr-2" />
