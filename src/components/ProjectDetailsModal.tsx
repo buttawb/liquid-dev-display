@@ -152,15 +152,15 @@ export function ProjectDetailsModal({ project, children }: ProjectDetailsModalPr
           {/* Header Section - Professional White Design */}
           <div className="relative overflow-hidden">
             <div className="bg-gray-50 dark:bg-gray-800 p-8 border-b">
-              <div className="flex items-start gap-6 mb-6">
-                <div className="flex-1 w-[80%]">
+              <div className="flex flex-col lg:flex-row items-start gap-6 mb-6">
+                <div className="flex-1 lg:w-[80%]">
                   <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-3">{project.title}</h2>
                   <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed text-justify">
                     {project.fullDescription || project.description}
                   </p>
                 </div>
-                <div className="w-[20%] flex-shrink-0">
-                  <Badge variant="secondary" className="bg-blue-100 text-blue-700 border-blue-200 w-full text-center">
+                <div className="flex-shrink-0 lg:w-[20%]">
+                  <Badge variant="secondary" className="bg-blue-100 text-blue-700 border-blue-200 text-center whitespace-normal break-words max-w-xs">
                     {project.purpose || "Innovation Project"}
                   </Badge>
                 </div>
