@@ -45,7 +45,7 @@ export function About() {
             <span>Based in Karachi, Pakistan</span>
           </div>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Passionate Full-Stack Developer with nearly 3 years of professional experience
+            Passionate Full-Stack Developer with nearly 2+ years of professional experience
           </p>
         </div>
        
@@ -54,7 +54,7 @@ export function About() {
           <div className="lg:col-span-2 space-y-6">
             <div className="space-y-5">
               <p className="text-base leading-relaxed text-muted-foreground">
-                Hi, I'm <strong className="text-foreground">Abdul Wahab Butt</strong>, a passionate Full-Stack Developer based in Karachi, Pakistan, with nearly 3 years of professional experience building scalable, efficient, and user-centric web applications.
+                Hi, I'm <strong className="text-foreground">Abdul Wahab Butt</strong>, a passionate Full-Stack Developer based in Karachi, Pakistan, with nearly 2+ years of professional experience building scalable, efficient, and user-centric web applications.
               </p>
               
               <p className="text-base leading-relaxed text-muted-foreground">

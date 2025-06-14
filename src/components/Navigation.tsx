@@ -1,6 +1,5 @@
-
 import { useState, useEffect } from "react";
-import { Moon, Sun, Menu, X } from "lucide-react";
+import { Moon, Sun, Menu, X, Monitor } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "@/components/theme-provider";
 
@@ -17,7 +16,7 @@ const navItems = [
 export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { theme, setTheme } = useTheme();
+  const { theme, setTheme, resolvedTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -33,6 +32,48 @@ export function Navigation() {
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
       setIsMobileMenuOpen(false);
+    }
+  };
+
+  const cycleTheme = () => {
+    switch (theme) {
+      case "light":
+        setTheme("dark");
+        break;
+      case "dark":
+        setTheme("system");
+        break;
+      case "system":
+        setTheme("light");
+        break;
+      default:
+        setTheme("light");
+    }
+  };
+
+  const getThemeIcon = () => {
+    switch (theme) {
+      case "light":
+        return <Sun className="h-5 w-5" />;
+      case "dark":
+        return <Moon className="h-5 w-5" />;
+      case "system":
+        return <Monitor className="h-5 w-5" />;
+      default:
+        return <Sun className="h-5 w-5" />;
+    }
+  };
+
+  const getThemeLabel = () => {
+    switch (theme) {
+      case "light":
+        return "Light";
+      case "dark":
+        return "Dark";
+      case "system":
+        return "System";
+      default:
+        return "Light";
     }
   };
 
@@ -73,11 +114,11 @@ export function Navigation() {
             <Button
               variant="ghost"
               size="icon"
-              onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+              onClick={cycleTheme}
               className="glass-button rounded-xl"
+              title={`Current: ${theme} (Click to cycle: Light → Dark → System)`}
             >
-              <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-              <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+              {getThemeIcon()}
             </Button>
 
             {/* Mobile menu button */}
@@ -111,6 +152,37 @@ export function Navigation() {
                   {item.name}
                 </button>
               ))}
+              {/* Mobile theme options */}
+              <div className="pt-2 border-t border-white/20">
+                <div className="text-sm font-medium text-white/70 px-4 py-2">Theme</div>
+                <button
+                  onClick={() => setTheme("light")}
+                  className={`block w-full text-left px-4 py-3 rounded-xl font-medium transition-all duration-200 ${
+                    theme === "light" ? "glass-button" : "hover:glass-button"
+                  }`}
+                >
+                  <Sun className="inline mr-2 h-4 w-4" />
+                  Light
+                </button>
+                <button
+                  onClick={() => setTheme("dark")}
+                  className={`block w-full text-left px-4 py-3 rounded-xl font-medium transition-all duration-200 ${
+                    theme === "dark" ? "glass-button" : "hover:glass-button"
+                  }`}
+                >
+                  <Moon className="inline mr-2 h-4 w-4" />
+                  Dark
+                </button>
+                <button
+                  onClick={() => setTheme("system")}
+                  className={`block w-full text-left px-4 py-3 rounded-xl font-medium transition-all duration-200 ${
+                    theme === "system" ? "glass-button" : "hover:glass-button"
+                  }`}
+                >
+                  <Monitor className="inline mr-2 h-4 w-4" />
+                  System
+                </button>
+              </div>
             </div>
           </div>
         )}

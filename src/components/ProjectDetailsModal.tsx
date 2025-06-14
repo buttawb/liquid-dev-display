@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
@@ -53,6 +52,7 @@ interface ProjectDetailsModalProps {
 export function ProjectDetailsModal({ project, children }: ProjectDetailsModalProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [activeTab, setActiveTab] = useState<'overview' | 'gallery' | 'technical'>('overview');
+  const [imageLoaded, setImageLoaded] = useState(false);
   
   const allImages = project.images || (project.image ? [project.image] : []);
   
@@ -274,7 +274,9 @@ export function ProjectDetailsModal({ project, children }: ProjectDetailsModalPr
                           <img
                             src={allImages[currentImageIndex]}
                             alt={`${project.title} - Image ${currentImageIndex + 1}`}
-                            className="w-full h-96 object-cover cursor-zoom-in"
+                            className={`w-full h-96 object-cover cursor-zoom-in transition-opacity duration-700 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
+                            loading="lazy"
+                            onLoad={() => setImageLoaded(true)}
                           />
                         </a>
                         
@@ -323,6 +325,7 @@ export function ProjectDetailsModal({ project, children }: ProjectDetailsModalPr
                               src={image}
                               alt={`Thumbnail ${index + 1}`}
                               className="w-full h-full object-cover cursor-zoom-in"
+                              loading="lazy"
                             />
                           </a>
                         ))}
