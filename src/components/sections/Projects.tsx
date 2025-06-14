@@ -250,7 +250,7 @@ export function Projects() {
               {/* Project Content */}
               <div className="p-6 lg:p-8 space-y-5 order-1 lg:order-2">
                 <div className="space-y-3">
-                  <Badge className="gradient-green text-white border-0">Featured Project</Badge>
+                  {/* <Badge className="gradient-green text-white border-0">Featured Project</Badge> */}
                   <h3 className="text-2xl font-bold group-hover:gradient-text transition-all duration-300">
                     {featuredProject.title}
                   </h3>
