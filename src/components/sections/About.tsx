@@ -40,12 +40,12 @@ export function About() {
           <h2 className="text-3xl md:text-5xl font-bold mb-4">
             About <span className="gradient-text">Me</span>
           </h2>
-          <div className="inline-flex items-center gap-2 text-lg text-muted-foreground mb-4">
+          {/* <div className="inline-flex items-center gap-2 text-lg text-muted-foreground mb-4">
             <MapPin className="h-5 w-5 text-emerald-500" />
             <span>Based in Karachi, Pakistan</span>
-          </div>
+          </div> */}
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Passionate Full-Stack Developer with nearly 2+ years of professional experience
+            Learn who I am and what I do.
           </p>
         </div>
        
