@@ -8,38 +8,40 @@ import { ProjectDetailsModal } from "@/components/ProjectDetailsModal";
 const projects = [
   {
     title: "AI-UX",
-    description: "An innovative AI-powered user experience platform that leverages machine learning to enhance user interactions.",
-    fullDescription: "AI-UX is a comprehensive platform that combines artificial intelligence with user experience design to create intuitive and personalized digital experiences. The system analyzes user behavior patterns, preferences, and interactions to dynamically adapt interfaces and content delivery.",
+    description: "AI-powered UX analysis & design iteration tool integrating Figma, OpenAI & GEMINI for instant heatmaps, user journeys, and design improvements.",
+    fullDescription: "AI-UX Tester is an intelligent, modular platform designed to empower designers and product teams with real-time, data-driven UX insights and automated design iteration workflows. It bridges the gap between static designs and real user behavior by leveraging cutting-edge AI models and Figma integration. Built over 3 intense days for a hackathon, AI-UX Tester consists of three powerful modules: UX Analysis (heatmaps, finger reach zones, drop-off identification), User Journey (AI-driven simulation of user task completion), and Design Iteration (AI-powered image generation for improved design frames).",
     images: [
-      "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&h=500&fit=crop",
-      "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=800&h=500&fit=crop",
-      "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&h=500&fit=crop",
-      "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=800&h=500&fit=crop"
+      "https://github.com/user-attachments/assets/e4418d7f-233c-483f-ac26-48a5499a2979",
+      "https://github.com/user-attachments/assets/75a50934-eaeb-4c32-85c9-6889307052c1",
+      "https://github.com/user-attachments/assets/199d5364-e92a-4575-b5dd-285d77eaf3f9",
+      "https://github.com/user-attachments/assets/56468bf4-6015-463e-9081-03305a86093f"
     ],
-    tech: ["React", "Python", "TensorFlow", "Node.js", "MongoDB"],
+    tech: ["Django REST Framework", "Python 3.10", "HTML", "CSS", "jQuery", "Heatmap.js", "OpenAI GPT-4o-mini", "GEMINI", "Figma REST API"],
     github: "https://github.com/buttawb/AI-UX",
     live: "#",
     featured: true,
-    developedDate: "2024",
-    purpose: "Enhance user experience through AI",
-    teamSize: "Solo Developer",
-    duration: "4 months",
+    developedDate: "2025",
+    purpose: "Revolutionizing design validation with AI-powered UX insights",
+    teamSize: "2 Engineers",
+    duration: "3 days (Hackathon)",
     role: "Full-Stack Developer & AI Engineer",
     features: [
-      "AI-powered personalization",
-      "Real-time user behavior analysis", 
-      "Dynamic interface adaptation",
-      "Machine learning recommendations",
-      "Advanced analytics dashboard",
-      "Cross-platform compatibility"
+      "UX Analysis with heatmaps and finger reach zones",
+      "AI-driven user journey simulation",
+      "Design iteration with AI-powered image generation",
+      "Figma file import via Project ID, Design URL, or .fig upload",
+      "Interactive heatmap visualizations with markers and tooltips",
+      "Real-time UX feedback from complex Figma files",
+      "Automated generation of interactive user journey videos",
+      "Seamless AI-driven design enhancement"
     ],
     challenges: [
-      "Complex AI model integration",
-      "Real-time data processing",
-      "Scalable architecture design",
-      "User privacy considerations",
-      "Performance optimization",
-      "Data synchronization"
+      "Integrating multiple AI models (OpenAI & GEMINI)",
+      "Figma API integration and file processing",
+      "Real-time UX analysis and visualization",
+      "AI-powered image generation for design iteration",
+      "Building modular architecture for three distinct modules",
+      "Hackathon time constraints (3 days development)"
     ]
   },
   {
@@ -225,12 +227,12 @@ export function Projects() {
                       Code
                     </a>
                   </Button>
-                  <Button size="sm" className="gradient-green text-white border-0" asChild>
+                  {/* <Button size="sm" className="gradient-green text-white border-0" asChild>
                     <a href={featuredProject.live} target="_blank" rel="noopener noreferrer">
                       <ExternalLink className="h-3 w-3 mr-1" />
                       Demo
                     </a>
-                  </Button>
+                  </Button> */}
                 </div>
               </div>
             </div>
@@ -291,11 +293,11 @@ export function Projects() {
                       <Github className="h-3 w-3" />
                     </a>
                   </Button>
-                  <Button size="sm" className="gradient-green text-white border-0" asChild>
+                  {/* <Button size="sm" className="gradient-green text-white border-0" asChild>
                     <a href={project.live} target="_blank" rel="noopener noreferrer">
                       <ExternalLink className="h-3 w-3" />
                     </a>
-                  </Button>
+                  </Button> */}
                 </div>
               </div>
             </Card>

@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Github, Linkedin, Mail, Download, ChevronDown, Code, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -65,13 +64,12 @@ export function Hero() {
               
               <div className="text-lg md:text-xl text-muted-foreground font-light flex items-center justify-center lg:justify-start gap-2">
                 <Code className="h-6 w-6 text-emerald-500" />
-                <span className="typing-text">Full-Stack Developer</span>
+                <span className="typing-text">Software Engineer</span>
               </div>
             </div>
 
             <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-              Crafting digital experiences with modern technologies, 
-              AI integration, and pixel-perfect design that brings ideas to life.
+              Driven to create meaningful digital experiences by writing clean, maintainable code and solving problems that matter.
             </p>
 
             {/* Available Badge */}
@@ -85,9 +83,12 @@ export function Hero() {
               <Button 
                 size="lg" 
                 className="gradient-green text-white border-0 hover:scale-105 transition-all duration-300 px-6 py-3 text-base font-semibold rounded-xl shadow-lg hover:shadow-xl"
+                asChild
               >
-                <Download className="mr-2 h-4 w-4" />
-                Download Resume
+                <a href="/AbdulWahabButtCV.pdf" download>
+                  <Download className="mr-2 h-4 w-4" />
+                  Download Resume
+                </a>
               </Button>
               
               <Button 
@@ -105,7 +106,7 @@ export function Hero() {
               {[
                 { icon: Github, href: "https://github.com/buttawb", label: "GitHub", color: "hover:text-gray-600" },
                 { icon: Linkedin, href: "https://www.linkedin.com/in/buttawb/", label: "LinkedIn", color: "hover:text-blue-600" },
-                { icon: Mail, href: "mailto:your-email@example.com", label: "Email", color: "hover:text-emerald-600" },
+                { icon: Mail, href: "mailto:buttawb@gmail.com", label: "Email", color: "hover:text-emerald-600" },
               ].map(({ icon: Icon, href, label, color }) => (
                 <a
                   key={label}
@@ -126,10 +127,10 @@ export function Hero() {
             <div className="relative">
               <div className="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96">
                 {/* Main photo container with gradient border */}
-                <div className="absolute inset-0 rounded-full gradient-green p-1">
-                  <div className="w-full h-full rounded-full overflow-hidden bg-white dark:bg-gray-900">
+                <div className="absolute inset-0 rounded-full border-4 border-emerald-500 p-0">
+                  <div className="w-full h-full rounded-full overflow-hidden">
                     <img
-                      src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face"
+                      src="/profile.png"
                       alt="Abdul Wahab Butt"
                       className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
                     />
@@ -144,9 +145,6 @@ export function Hero() {
                 <div className="absolute -bottom-4 -left-4 w-10 h-10 glass-card rounded-full flex items-center justify-center floating" style={{animationDelay: '1s'}}>
                   <Sparkles className="h-5 w-5 text-emerald-500" />
                 </div>
-
-                {/* Glowing effect */}
-                <div className="absolute inset-0 rounded-full bg-gradient-to-r from-emerald-400/20 to-green-500/20 blur-xl -z-10 animate-pulse"></div>
               </div>
             </div>
           </div>

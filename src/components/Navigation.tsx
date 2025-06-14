@@ -49,7 +49,7 @@ export function Navigation() {
           {/* Logo */}
           <div className="flex-shrink-0">
             <span className="text-3xl font-black gradient-text">
-              BW
+              AWB
             </span>
           </div>
 

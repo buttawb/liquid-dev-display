@@ -1,52 +1,53 @@
-
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Briefcase, Calendar, MapPin, TrendingUp, Users, Award } from "lucide-react";
 
 const experiences = [
   {
-    title: "Senior Software Developer",
-    company: "TechCorp Solutions",
-    duration: "Jan 2024 - Present",
-    location: "Islamabad, Pakistan",
+    title: "Backend Engineer",
+    company: "Avialdo Solutions",
+    duration: "Aug 2024 - Present",
+    location: "Karāchi, Sindh, Pakistan",
     type: "Full-time",
-    level: "Senior",
-    description: "Leading development of enterprise applications and mentoring junior developers. Architecting scalable solutions using modern tech stack.",
-    skills: ["React", "Node.js", "Python", "AWS", "Team Leadership"],
+    level: "Mid Level",
+    description: "Leading the development of complex backend modules and managing projects effectively using modern development practices and cloud services.",
+    skills: ["Django", "WebSocket", "GraphQL", "Cross-team Collaboration", "Amazon Web Services (AWS)", "Next.js"],
     achievements: [
-      "Led team of 5 developers",
-      "Improved system performance by 40%",
-      "Delivered 3 major projects on time"
+      "Leading the development of complex backend modules",
+      "Utilizing AWS services for DevOps tasks",
+      "Managing projects effectively using JIRA, Confluence, and other Atlassian tools",
+      "Developing detailed flowcharts, UML diagrams, and other visual representations to clarify backend processes",
+      "Working closely with designers to enhance design solutions for seamless frontend-backend integration"
+    ]
+  },
+  {
+    title: "Junior Backend Engineer",
+    company: "Avialdo Solutions", 
+    duration: "Sep 2023 - Jul 2024",
+    location: "Karāchi, Sindh, Pakistan",
+    type: "Full-time",
+    level: "Junior",
+    description: "Worked on backend systems using Django and managed databases to ensure effective application performance.",
+    skills: ["Django", "REST APIs", "Code Review", "Continuous Integration and Continuous Delivery (CI/CD)", "jQuery"],
+    achievements: [
+      "Worked on backend systems using Django, gaining expertise in Django REST framework, Ninja APIs, and GraphQL",
+      "Managed and optimized databases including PostgreSQL, SQLite, and MySQL to ensure effective application performance",
+      "Utilized GIT to manage and maintain codebases, ensuring smooth version control and collaboration"
     ]
   },
   {
     title: "Software Developer",
-    company: "TechCorp Solutions", 
-    duration: "Jun 2023 - Dec 2023",
-    location: "Islamabad, Pakistan",
-    type: "Full-time",
-    level: "Mid-level",
-    description: "Developed full-stack applications and integrated AI/ML solutions. Promoted to Senior role within 6 months.",
-    skills: ["React", "Node.js", "MongoDB", "Machine Learning", "APIs"],
-    achievements: [
-      "Promoted within 6 months",
-      "Built 5+ production applications",
-      "Integrated ML models successfully"
-    ]
-  },
-  {
-    title: "Junior Software Developer",
-    company: "InnovateLab",
-    duration: "Jan 2023 - May 2023",
-    location: "Lahore, Pakistan", 
-    type: "Full-time",
+    company: "DOW UNIVERSITY OF HEALTH SCIENCES (DUHS)",
+    duration: "Jun 2022 - May 2023",
+    location: "Karāchi, Sindh, Pakistan", 
+    type: "Part-time",
     level: "Junior",
-    description: "Started career developing mobile and web applications. Gained hands-on experience in modern development practices.",
-    skills: ["React Native", "JavaScript", "Firebase", "Git", "Agile"],
+    description: "Developed a web application integrating deep learning and image processing for rapid classification and feature extraction of Drosophila melanogaster species.",
+    skills: ["Python (Programming Language)", "Collaborative Problem Solving", "Research and Development (R&D)", "JavaScript"],
     achievements: [
-      "Completed 10+ client projects",
-      "Achieved 98% client satisfaction",
-      "Learned 5 new technologies"
+      "Developed a web application integrating deep learning and image processing for rapid classification and feature extraction of Drosophila melanogaster species",
+      "Automated manual processes through innovative software solutions",
+      "Applied research and development skills in a healthcare/academic environment"
     ]
   }
 ];
@@ -73,7 +74,7 @@ export function Experience() {
             <Card key={index} className="professional-card p-6 hover:shadow-lg transition-all duration-300 group">
               <div className="flex flex-col lg:flex-row gap-6">
                 {/* Left Section - Main Info */}
-                <div className="flex-1">
+                <div className="flex-1 lg:w-[70%]">
                   <div className="flex items-start gap-4 mb-4">
                     <div className="bg-emerald-100 dark:bg-emerald-900 p-3 rounded-xl group-hover:scale-110 transition-transform">
                       <Briefcase className="h-5 w-5 text-emerald-600 dark:text-emerald-400" />
@@ -108,11 +109,11 @@ export function Experience() {
                     {exp.description}
                   </p>
 
-                  {/* Achievements */}
+                  {/* Responsibilities & Contributions */}
                   <div className="mb-4">
                     <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2 flex items-center gap-2">
                       <Award className="h-4 w-4 text-emerald-500" />
-                      Key Achievements
+                      Responsibilities & Contributions
                     </h4>
                     <div className="space-y-1">
                       {exp.achievements.map((achievement, i) => (
@@ -126,7 +127,7 @@ export function Experience() {
                 </div>
 
                 {/* Right Section - Skills */}
-                <div className="lg:min-w-[280px]">
+                <div className="lg:w-[30%] lg:min-w-[200px]">
                   <h4 className="font-semibold text-gray-700 dark:text-gray-300 mb-3 flex items-center gap-2">
                     <TrendingUp className="h-4 w-4 text-emerald-500" />
                     Technologies Used

@@ -1,11 +1,10 @@
-
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { User, Target, Zap, Heart, Coffee, Code, Clock, Sparkles, Rocket, Brain, MapPin } from "lucide-react";
 
 export function About() {
   const highlights = [
-    "3+ Years Experience",
+    "2+ Years Experience",
     "Full-Stack Development", 
     "Django & Next.js Expert",
     "Cloud Deployment",
@@ -49,7 +48,7 @@ export function About() {
             Passionate Full-Stack Developer with nearly 3 years of professional experience
           </p>
         </div>
-
+       
         <div className="grid lg:grid-cols-3 gap-12 items-start mb-16">
           {/* Content - Takes 2 columns */}
           <div className="lg:col-span-2 space-y-6">
@@ -65,50 +64,6 @@ export function About() {
               <p className="text-base leading-relaxed text-muted-foreground">
                 I'm not just a coder; I care deeply about <em>why</em> things are being built and <em>who</em> they're being built for. This has led me to take on responsibilities like mentoring junior engineers, collaborating with UI/UX designers, and contributing to architectural decisions that make products truly scalable.
               </p>
-
-              <div className="bg-gradient-to-r from-emerald-50 to-green-50 dark:from-emerald-950/30 dark:to-green-950/30 p-6 rounded-xl border-l-4 border-emerald-500">
-                <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
-                  <Sparkles className="h-5 w-5 text-emerald-500" />
-                  What sets me apart?
-                </h3>
-                <div className="space-y-3 text-sm leading-relaxed text-muted-foreground">
-                  <p><strong className="text-emerald-600 dark:text-emerald-400">Ownership mindset:</strong> I treat every project like it's my own — from ideation to deployment and beyond.</p>
-                  <p><strong className="text-emerald-600 dark:text-emerald-400">Fast learner:</strong> Whether it's integrating a new framework like Next.js or picking up a new cloud tool, I dive in with confidence and curiosity.</p>
-                  <p><strong className="text-emerald-600 dark:text-emerald-400">Team player:</strong> I thrive in collaborative environments where knowledge sharing, peer reviews, and problem-solving go hand in hand.</p>
-                  <p><strong className="text-emerald-600 dark:text-emerald-400">Builder's heart:</strong> I enjoy creating real-world products that solve genuine problems — whether it's an internal logistics platform or an automated classification system using image processing and deep learning.</p>
-                  <p><strong className="text-emerald-600 dark:text-emerald-400">Growth-oriented:</strong> I value constant improvement — in code, in systems, and in myself. I'm always learning, always iterating.</p>
-                </div>
-              </div>
-
-              <div className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-950/30 dark:to-indigo-950/30 p-6 rounded-xl border-l-4 border-blue-500">
-                <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
-                  <Brain className="h-5 w-5 text-blue-500" />
-                  Mindset & Values
-                </h3>
-                <div className="space-y-2 text-sm leading-relaxed text-muted-foreground">
-                  <p>• I believe clear communication is just as important as clean code.</p>
-                  <p>• I prioritize maintainability, performance, and user needs over shortcuts and temporary fixes.</p>
-                  <p>• I'm driven by a desire to create impact, not just output.</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="space-y-4">
-              <h3 className="text-xl font-semibold flex items-center gap-2">
-                <Rocket className="h-5 w-5 text-emerald-500" />
-                Key Highlights
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {highlights.map((highlight) => (
-                  <Badge 
-                    key={highlight} 
-                    variant="secondary" 
-                    className="glass-card px-3 py-1 text-sm font-medium hover:scale-105 transition-transform"
-                  >
-                    {highlight}
-                  </Badge>
-                ))}
-              </div>
             </div>
           </div>
 
@@ -116,7 +71,7 @@ export function About() {
           <div className="grid grid-cols-2 gap-3">
             {[
               { 
-                number: "3+", 
+                number: "2+", 
                 label: "Years Experience", 
                 color: "from-emerald-400 to-green-500",
                 icon: Clock
@@ -155,17 +110,19 @@ export function About() {
           </div>
         </div>
 
-        {/* Values Section */}
-        <div className="grid md:grid-cols-3 gap-6">
-          {values.map((value, index) => (
-            <Card key={index} className="glass-card p-6 text-center hover:scale-105 transition-all duration-300 group">
-              <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl gradient-green mb-4 group-hover:scale-110 transition-transform">
-                <value.icon className="h-6 w-6 text-white" />
-              </div>
-              <h3 className="text-lg font-semibold mb-2">{value.title}</h3>
-              <p className="text-sm text-muted-foreground">{value.description}</p>
-            </Card>
-          ))}
+         {/* What sets me apart box - full width */}
+         <div className="w-full mt-8 mb-8 bg-gradient-to-r from-emerald-50 to-green-50 dark:from-emerald-950/30 dark:to-green-950/30 p-6 rounded-xl border-l-4 border-emerald-500">
+          <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
+            <Sparkles className="h-5 w-5 text-emerald-500" />
+            What sets me apart?
+          </h3>
+          <div className="space-y-3 text-sm leading-relaxed text-muted-foreground">
+            <p><strong className="text-emerald-600 dark:text-emerald-400">Ownership mindset:</strong> I treat every project like it's my own — from ideation to deployment and beyond.</p>
+            <p><strong className="text-emerald-600 dark:text-emerald-400">Fast learner:</strong> Whether it's integrating a new framework like Next.js or picking up a new cloud tool, I dive in with confidence and curiosity.</p>
+            <p><strong className="text-emerald-600 dark:text-emerald-400">Team player:</strong> I thrive in collaborative environments where knowledge sharing, peer reviews, and problem-solving go hand in hand.</p>
+            {/* <p><strong className="text-emerald-600 dark:text-emerald-400">Builder's heart:</strong> I enjoy creating real-world products that solve genuine problems — whether it's an internal logistics platform or an automated classification system using image processing and deep learning.</p> */}
+            <p><strong className="text-emerald-600 dark:text-emerald-400">Growth-oriented:</strong> I value constant improvement — in code, in systems, and in myself. I'm always learning, always iterating.</p>
+          </div>
         </div>
       </div>
     </section>

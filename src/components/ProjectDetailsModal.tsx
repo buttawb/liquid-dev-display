@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
@@ -93,16 +92,18 @@ export function ProjectDetailsModal({ project, children }: ProjectDetailsModalPr
           {/* Header Section - Professional White Design */}
           <div className="relative overflow-hidden">
             <div className="bg-gray-50 dark:bg-gray-800 p-8 border-b">
-              <div className="flex items-start justify-between mb-6">
-                <div>
+              <div className="flex items-start gap-6 mb-6">
+                <div className="flex-1 w-[80%]">
                   <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-3">{project.title}</h2>
-                  <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl leading-relaxed">
+                  <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed text-justify">
                     {project.fullDescription || project.description}
                   </p>
                 </div>
-                <Badge variant="secondary" className="bg-emerald-100 text-emerald-700 border-emerald-200">
-                  {project.purpose || "Innovation Project"}
-                </Badge>
+                <div className="w-[20%] flex-shrink-0">
+                  <Badge variant="secondary" className="bg-emerald-100 text-emerald-700 border-emerald-200 w-full text-center">
+                    {project.purpose || "Innovation Project"}
+                  </Badge>
+                </div>
               </div>
               
               {/* Project Info Grid */}
@@ -313,12 +314,12 @@ export function ProjectDetailsModal({ project, children }: ProjectDetailsModalPr
 
                 {/* Action Buttons */}
                 <div className="flex flex-wrap gap-4 pt-6 border-t">
-                  <Button className="bg-emerald-500 hover:bg-emerald-600 text-white border-0 px-6" asChild>
+                  {/* <Button className="bg-emerald-500 hover:bg-emerald-600 text-white border-0 px-6" asChild>
                     <a href={project.live} target="_blank" rel="noopener noreferrer">
                       <ExternalLink className="h-4 w-4 mr-2" />
                       Live Demo
                     </a>
-                  </Button>
+                  </Button> */}
                   <Button variant="outline" className="border-gray-300 hover:bg-gray-50 px-6" asChild>
                     <a href={project.github} target="_blank" rel="noopener noreferrer">
                       <Github className="h-4 w-4 mr-2" />
