@@ -48,11 +48,14 @@ const projects = [
     title: "Transporter Management System",
     description: "A comprehensive system designed to streamline transport operations for HGGC Transporters, managing fuel procurement and distribution nationwide.",
     fullDescription: "The Transporter Management System is designed to streamline transport operations for HGGC Transporters. This system facilitates the logistical requirements of procuring fuel from various oil marketing companies such as Total Parco, Go, and others, and distributing it to pumps nationwide. The primary focus of the project includes managing drivers, vehicles, oil marketing companies, vehicle manufacturers, trip records, and expenses.",
-    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=500&fit=crop",
+    image: "/public/tms6.png",
     images: [
-      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=500&fit=crop",
-      "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=800&h=500&fit=crop",
-      "https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=800&h=500&fit=crop"
+      "/public/tms6.png",
+      "/public/tms1.png",
+      "/public/tms2.png",
+      "/public/tms3.png",
+      "/public/tms4.png",
+      "/public/tms5.png"
     ],
     tech: ["Django", "MySQL", "HTML", "CSS", "JavaScript", "Git"],
     github: "https://github.com/buttawb/HGGC-WebApp",

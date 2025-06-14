@@ -97,7 +97,7 @@ export function ProjectDetailsModal({ project, children }: ProjectDetailsModalPr
       database: [] as string[],
       mobile: [] as string[],
       ai: [] as string[],
-      tools: [] as string[]
+      // tools: [] as string[]
     };
 
     techArray.forEach(tech => {
@@ -112,8 +112,6 @@ export function ProjectDetailsModal({ project, children }: ProjectDetailsModalPr
         categories.mobile.push(tech);
       } else if (['openai', 'gemini', 'gpt', 'ai', 'ml', 'opencv', 'tensorflow', 'pytorch'].some(t => lowerTech.includes(t))) {
         categories.ai.push(tech);
-      } else {
-        categories.tools.push(tech);
       }
     });
 

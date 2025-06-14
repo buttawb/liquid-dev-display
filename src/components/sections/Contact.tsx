@@ -29,31 +29,30 @@ export function Contact() {
     {
       icon: Mail,
       title: "Email",
-      value: "buttawb@example.com",
-      href: "mailto:buttawb@example.com",
+      value: "buttawb@gmail.com",
+      href: "mailto:buttawb@gmail.com",
       description: "Drop me a line anytime"
     },
     {
       icon: Phone,
       title: "Phone",
-      value: "+92 XXX XXXXXXX",
-      href: "tel:+92XXXXXXXXX",
+      value: "+92 3322109944",
+      href: "tel:+923322109944",
       description: "Call for urgent matters"
     },
     {
       icon: MapPin,
       title: "Location",
-      value: "Islamabad, Pakistan",
-      href: "#",
-      description: "Available for remote work"
+      value: "Karachi, Pakistan",
+      // href: "#",
+      description: "Available for work"
     }
   ];
 
   const socialLinks = [
     { icon: Github, href: "https://github.com/buttawb", label: "GitHub", color: "hover:text-gray-600" },
     { icon: Linkedin, href: "https://www.linkedin.com/in/buttawb/", label: "LinkedIn", color: "hover:text-blue-600" },
-    { icon: Twitter, href: "#", label: "Twitter", color: "hover:text-sky-500" },
-    { icon: Instagram, href: "#", label: "Instagram", color: "hover:text-pink-500" },
+    // { icon: Instagram, href: "#", label: "Instagram", color: "hover:text-pink-500" },
   ];
 
   return (
@@ -133,23 +132,23 @@ export function Contact() {
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label htmlFor="name" className="text-sm font-medium">
-                    Full Name
+                    Your Full Name
                   </label>
                   <Input
                     id="name"
-                    placeholder="John Doe"
+                    placeholder="Abdul Wahab Butt"
                     required
                     className="h-12 border-border/50 bg-background/50 backdrop-blur-sm focus:border-emerald-500 transition-colors"
                   />
                 </div>
                 <div className="space-y-2">
                   <label htmlFor="email" className="text-sm font-medium">
-                    Email Address
+                    Your Email Address
                   </label>
                   <Input
                     id="email"
                     type="email"
-                    placeholder="john@example.com"
+                    placeholder="buttawb@gmail.com"
                     required
                     className="h-12 border-border/50 bg-background/50 backdrop-blur-sm focus:border-emerald-500 transition-colors"
                   />
@@ -201,80 +200,22 @@ export function Contact() {
 
         {/* Enhanced Footer */}
         <div className="mt-32 pt-16 border-t border-border/50">
-          <div className="grid md:grid-cols-4 gap-12 mb-12">
-            {/* Brand Section */}
-            <div className="md:col-span-2 space-y-6">
-              <div className="space-y-4">
-                <h4 className="text-2xl font-bold gradient-text">Abdul Wahab Butt</h4>
-                <p className="text-muted-foreground leading-relaxed">
-                  A passionate software developer dedicated to creating innovative solutions 
-                  and exceptional digital experiences. Based in Islamabad, Pakistan, 
-                  working with clients worldwide.
-                </p>
-              </div>
-              <div className="flex gap-4">
-                {socialLinks.map(({ icon: Icon, href, label, color }) => (
-                  <a
-                    key={label}
-                    href={href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`glass-button p-3 rounded-xl hover:scale-110 transition-all duration-300 ${color}`}
-                    aria-label={label}
-                  >
-                    <Icon className="h-5 w-5" />
-                  </a>
-                ))}
-              </div>
-            </div>
-
-            {/* Quick Links */}
-            <div className="space-y-4">
-              <h5 className="font-semibold">Quick Links</h5>
-              <div className="space-y-2">
-                {['About', 'Experience', 'Projects', 'Skills', 'Education'].map((link) => (
-                  <a
-                    key={link}
-                    href={`#${link.toLowerCase()}`}
-                    className="block text-muted-foreground hover:text-emerald-500 hover:translate-x-1 transition-all duration-200"
-                  >
-                    {link}
-                  </a>
-                ))}
-              </div>
-            </div>
-
-            {/* Services */}
-            <div className="space-y-4">
-              <h5 className="font-semibold">Services</h5>
-              <div className="space-y-2">
-                {['Web Development', 'Mobile Apps', 'AI Integration', 'Consulting', 'UI/UX Design'].map((service) => (
-                  <span
-                    key={service}
-                    className="block text-muted-foreground text-sm"
-                  >
-                    {service}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
-
           {/* Bottom Footer */}
           <div className="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-border/30">
             <p className="text-muted-foreground text-sm">
-              © 2024 Abdul Wahab Butt. Built with React, TypeScript, and Tailwind CSS.
+              © 2025 Abdul Wahab Butt. Built with React, TypeScript, and Tailwind CSS.
             </p>
             <div className="flex gap-6 mt-4 md:mt-0">
-              <a href="#" className="text-muted-foreground hover:text-emerald-500 text-sm transition-colors">
+              {/* <a href="#" className="text-muted-foreground hover:text-emerald-500 text-sm transition-colors">
                 Privacy Policy
               </a>
               <a href="#" className="text-muted-foreground hover:text-emerald-500 text-sm transition-colors">
                 Terms of Service
-              </a>
+              </a> */}
             </div>
           </div>
         </div>
+        
       </div>
     </section>
   );

@@ -1,61 +1,73 @@
-
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Zap, Star, Code, Database, Smartphone, Cpu } from "lucide-react";
 
 const skillCategories = [
   {
-    title: "Frontend Development",
-    icon: Code,
-    color: "from-emerald-400 to-green-500",
-    skills: [
-      { name: "React/Next.js", level: "Expert" },
-      { name: "TypeScript", level: "Advanced" },
-      { name: "Tailwind CSS", level: "Expert" },
-      { name: "JavaScript", level: "Expert" },
-      { name: "HTML/CSS", level: "Expert" },
-      { name: "Vue.js", level: "Intermediate" }
-    ]
-  },
-  {
-    title: "Backend Development",
-    icon: Database,
-    color: "from-green-400 to-teal-500",
-    skills: [
-      { name: "Node.js", level: "Advanced" },
-      { name: "Express.js", level: "Advanced" },
-      { name: "Python", level: "Intermediate" },
-      { name: "RESTful APIs", level: "Expert" },
-      { name: "GraphQL", level: "Intermediate" },
-      { name: "MongoDB", level: "Advanced" }
-    ]
-  },
-  {
-    title: "Mobile & Cloud",
-    icon: Smartphone,
-    color: "from-teal-400 to-cyan-500",
-    skills: [
-      { name: "React Native", level: "Advanced" },
-      { name: "Firebase", level: "Advanced" },
-      { name: "AWS", level: "Intermediate" },
-      { name: "Docker", level: "Intermediate" },
-      { name: "PostgreSQL", level: "Intermediate" },
-      { name: "Git/GitHub", level: "Expert" }
-    ]
-  },
-  {
-    title: "AI & Emerging Tech",
+    title: "AI & Machine Learning",
     icon: Cpu,
     color: "from-cyan-400 to-blue-500",
     skills: [
-      { name: "AI/ML Integration", level: "Intermediate" },
-      { name: "TensorFlow", level: "Intermediate" },
-      { name: "IoT Development", level: "Intermediate" },
-      { name: "Blockchain", level: "Beginner" },
-      { name: "WebRTC", level: "Intermediate" },
-      { name: "PWA", level: "Advanced" }
+      { name: "OpenAI", level: "Advanced" },
+      { name: "Google Gemini", level: "Advanced" },
+      { name: "Artificial Intelligence (AI)", level: "Beginner" },
+      { name: "Machine Learning", level: "Beginner" },
+      { name: "Research and Development (R&D)", level: "Advanced" },
+      { name: "TensorFlow", level: "Beginner" },
     ]
-  }
+  },
+  {
+    title: "Backend & APIs",
+    icon: Database,
+    color: "from-green-400 to-teal-500",
+    skills: [
+      { name: "Django", level: "Advanced" },
+      { name: "REST APIs", level: "Advanced" },
+      { name: "GraphQL", level: "Intermediate" },
+      { name: "WebSocket", level: "Intermediate" },
+      { name: "JSON Web Token (JWT)", level: "Intermediate" },
+      { name: "CI/CD", level: "Intermediate" },
+      { name: "Code Review", level: "Advanced" },
+      { name: "Version Control (Git)", level: "Advanced" },
+      { name: "Amazon Web Services (AWS)", level: "Intermediate" },
+    ]
+  },
+  {
+    title: "Frontend & UI/UX",
+    icon: Code,
+    color: "from-emerald-400 to-green-500",
+    skills: [
+      { name: "Figma", level: "Intermediate" },
+      { name: "Next.js", level: "Beginner" },
+      { name: "HTML", level: "Advanced" },
+      { name: "CSS", level: "Advanced" },
+      { name: "JavaScript", level: "Beginner" },
+      { name: "jQuery", level: "Intermediate" },
+      { name: "Tailwind CSS", level: "Intermediate" },
+    ]
+  },
+  // {
+  //   title: "Mobile & Android",
+  //   icon: Smartphone,
+  //   color: "from-teal-400 to-cyan-500",
+  //   skills: [
+  //     { name: "Kotlin", level: "Beginner" },
+  //     { name: "Java", level: "Beginner" },
+  //     { name: "XML (Android)", level: "Beginner" },
+  //     { name: "Android SDK", level: "Beginner" },
+  //   ]
+  // },
+  {
+    title: "Databases & Cloud",
+    icon: Database,
+    color: "from-purple-400 to-indigo-500",
+    skills: [
+      { name: "MySQL", level: "Advanced" },
+      { name: "PostgreSQL", level: "Intermediate" },
+      { name: "MongoDB", level: "Intermediate" },
+      { name: "SQLite", level: "Advanced" },
+    ]
+  },
 ];
 
 const getLevelColor = (level: string) => {
@@ -115,29 +127,13 @@ export function Skills() {
               
               <div className="space-y-2">
                 {category.skills.map((skill, skillIndex) => (
-                  <div key={skillIndex} className="flex items-center justify-between">
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2">
-                        <span className="text-sm font-medium truncate">{skill.name}</span>
-                        <div className="flex items-center gap-0.5 flex-shrink-0">
-                          {[...Array(getLevelStars(skill.level))].map((_, starIndex) => (
-                            <Star
-                              key={starIndex}
-                              className="h-2.5 w-2.5 text-emerald-400 fill-emerald-400"
-                            />
-                          ))}
-                          {[...Array(5 - getLevelStars(skill.level))].map((_, starIndex) => (
-                            <Star
-                              key={starIndex + getLevelStars(skill.level)}
-                              className="h-2.5 w-2.5 text-gray-600"
-                            />
-                          ))}
-                        </div>
-                      </div>
+                  <div key={skillIndex} className="flex flex-col md:flex-row md:items-center justify-between flex-wrap gap-2">
+                    <div className="flex-1 min-w-0 pr-2">
+                      <span className="text-sm font-medium">{skill.name}</span>
                     </div>
                     <Badge 
                       variant="outline" 
-                      className={`text-xs ${getLevelColor(skill.level)} border ml-2 flex-shrink-0`}
+                      className={`text-xs ${getLevelColor(skill.level)} border ml-2 flex-shrink-0 mt-1 md:mt-0`}
                     >
                       {skill.level}
                     </Badge>
