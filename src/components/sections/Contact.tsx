@@ -1,28 +1,77 @@
-
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Mail, MapPin, Phone, Send, MessageCircle, Github, Linkedin, Twitter, Instagram } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
+import emailjs from 'emailjs-com';
+import { EMAILJS_CONFIG } from '@/config/emailjs';
 
 export function Contact() {
   const [isLoading, setIsLoading] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: ''
+  });
   const { toast } = useToast();
+
+  // Initialize EmailJS
+  useEffect(() => {
+    emailjs.init(EMAILJS_CONFIG.USER_ID);
+  }, []);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
     
-    // Simulate form submission
-    setTimeout(() => {
-      setIsLoading(false);
-      toast({
-        title: "Message sent!",
-        description: "Thank you for your message. I'll get back to you soon.",
+    try {
+      const templateParams = {
+        to_email: EMAILJS_CONFIG.TO_EMAIL,
+        name: formData.name,
+        email: formData.email,
+        title: formData.subject,
+        message: formData.message,
+      };
+
+      await emailjs.send(
+        EMAILJS_CONFIG.SERVICE_ID, 
+        EMAILJS_CONFIG.TEMPLATE_ID, 
+        templateParams, 
+        EMAILJS_CONFIG.USER_ID
+      );
+      
+      // Reset form
+      setFormData({
+        name: '',
+        email: '',
+        subject: '',
+        message: ''
       });
-    }, 1000);
+      
+      toast({
+        title: "Message sent successfully!",
+      });
+    } catch (error) {
+      console.error('Email sending failed:', error);
+      toast({
+        title: "Failed to send message",
+        description: "Please try again or contact me directly at buttawb@gmail.com",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const contactInfo = [
@@ -138,6 +187,9 @@ export function Contact() {
                     id="name"
                     placeholder="Abdul Wahab Butt"
                     required
+                    name="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
                     className="h-12 border-border/50 bg-background/50 backdrop-blur-sm focus:border-emerald-500 transition-colors"
                   />
                 </div>
@@ -150,6 +202,9 @@ export function Contact() {
                     type="email"
                     placeholder="buttawb@gmail.com"
                     required
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
                     className="h-12 border-border/50 bg-background/50 backdrop-blur-sm focus:border-emerald-500 transition-colors"
                   />
                 </div>
@@ -163,6 +218,9 @@ export function Contact() {
                   id="subject"
                   placeholder="What would you like to discuss?"
                   required
+                  name="subject"
+                  value={formData.subject}
+                  onChange={handleInputChange}
                   className="h-12 border-border/50 bg-background/50 backdrop-blur-sm focus:border-emerald-500 transition-colors"
                 />
               </div>
@@ -176,6 +234,9 @@ export function Contact() {
                   placeholder="Tell me about your project or just say hello!"
                   rows={6}
                   required
+                  name="message"
+                  value={formData.message}
+                  onChange={handleInputChange}
                   className="border-border/50 bg-background/50 backdrop-blur-sm focus:border-emerald-500 transition-colors resize-none"
                 />
               </div>
