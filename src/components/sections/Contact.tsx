@@ -185,7 +185,7 @@ export function Contact() {
                   </label>
                   <Input
                     id="name"
-                    placeholder="Abdul Wahab Butt"
+                    placeholder="John Doe"
                     required
                     name="name"
                     value={formData.name}
@@ -200,7 +200,7 @@ export function Contact() {
                   <Input
                     id="email"
                     type="email"
-                    placeholder="buttawb@gmail.com"
+                    placeholder="john.doe@example.com"
                     required
                     name="email"
                     value={formData.email}
