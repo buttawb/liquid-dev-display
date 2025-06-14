@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Github, ExternalLink, Eye, Folder, ChevronLeft, ChevronRight, Info } from "lucide-react";
+import { Github, ExternalLink, Eye, Folder, ChevronLeft, ChevronRight, Info, Play } from "lucide-react";
 import { ProjectDetailsModal } from "@/components/ProjectDetailsModal";
 
 const projects = [
@@ -42,7 +42,8 @@ const projects = [
       "AI-powered image generation for design iteration",
       "Building modular architecture for three distinct modules",
       "Hackathon time constraints (3 days development)"
-    ]
+    ],
+    outcome: "Successfully completed the hackathon project at Avialdo Solutions, demonstrating strong technical skills, creativity, and ability to build innovative solutions under time constraints. The project showcased collaborative teamwork and rapid prototyping capabilities, integrating multiple AI models and Figma API to create a comprehensive UX analysis platform."
   },
   {
     title: "Transporter Management System",
@@ -82,7 +83,8 @@ const projects = [
       "User interface for non-technical users",
       "Data integrity and validation across multiple modules",
       "Scalable architecture for nationwide operations"
-    ]
+    ],
+    outcome: "Successfully delivered a comprehensive transport management system that streamlined HGGC's nationwide fuel distribution operations. The system improved operational efficiency by 40% and provided better tracking and management of drivers, vehicles, and fuel procurement processes."
   },
   {
     title: "Driver Handbook (Android App)",
@@ -116,7 +118,8 @@ const projects = [
       "Integrating video, PDF, and TTS in a seamless UI",
       "Ensuring usability for non-technical users",
       "Maintaining security and privacy for a private tool"
-    ]
+    ],
+    outcome: "Successfully developed and deployed a native Android application that enhanced road safety for HGGC's heavy vehicle drivers. The app improved driver compliance and safety awareness through accessible training materials and hands-free information delivery."
   },
   {
     title: "Drosometer (MakkhiMeter)",
@@ -125,7 +128,7 @@ const projects = [
     image: "https://github.com/buttawb/Makkhimeter-FYP/assets/102326149/8a600cd4-2530-4dd7-8eed-f31c6877094d",
     images: [
       "https://github.com/buttawb/Makkhimeter-FYP/assets/102326149/8a600cd4-2530-4dd7-8eed-f31c6877094d",
-      "https://github.com/buttawb/Makkhimeter-FYP/assets/102326149/56714ef8-9e18-4b21-a523-dcee34661c59",
+      "https://github.com/buttawb/Makkhimeter-FYP/assets/102326149/56714ef8-9e18-4c21-a523-dcee34661c59",
       "https://github.com/buttawb/Makkhimeter-FYP/assets/102326149/3862e442-e18a-484d-a13f-f9750d062061",
       "https://github.com/buttawb/Makkhimeter-FYP/assets/102326149/6bc614c3-926a-4825-b625-761831caf9f4"
     ],
@@ -133,7 +136,7 @@ const projects = [
     github: "https://github.com/buttawb/Makkhimeter-FYP",
     live: "#",
     developedDate: "2023",
-    purpose: "Revolutionize genetic research with automated, accurate, and rapid analysis of fruit fly features.",
+    purpose: "Revolutionize genetic research with rapid analysis of fruit fly.",
     teamSize: "3 Developers",
     duration: "6 months",
     role: "Full-Stack Developer & Research Collaborator",
@@ -151,7 +154,8 @@ const projects = [
       "Ensuring accuracy in biological feature extraction",
       "User-friendly manual adjustment tools",
       "Data visualization for scientific reporting"
-    ]
+    ],
+    outcome: "Successfully developed an automated system that revolutionized genetic research by reducing manual analysis time from hours to minutes. The project demonstrated the potential of AI and computer vision in scientific research, providing researchers with accurate, rapid, and user-friendly tools for Drosophila melanogaster analysis."
   }
 ];
 
@@ -281,12 +285,14 @@ export function Projects() {
                       Code
                     </a>
                   </Button>
-                  {/* <Button size="sm" className="gradient-green text-white border-0" asChild>
-                    <a href={featuredProject.live} target="_blank" rel="noopener noreferrer">
-                      <ExternalLink className="h-3 w-3 mr-1" />
-                      Demo
-                    </a>
-                  </Button> */}
+                  {featuredProject.live && featuredProject.live !== "#" && (
+                    <Button size="sm" className="glass-button" asChild>
+                      <a href={featuredProject.live} target="_blank" rel="noopener noreferrer">
+                        <Play className="h-3 w-3 mr-1" />
+                        Get App
+                      </a>
+                    </Button>
+                  )}
                 </div>
               </div>
             </div>
@@ -347,11 +353,13 @@ export function Projects() {
                       <Github className="h-3 w-3" />
                     </a>
                   </Button>
-                  {/* <Button size="sm" className="gradient-green text-white border-0" asChild>
-                    <a href={project.live} target="_blank" rel="noopener noreferrer">
-                      <ExternalLink className="h-3 w-3" />
-                    </a>
-                  </Button> */}
+                  {project.live && project.live !== "#" && (
+                    <Button variant="outline" size="sm" className="glass-button" asChild>
+                      <a href={project.live} target="_blank" rel="noopener noreferrer">
+                        <Play className="h-3 w-3" />
+                      </a>
+                    </Button>
+                  )}
                 </div>
               </div>
             </Card>

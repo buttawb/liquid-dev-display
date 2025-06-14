@@ -176,6 +176,24 @@ export function ProjectDetailsModal({ project, children }: ProjectDetailsModalPr
                   </div>
                 ))}
               </div>
+
+              {/* Action Buttons */}
+              <div className="flex flex-wrap gap-3 mt-6">
+                <Button variant="outline" className="glass-button" asChild>
+                  <a href={project.github} target="_blank" rel="noopener noreferrer">
+                    <Github className="h-4 w-4 mr-2" />
+                    View Code
+                  </a>
+                </Button>
+                {project.live && project.live !== "#" && (
+                  <Button variant="outline" className="glass-button" asChild>
+                    <a href={project.live} target="_blank" rel="noopener noreferrer">
+                      <Play className="h-4 w-4 mr-2" />
+                      {project.title.toLowerCase().includes('android') || project.title.toLowerCase().includes('app') ? 'Get App on Google Play' : 'View Live'}
+                    </a>
+                  </Button>
+                )}
+              </div>
             </div>
           </div>
 
@@ -250,7 +268,7 @@ export function ProjectDetailsModal({ project, children }: ProjectDetailsModalPr
                   <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Project Outcome</h4>
                   <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                     {project.outcome || 
-                    "Successfully delivered a robust, scalable application that exceeded client expectations. The project demonstrated strong technical skills, attention to detail, and ability to solve complex problems with innovative solutions."}
+                    "Successfully completed the hackathon project at Avialdo Solutions, demonstrating strong technical skills, creativity, and ability to build innovative solutions under time constraints. The project showcased collaborative teamwork and rapid prototyping capabilities."}
                   </p>
                 </Card>
               </div>
