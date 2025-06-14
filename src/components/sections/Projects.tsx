@@ -48,14 +48,14 @@ const projects = [
     title: "Transporter Management System",
     description: "A comprehensive system designed to streamline transport operations for HGGC Transporters, managing fuel procurement and distribution nationwide.",
     fullDescription: "The Transporter Management System is designed to streamline transport operations for HGGC Transporters. This system facilitates the logistical requirements of procuring fuel from various oil marketing companies such as Total Parco, Go, and others, and distributing it to pumps nationwide. The primary focus of the project includes managing drivers, vehicles, oil marketing companies, vehicle manufacturers, trip records, and expenses.",
-    image: "/public/tms6.png",
+    image: "/tms6.png",
     images: [
-      "/public/tms6.png",
-      "/public/tms1.png",
-      "/public/tms2.png",
-      "/public/tms3.png",
-      "/public/tms4.png",
-      "/public/tms5.png"
+      "/tms6.png",
+      "/tms1.png",
+      "/tms2.png",
+      "/tms3.png",
+      "/tms4.png",
+      "/tms5.png"
     ],
     tech: ["Django", "MySQL", "HTML", "CSS", "JavaScript", "Git"],
     github: "https://github.com/buttawb/HGGC-WebApp",
@@ -88,12 +88,12 @@ const projects = [
     title: "Driver Handbook (Android App)",
     description: "Android app for heavy vehicle drivers, featuring video player, PDF reader, and text-to-speech for road safety.",
     fullDescription: "Explore my latest venture into the mobile world with an Android app designed for heavy vehicle drivers at HGGC. Stepping outside my primary domain of web development, I developed this native app using Java, Kotlin, and XML. It features a video player, PDF reader, and text-to-speech functionalities, all within a user-friendly interface. The app is a private tool for HGGC, enhancing safety, productivity, and compliance on the road.",
-    image: "/public/hggc1.jpeg",
+    image: "/hggc1.jpeg",
     images: [
-      "/public/hggc1.jpeg",
-      "/public/hggc2.jpeg",
-      "/public/hggc3.jpeg",
-      "/public/hggc4.jpeg"
+      "/hggc1.jpeg",
+      "/hggc2.jpeg",
+      "/hggc3.jpeg",
+      "/hggc4.jpeg"
     ],
     tech: ["Java", "Kotlin", "XML", "Android SDK"],
     github: "https://github.com/buttawb/HGGC-AndroidApp",
