@@ -1,12 +1,12 @@
 
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { User, Target, Zap, Heart, Coffee, Code, Clock, Sparkles } from "lucide-react";
+import { User, Target, Zap, Heart, Coffee, Code, Clock, Sparkles, Rocket, Brain } from "lucide-react";
 
 export function About() {
   const highlights = [
     "3+ Years Experience",
-    "Full-Stack Development",
+    "Full-Stack Development", 
     "AI/ML Integration",
     "Mobile App Development",
     "Problem Solver"
@@ -31,47 +31,55 @@ export function About() {
   ];
 
   return (
-    <section id="about" className="py-32 px-6 bg-gradient-to-b from-background to-muted/20">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-20">
-          <div className="inline-flex items-center gap-2 glass-card px-4 py-2 rounded-full text-sm font-medium mb-8">
+    <section id="about" className="py-24 px-4 bg-gradient-to-b from-background to-muted/20">
+      <div className="max-w-6xl mx-auto">
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center gap-2 glass-card px-4 py-2 rounded-full text-sm font-medium mb-6">
             <User className="h-4 w-4 text-emerald-500" />
             <span>Get to know me</span>
           </div>
-          <h2 className="text-4xl md:text-6xl font-bold mb-6">
+          <h2 className="text-3xl md:text-5xl font-bold mb-4">
             About <span className="gradient-text">Me</span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             Passionate about creating innovative solutions and pushing the boundaries of technology
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-16 items-start mb-20">
+        <div className="grid lg:grid-cols-3 gap-12 items-start mb-16">
           {/* Content - Takes 2 columns */}
-          <div className="lg:col-span-2 space-y-8">
-            <div className="space-y-6">
-              <p className="text-lg leading-relaxed text-muted-foreground">
-                I'm a dedicated Software Developer with a strong foundation in full-stack development 
-                and a passion for emerging technologies. Currently pursuing my Bachelor's in Software 
-                Engineering at COMSATS University Islamabad, I've gained valuable experience through 
-                internships and personal projects.
+          <div className="lg:col-span-2 space-y-6">
+            <div className="space-y-5">
+              <p className="text-base leading-relaxed text-muted-foreground">
+                🚀 Hey there! I'm Abdul Wahab Butt, a passionate Software Developer who turns coffee into code and ideas into reality. 
+                Currently pursuing my Bachelor's in Software Engineering at COMSATS University Islamabad, I've been on an incredible 
+                journey of building digital experiences that matter.
               </p>
               
-              <p className="text-lg leading-relaxed text-muted-foreground">
-                My expertise spans across modern web technologies, mobile app development, and AI/ML 
-                integration. I enjoy tackling complex problems and turning innovative ideas into 
-                functional, user-friendly applications that make a real difference.
+              <p className="text-base leading-relaxed text-muted-foreground">
+                💡 What drives me? The thrill of solving complex problems with elegant solutions! From crafting pixel-perfect 
+                user interfaces to architecting robust backend systems, I live for those "Aha!" moments when everything clicks into place. 
+                My expertise spans the full spectrum - React, Node.js, AI/ML integration, mobile development, and beyond.
+              </p>
+
+              <p className="text-base leading-relaxed text-muted-foreground">
+                🎯 I'm not just a developer; I'm a digital craftsman who believes technology should enhance human experiences. 
+                Whether it's building AI-powered platforms or creating seamless mobile apps, I approach every project with curiosity, 
+                creativity, and a relentless pursuit of excellence. Ready to bring your next big idea to life!
               </p>
             </div>
 
-            <div className="space-y-6">
-              <h3 className="text-2xl font-semibold">Key Highlights</h3>
-              <div className="flex flex-wrap gap-3">
+            <div className="space-y-4">
+              <h3 className="text-xl font-semibold flex items-center gap-2">
+                <Rocket className="h-5 w-5 text-emerald-500" />
+                Key Highlights
+              </h3>
+              <div className="flex flex-wrap gap-2">
                 {highlights.map((highlight) => (
                   <Badge 
                     key={highlight} 
                     variant="secondary" 
-                    className="glass-card px-4 py-2 text-sm font-medium"
+                    className="glass-card px-3 py-1 text-sm font-medium hover:scale-105 transition-transform"
                   >
                     {highlight}
                   </Badge>
@@ -81,7 +89,7 @@ export function About() {
           </div>
 
           {/* Stats Grid - Takes 1 column */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-3">
             {[
               { 
                 number: "3+", 
@@ -102,17 +110,17 @@ export function About() {
                 icon: Coffee
               },
               { 
-                number: "1000+", 
-                label: "Lines of Code", 
+                number: "∞", 
+                label: "Ideas Generated", 
                 color: "from-cyan-400 to-blue-500",
-                icon: Sparkles
+                icon: Brain
               },
             ].map((stat) => (
-              <Card key={stat.label} className="neo-card p-6 text-center hover:scale-105 transition-all duration-300 group">
-                <div className="flex justify-center mb-3">
-                  <stat.icon className={`h-6 w-6 bg-gradient-to-r ${stat.color} bg-clip-text text-transparent`} />
+              <Card key={stat.label} className="neo-card p-4 text-center hover:scale-105 transition-all duration-300 group">
+                <div className="flex justify-center mb-2">
+                  <stat.icon className={`h-5 w-5 bg-gradient-to-r ${stat.color} bg-clip-text text-transparent`} />
                 </div>
-                <div className={`text-2xl md:text-3xl font-black bg-gradient-to-r ${stat.color} bg-clip-text text-transparent mb-2`}>
+                <div className={`text-xl md:text-2xl font-black bg-gradient-to-r ${stat.color} bg-clip-text text-transparent mb-1`}>
                   {stat.number}
                 </div>
                 <div className="text-xs font-medium text-muted-foreground group-hover:text-foreground transition-colors">
@@ -124,14 +132,14 @@ export function About() {
         </div>
 
         {/* Values Section */}
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-3 gap-6">
           {values.map((value, index) => (
-            <Card key={index} className="glass-card p-8 text-center hover:scale-105 transition-all duration-300 group">
-              <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl gradient-green mb-6 group-hover:scale-110 transition-transform">
-                <value.icon className="h-8 w-8 text-white" />
+            <Card key={index} className="glass-card p-6 text-center hover:scale-105 transition-all duration-300 group">
+              <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl gradient-green mb-4 group-hover:scale-110 transition-transform">
+                <value.icon className="h-6 w-6 text-white" />
               </div>
-              <h3 className="text-xl font-semibold mb-3">{value.title}</h3>
-              <p className="text-muted-foreground">{value.description}</p>
+              <h3 className="text-lg font-semibold mb-2">{value.title}</h3>
+              <p className="text-sm text-muted-foreground">{value.description}</p>
             </Card>
           ))}
         </div>
