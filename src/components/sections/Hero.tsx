@@ -79,7 +79,7 @@ export function Hero() {
             </div>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center">
+            {/* <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center">
               <Button 
                 size="lg" 
                 className="gradient-green text-white border-0 hover:scale-105 transition-all duration-300 px-6 py-3 text-base font-semibold rounded-xl shadow-lg hover:shadow-xl"
@@ -99,7 +99,7 @@ export function Hero() {
               >
                 Explore My Work
               </Button>
-            </div>
+            </div> */}
 
             {/* Social Links */}
             <div className="flex justify-center lg:justify-start space-x-6 pt-6">
