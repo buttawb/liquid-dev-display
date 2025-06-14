@@ -1,32 +1,32 @@
 
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { User, Target, Zap, Heart, Coffee, Code, Clock, Sparkles, Rocket, Brain } from "lucide-react";
+import { User, Target, Zap, Heart, Coffee, Code, Clock, Sparkles, Rocket, Brain, MapPin } from "lucide-react";
 
 export function About() {
   const highlights = [
     "3+ Years Experience",
     "Full-Stack Development", 
-    "AI/ML Integration",
-    "Mobile App Development",
-    "Problem Solver"
+    "Django & Next.js Expert",
+    "Cloud Deployment",
+    "Team Leadership"
   ];
 
   const values = [
     {
       icon: Target,
-      title: "Precision",
-      description: "Every line of code serves a purpose"
+      title: "Ownership Mindset",
+      description: "I treat every project like it's my own"
     },
     {
       icon: Zap,
-      title: "Innovation",
-      description: "Embracing cutting-edge technologies"
+      title: "Fast Learner",
+      description: "Diving into new technologies with confidence"
     },
     {
       icon: Heart,
-      title: "Passion",
-      description: "Love what I do, do what I love"
+      title: "Builder's Heart",
+      description: "Creating products that solve real problems"
     }
   ];
 
@@ -41,8 +41,12 @@ export function About() {
           <h2 className="text-3xl md:text-5xl font-bold mb-4">
             About <span className="gradient-text">Me</span>
           </h2>
+          <div className="inline-flex items-center gap-2 text-lg text-muted-foreground mb-4">
+            <MapPin className="h-5 w-5 text-emerald-500" />
+            <span>Based in Karachi, Pakistan</span>
+          </div>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Passionate about creating innovative solutions and pushing the boundaries of technology
+            Passionate Full-Stack Developer with nearly 3 years of professional experience
           </p>
         </div>
 
@@ -51,22 +55,42 @@ export function About() {
           <div className="lg:col-span-2 space-y-6">
             <div className="space-y-5">
               <p className="text-base leading-relaxed text-muted-foreground">
-                🚀 Hey there! I'm Abdul Wahab Butt, a passionate Software Developer who turns coffee into code and ideas into reality. 
-                Currently pursuing my Bachelor's in Software Engineering at COMSATS University Islamabad, I've been on an incredible 
-                journey of building digital experiences that matter.
+                Hi, I'm <strong className="text-foreground">Abdul Wahab Butt</strong>, a passionate Full-Stack Developer based in Karachi, Pakistan, with nearly 3 years of professional experience building scalable, efficient, and user-centric web applications.
               </p>
               
               <p className="text-base leading-relaxed text-muted-foreground">
-                💡 What drives me? The thrill of solving complex problems with elegant solutions! From crafting pixel-perfect 
-                user interfaces to architecting robust backend systems, I live for those "Aha!" moments when everything clicks into place. 
-                My expertise spans the full spectrum - React, Node.js, AI/ML integration, mobile development, and beyond.
+                From crafting clean backend architectures in Django to collaborating closely with frontend teams and deploying to cloud environments, I love turning complex problems into practical, production-ready solutions.
               </p>
 
               <p className="text-base leading-relaxed text-muted-foreground">
-                🎯 I'm not just a developer; I'm a digital craftsman who believes technology should enhance human experiences. 
-                Whether it's building AI-powered platforms or creating seamless mobile apps, I approach every project with curiosity, 
-                creativity, and a relentless pursuit of excellence. Ready to bring your next big idea to life!
+                I'm not just a coder; I care deeply about <em>why</em> things are being built and <em>who</em> they're being built for. This has led me to take on responsibilities like mentoring junior engineers, collaborating with UI/UX designers, and contributing to architectural decisions that make products truly scalable.
               </p>
+
+              <div className="bg-gradient-to-r from-emerald-50 to-green-50 dark:from-emerald-950/30 dark:to-green-950/30 p-6 rounded-xl border-l-4 border-emerald-500">
+                <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
+                  <Sparkles className="h-5 w-5 text-emerald-500" />
+                  What sets me apart?
+                </h3>
+                <div className="space-y-3 text-sm leading-relaxed text-muted-foreground">
+                  <p><strong className="text-emerald-600 dark:text-emerald-400">Ownership mindset:</strong> I treat every project like it's my own — from ideation to deployment and beyond.</p>
+                  <p><strong className="text-emerald-600 dark:text-emerald-400">Fast learner:</strong> Whether it's integrating a new framework like Next.js or picking up a new cloud tool, I dive in with confidence and curiosity.</p>
+                  <p><strong className="text-emerald-600 dark:text-emerald-400">Team player:</strong> I thrive in collaborative environments where knowledge sharing, peer reviews, and problem-solving go hand in hand.</p>
+                  <p><strong className="text-emerald-600 dark:text-emerald-400">Builder's heart:</strong> I enjoy creating real-world products that solve genuine problems — whether it's an internal logistics platform or an automated classification system using image processing and deep learning.</p>
+                  <p><strong className="text-emerald-600 dark:text-emerald-400">Growth-oriented:</strong> I value constant improvement — in code, in systems, and in myself. I'm always learning, always iterating.</p>
+                </div>
+              </div>
+
+              <div className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-950/30 dark:to-indigo-950/30 p-6 rounded-xl border-l-4 border-blue-500">
+                <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
+                  <Brain className="h-5 w-5 text-blue-500" />
+                  Mindset & Values
+                </h3>
+                <div className="space-y-2 text-sm leading-relaxed text-muted-foreground">
+                  <p>• I believe clear communication is just as important as clean code.</p>
+                  <p>• I prioritize maintainability, performance, and user needs over shortcuts and temporary fixes.</p>
+                  <p>• I'm driven by a desire to create impact, not just output.</p>
+                </div>
+              </div>
             </div>
 
             <div className="space-y-4">
