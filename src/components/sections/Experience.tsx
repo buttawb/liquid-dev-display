@@ -1,6 +1,7 @@
+
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Briefcase, Calendar, MapPin, TrendingUp, Users, Award } from "lucide-react";
+import { Briefcase, Calendar, MapPin, TrendingUp, Users, Award, Building2 } from "lucide-react";
 
 const experiences = [
   {
@@ -10,6 +11,7 @@ const experiences = [
     location: "Karāchi, Sindh, Pakistan",
     type: "Full-time",
     level: "Mid Level",
+    logo: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=100&h=100&fit=crop&crop=center",
     description: "Leading the development of complex backend modules and managing projects effectively using modern development practices and cloud services.",
     skills: ["Django", "WebSocket", "GraphQL", "Cross-team Collaboration", "Amazon Web Services (AWS)", "Next.js"],
     achievements: [
@@ -27,6 +29,7 @@ const experiences = [
     location: "Karāchi, Sindh, Pakistan",
     type: "Full-time",
     level: "Junior",
+    logo: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=100&h=100&fit=crop&crop=center",
     description: "Worked on backend systems using Django and managed databases to ensure effective application performance.",
     skills: ["Django", "REST APIs", "Code Review", "Continuous Integration and Continuous Delivery (CI/CD)", "jQuery"],
     achievements: [
@@ -42,6 +45,7 @@ const experiences = [
     location: "Karāchi, Sindh, Pakistan", 
     type: "Part-time",
     level: "Junior",
+    logo: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=100&h=100&fit=crop&crop=center",
     description: "Developed a web application integrating deep learning and image processing for rapid classification and feature extraction of Drosophila melanogaster species.",
     skills: ["Python (Programming Language)", "Collaborative Problem Solving", "Research and Development (R&D)", "JavaScript"],
     achievements: [
@@ -76,9 +80,20 @@ export function Experience() {
                 {/* Left Section - Main Info */}
                 <div className="flex-1 lg:w-[70%]">
                   <div className="flex items-start gap-4 mb-4">
-                    <div className="bg-emerald-100 dark:bg-emerald-900 p-3 rounded-xl group-hover:scale-110 transition-transform">
-                      <Briefcase className="h-5 w-5 text-emerald-600 dark:text-emerald-400" />
+                    {/* Company Logo */}
+                    <div className="relative">
+                      <div className="w-16 h-16 rounded-xl overflow-hidden bg-gray-100 dark:bg-gray-800 border-2 border-white dark:border-gray-700 shadow-md group-hover:scale-105 transition-transform">
+                        <img 
+                          src={exp.logo} 
+                          alt={`${exp.company} logo`}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      <div className="absolute -bottom-1 -right-1 bg-emerald-500 p-1.5 rounded-full">
+                        <Building2 className="h-3 w-3 text-white" />
+                      </div>
                     </div>
+                    
                     <div className="flex-1">
                       <div className="flex items-center gap-3 mb-2">
                         <h3 className="text-xl font-bold text-gray-900 dark:text-white">{exp.title}</h3>
