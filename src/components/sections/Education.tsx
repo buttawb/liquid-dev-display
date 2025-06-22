@@ -1,3 +1,4 @@
+
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { GraduationCap, Calendar, MapPin, Award, BookOpen, Star } from "lucide-react";
@@ -12,6 +13,7 @@ export function Education() {
       status: "Graduated",
       gpa: "CGPA: 3.2",
       description: "Elected Academic Representative for the Computer Science Department. Bridged the gap between students and faculty, addressed academic concerns, and ensured effective communication.",
+      logo: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=100&h=100&fit=crop&crop=center",
       relevantCourses: [
         "Python (Programming Language)",
         "Data Structures & Algorithms",
@@ -28,6 +30,7 @@ export function Education() {
       status: "Completed",
       gpa: "Grade: A",
       description: "Completed Higher Secondary Certificate in Pre-Engineering.",
+      logo: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=100&h=100&fit=crop&crop=center",
       relevantCourses: [
         "Mathematics",
         "Physics",
@@ -83,10 +86,18 @@ export function Education() {
           {/* Education Card */}
           {education.map((edu, idx) => (
             <Card key={idx} className="professional-card p-8 h-fit mb-8">
-              <div className="flex items-start gap-4 mb-6">
-                <div className="bg-emerald-100 dark:bg-emerald-900 p-3 rounded-xl">
-                  <GraduationCap className="h-6 w-6 text-emerald-600 dark:text-emerald-400" />
+              <div className="flex items-start gap-6 mb-6">
+                {/* University Logo */}
+                <div className="flex-shrink-0">
+                  <div className="w-16 h-16 rounded-xl overflow-hidden bg-white shadow-lg border-2 border-gray-100 dark:border-gray-700">
+                    <img 
+                      src={edu.logo} 
+                      alt={`${edu.university} logo`}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
                 </div>
+
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-2">
                     <h3 className="text-xl font-bold text-gray-900 dark:text-white">{edu.degree}</h3>
@@ -94,8 +105,8 @@ export function Education() {
                       {edu.status}
                     </Badge>
                   </div>
-                  <p className="text-emerald-600 dark:text-emerald-400 font-semibold text-lg">{edu.university}</p>
-                  <div className="flex flex-wrap items-center gap-4 mt-3 text-sm text-gray-500 dark:text-gray-400">
+                  <p className="text-emerald-600 dark:text-emerald-400 font-semibold text-lg mb-3">{edu.university}</p>
+                  <div className="flex flex-wrap items-center gap-4 text-sm text-gray-500 dark:text-gray-400">
                     <div className="flex items-center gap-1">
                       <Calendar className="h-3 w-3" />
                       <span>{edu.duration}</span>
