@@ -1,7 +1,7 @@
 
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { GraduationCap, Calendar, MapPin, Award, BookOpen, Star } from "lucide-react";
+import { GraduationCap, Calendar, MapPin, Award, BookOpen, Star, Building2 } from "lucide-react";
 
 export function Education() {
   const education = [
@@ -96,6 +96,9 @@ export function Education() {
                       className="w-full h-full object-cover"
                     />
                   </div>
+                  <div className="absolute -bottom-1 -right-1 bg-emerald-500 p-1.5 rounded-full">
+                        <Building2 className="h-3 w-3 text-white" />
+                    </div>
                 </div>
 
                 <div className="flex-1">

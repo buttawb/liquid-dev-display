@@ -35,8 +35,8 @@ export function Achievements() {
     <section id="achievements" className="py-20 px-6 bg-white dark:bg-gray-900">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-emerald-500 to-green-600 text-white px-4 py-2 rounded-full text-sm font-medium mb-6 shadow-lg">
-            <Star className="h-4 w-4" />
+        <div className="inline-flex items-center gap-2 bg-white dark:bg-gray-800 px-4 py-2 rounded-full text-sm font-medium mb-6 shadow-sm border">
+          <Star className="h-4 w-4 text-emerald-500" />
             <span>Key Achievements</span>
           </div>
           <h2 className="text-3xl md:text-5xl font-bold mb-4">
