@@ -1,4 +1,3 @@
-
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Briefcase, Calendar, MapPin, TrendingUp, Users, Award, Building2 } from "lucide-react";
@@ -11,7 +10,7 @@ const experiences = [
     location: "Karāchi, Sindh, Pakistan",
     type: "Full-time",
     level: "Mid Level",
-    logo: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=100&h=100&fit=crop&crop=center",
+    logo: "/avialdo.png",
     description: "Leading the development of complex backend modules and managing projects effectively using modern development practices and cloud services.",
     skills: ["Django", "WebSocket", "GraphQL", "Cross-team Collaboration", "Amazon Web Services (AWS)", "Next.js"],
     achievements: [
@@ -29,7 +28,7 @@ const experiences = [
     location: "Karāchi, Sindh, Pakistan",
     type: "Full-time",
     level: "Junior",
-    logo: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=100&h=100&fit=crop&crop=center",
+    logo: "/avialdo.png",
     description: "Worked on backend systems using Django and managed databases to ensure effective application performance.",
     skills: ["Django", "REST APIs", "Code Review", "Continuous Integration and Continuous Delivery (CI/CD)", "jQuery"],
     achievements: [
@@ -45,7 +44,7 @@ const experiences = [
     location: "Karāchi, Sindh, Pakistan", 
     type: "Part-time",
     level: "Junior",
-    logo: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=100&h=100&fit=crop&crop=center",
+    logo: "/dow.jpeg",
     description: "Developed a web application integrating deep learning and image processing for rapid classification and feature extraction of Drosophila melanogaster species.",
     skills: ["Python (Programming Language)", "Collaborative Problem Solving", "Research and Development (R&D)", "JavaScript"],
     achievements: [

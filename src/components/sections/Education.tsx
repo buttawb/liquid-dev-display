@@ -1,7 +1,6 @@
-
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { GraduationCap, Calendar, MapPin, Award, BookOpen, Star, Building2 } from "lucide-react";
+import { GraduationCap, Calendar, MapPin, Award, BookOpen, Star } from "lucide-react";
 
 export function Education() {
   const education = [
@@ -13,7 +12,7 @@ export function Education() {
       status: "Graduated",
       gpa: "CGPA: 3.2",
       description: "Elected Academic Representative for the Computer Science Department. Bridged the gap between students and faculty, addressed academic concerns, and ensured effective communication.",
-      logo: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=100&h=100&fit=crop&crop=center",
+      logo: "/ned.png",
       relevantCourses: [
         "Python (Programming Language)",
         "Data Structures & Algorithms",
@@ -30,7 +29,7 @@ export function Education() {
       status: "Completed",
       gpa: "Grade: A",
       description: "Completed Higher Secondary Certificate in Pre-Engineering.",
-      logo: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=100&h=100&fit=crop&crop=center",
+      logo: "/college.jpeg",
       relevantCourses: [
         "Mathematics",
         "Physics",
@@ -87,8 +86,8 @@ export function Education() {
           {education.map((edu, idx) => (
             <Card key={idx} className="professional-card p-8 h-fit mb-8">
               <div className="flex items-start gap-6 mb-6">
-                {/* University Logo */}
-                <div className="flex-shrink-0">
+                {/* University Logo with Graduation Cap Icon */}
+                <div className="flex-shrink-0 relative">
                   <div className="w-16 h-16 rounded-xl overflow-hidden bg-white shadow-lg border-2 border-gray-100 dark:border-gray-700">
                     <img 
                       src={edu.logo} 
@@ -96,9 +95,10 @@ export function Education() {
                       className="w-full h-full object-cover"
                     />
                   </div>
+                  {/* Graduation Cap Icon Overlay */}
                   <div className="absolute -bottom-1 -right-1 bg-emerald-500 p-1.5 rounded-full">
-                        <Building2 className="h-3 w-3 text-white" />
-                    </div>
+                    <GraduationCap className="h-3 w-3 text-white" />
+                  </div>
                 </div>
 
                 <div className="flex-1">
@@ -154,3 +154,4 @@ export function Education() {
     </section>
   );
 }
+
