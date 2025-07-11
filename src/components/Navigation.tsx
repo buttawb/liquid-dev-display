@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Moon, Sun, Menu, X, Monitor } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -7,9 +8,10 @@ const navItems = [
   { name: "Home", href: "#hero" },
   { name: "About", href: "#about" },
   { name: "Experience", href: "#experience" },
+  { name: "Achievements", href: "#achievements" },
   { name: "Projects", href: "#projects" },
   { name: "Skills", href: "#skills" },
-  { name: "Education", href: "#education" },
+  { name: "Education", href: "#education" },  
   { name: "Contact", href: "#contact" },
 ];
 
@@ -94,14 +96,14 @@ export function Navigation() {
             </span>
           </div>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:block">
+          {/* Desktop Navigation - Hidden on smaller screens */}
+          <div className="hidden lg:block">
             <div className="ml-10 flex items-center space-x-2">
               {navItems.map((item) => (
                 <button
                   key={item.name}
                   onClick={() => scrollToSection(item.href)}
-                  className="glass-button px-4 py-2 rounded-xl font-medium transition-all duration-200 hover:scale-105 hover:gradient-text"
+                  className="glass-button px-3 py-2 rounded-xl font-medium transition-all duration-200 hover:scale-105 hover:gradient-text text-sm"
                 >
                   {item.name}
                 </button>
@@ -122,7 +124,7 @@ export function Navigation() {
             </Button>
 
             {/* Mobile menu button */}
-            <div className="md:hidden">
+            <div className="lg:hidden">
               <Button
                 variant="ghost"
                 size="icon"
@@ -141,7 +143,7 @@ export function Navigation() {
 
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <div className="md:hidden">
+          <div className="lg:hidden">
             <div className="px-4 pt-2 pb-6 space-y-2 glass-card rounded-2xl mt-4 border border-white/20">
               {navItems.map((item) => (
                 <button
