@@ -11,15 +11,16 @@ const projects = [
     description: "AI-powered UX analysis & design iteration tool integrating Figma, OpenAI & GEMINI for instant heatmaps, user journeys, and design improvements.",
     fullDescription: "AI-UX Tester is an intelligent, modular platform designed to empower designers and product teams with real-time, data-driven UX insights and automated design iteration workflows. It bridges the gap between static designs and real user behavior by leveraging cutting-edge AI models and Figma integration. Built over 3 intense days for a hackathon, AI-UX Tester consists of three powerful modules: UX Analysis (heatmaps, finger reach zones, drop-off identification), User Journey (AI-driven simulation of user task completion), and Design Iteration (AI-powered image generation for improved design frames).",
     images: [
-      "https://github.com/user-attachments/assets/e4418d7f-233c-483f-ac26-48a5499a2979",
-      "https://github.com/user-attachments/assets/75a50934-eaeb-4c32-85c9-6889307052c1",
-      "https://github.com/user-attachments/assets/199d5364-e92a-4575-b5dd-285d77eaf3f9",
-      "https://github.com/user-attachments/assets/56468bf4-6015-463e-9081-03305a86093f"
+      "/ux1.png",
+      "/ux2.png",
+      "/ux3.png",
+      "/ux4.png"
     ],
     tech: ["Django REST Framework", "Python 3.10", "HTML", "CSS", "jQuery", "Heatmap.js", "OpenAI GPT-4o-mini", "GEMINI", "Figma REST API"],
     github: "https://github.com/buttawb/AI-UX",
     live: "#",
     featured: true,
+    hideCodeButton: true,
     developedDate: "2025",
     purpose: "Revolutionizing design validation with AI-powered UX insights",
     teamSize: "2 Engineers",
@@ -279,12 +280,14 @@ export function Projects() {
                       Details
                     </Button>
                   </ProjectDetailsModal>
-                  <Button variant="outline" size="sm" className="glass-button" asChild>
-                    <a href={featuredProject.github} target="_blank" rel="noopener noreferrer">
-                      <Github className="h-3 w-3 mr-1" />
-                      Code
-                    </a>
-                  </Button>
+                  {!featuredProject.hideCodeButton && (
+                    <Button variant="outline" size="sm" className="glass-button" asChild>
+                      <a href={featuredProject.github} target="_blank" rel="noopener noreferrer">
+                        <Github className="h-3 w-3 mr-1" />
+                        Code
+                      </a>
+                    </Button>
+                  )}
                   {featuredProject.live && featuredProject.live !== "#" && (
                     <Button size="sm" className="glass-button" asChild>
                       <a href={featuredProject.live} target="_blank" rel="noopener noreferrer">
