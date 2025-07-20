@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Github, ExternalLink, Eye, Folder, ChevronLeft, ChevronRight, Info, Play } from "lucide-react";
-import { ProjectDetailsModal } from "@/components/ProjectDetailsModal";
 
 const projects = [
   {
+    id: "ai-ux",
     title: "AI-UX",
     description: "AI-powered UX analysis & design iteration tool integrating Figma, OpenAI & GEMINI for instant heatmaps, user journeys, and design improvements.",
     fullDescription: "AI-UX Tester is an intelligent, modular platform designed to empower designers and product teams with real-time, data-driven UX insights and automated design iteration workflows. It bridges the gap between static designs and real user behavior by leveraging cutting-edge AI models and Figma integration. Built over 3 intense days for a hackathon, AI-UX Tester consists of three powerful modules: UX Analysis (heatmaps, finger reach zones, drop-off identification), User Journey (AI-driven simulation of user task completion), and Design Iteration (AI-powered image generation for improved design frames).",
@@ -47,6 +48,7 @@ const projects = [
     outcome: "Successfully completed the hackathon project at Avialdo Solutions, demonstrating strong technical skills, creativity, and ability to build innovative solutions under time constraints. The project showcased collaborative teamwork and rapid prototyping capabilities, integrating multiple AI models and Figma API to create a comprehensive UX analysis platform."
   },
   {
+    id: "tms",
     title: "Transporter Management System",
     description: "A comprehensive system designed to streamline transport operations for HGGC Transporters, managing fuel procurement and distribution nationwide.",
     fullDescription: "The Transporter Management System is designed to streamline transport operations for HGGC Transporters. This system facilitates the logistical requirements of procuring fuel from various oil marketing companies such as Total Parco, Go, and others, and distributing it to pumps nationwide. The primary focus of the project includes managing drivers, vehicles, oil marketing companies, vehicle manufacturers, trip records, and expenses.",
@@ -88,6 +90,7 @@ const projects = [
     outcome: "Successfully delivered a comprehensive transport management system that streamlined HGGC's nationwide fuel distribution operations. The system improved operational efficiency by 40% and provided better tracking and management of drivers, vehicles, and fuel procurement processes."
   },
   {
+    id: "driver-handbook",
     title: "Driver Handbook (Android App)",
     description: "Android app for heavy vehicle drivers, featuring video player, PDF reader, and text-to-speech for road safety.",
     fullDescription: "Explore my latest venture into the mobile world with an Android app designed for heavy vehicle drivers at HGGC. Stepping outside my primary domain of web development, I developed this native app using Java, Kotlin, and XML. It features a video player, PDF reader, and text-to-speech functionalities, all within a user-friendly interface. The app is a private tool for HGGC, enhancing safety, productivity, and compliance on the road.",
@@ -123,6 +126,7 @@ const projects = [
     outcome: "Successfully developed and deployed a native Android application that enhanced road safety for HGGC's heavy vehicle drivers. The app improved driver compliance and safety awareness through accessible training materials and hands-free information delivery."
   },
   {
+    id: "drosometer",
     title: "Drosometer (MakkhiMeter)",
     description: "Automated Django-based system for rapid analysis and classification of Drosophila melanogaster (fruit fly) wing and eye features, revolutionizing genetic research.",
     fullDescription: `Drosophila melanogaster, or the fruit fly, is a key model for genetic studies due to its short life span and close genetic relationship to humans. Traditionally, classifying new species and calculating their features is a manual, time-consuming process.\nMakkhiMeter solves this by providing a decision-based system that classifies the fly's family and calculates its features with just one click, enhancing efficiency and accuracy in genetic research.\nThe system allows for manual fine-tuning of wing vein structures, visualizes wing regions, enables bristle counting, and provides eye color analysis with pie charts.`,
@@ -274,12 +278,12 @@ export function Projects() {
 
                 {/* Project Links */}
                 <div className="flex flex-wrap gap-2 pt-3">
-                  <ProjectDetailsModal project={featuredProject}>
-                    <Button variant="outline" size="sm" className="glass-button">
+                  <Button variant="outline" size="sm" className="glass-button" asChild>
+                    <Link to={`/project/${featuredProject.id}`}>
                       <Info className="h-3 w-3 mr-1" />
-                      Details
-                    </Button>
-                  </ProjectDetailsModal>
+                      View Details
+                    </Link>
+                  </Button>
                   {!featuredProject.hideCodeButton && (
                     <Button variant="outline" size="sm" className="glass-button" asChild>
                       <a href={featuredProject.github} target="_blank" rel="noopener noreferrer">
@@ -345,12 +349,12 @@ export function Projects() {
 
                 {/* Project Links */}
                 <div className="flex gap-2 pt-2 mt-auto">
-                  <ProjectDetailsModal project={project}>
-                    <Button variant="outline" size="sm" className="glass-button flex-1">
+                  <Button variant="outline" size="sm" className="glass-button flex-1" asChild>
+                    <Link to={`/project/${project.id}`}>
                       <Info className="h-3 w-3 mr-1" />
-                      Details
-                    </Button>
-                  </ProjectDetailsModal>
+                      View Details
+                    </Link>
+                  </Button>
                   <Button variant="outline" size="sm" className="glass-button" asChild>
                     <a href={project.github} target="_blank" rel="noopener noreferrer">
                       <Github className="h-3 w-3" />
