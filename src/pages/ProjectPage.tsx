@@ -471,6 +471,11 @@ export function ProjectPage() {
       navigate('/');
     }
   }, [project, navigate]);
+
+  // Scroll to top when project changes
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [projectId]);
   
   if (!project) {
     return null;
