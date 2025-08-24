@@ -32,16 +32,16 @@ const timelineData: TimelineItem[] = [
     duration: "Aug 2024 - Present",
     location: "Karāchi, Sindh, Pakistan",
     logo: "/avialdo.png",
-    description: "Leading the development of complex backend modules and managing projects effectively using modern development practices and cloud services.",
+    description: "Led backend development for logistics and B2B platforms using Django and Flask, contributing to systems used by 1,000+ daily users.",
     level: "Mid Level",
     startYear: 2024,
     skills: ["Django", "WebSocket", "GraphQL", "Cross-team Collaboration", "Amazon Web Services (AWS)", "Next.js"],
     details: [
-      "Leading the development of complex backend modules",
-      "Utilizing AWS services for DevOps tasks",
-      "Managing projects effectively using JIRA, Confluence, and other Atlassian tools",
-      "Developing detailed flowcharts, UML diagrams, and other visual representations to clarify backend processes",
-      "Working closely with designers to enhance design solutions for seamless frontend-backend integration"
+      "Integrated 4+ third-party services (OneSignal, Twilio, Firebase, Google OAuth2), improving user communication and authentication flow by 35%.",
+      "Built real-time features with Django Channels and WebSockets, including live dashboards, chat module, and 2FA — reducing user response latency by 40%.",
+      "Conducted 70%+ code reviews and refactored major modules, improving code quality and maintainability by 20%.",
+      "Troubleshot system-level issues within AWS infrastructure and Docker-based pipelines, improving deployment stability and backend performance under load.",
+      "Delivered critical features across 8+ product sprints with <5% delay and maintained a bug-to-feature ratio under 0.1 post-release."
     ]
   },
   {
@@ -52,14 +52,15 @@ const timelineData: TimelineItem[] = [
     duration: "Sep 2023 - Jul 2024",
     location: "Karāchi, Sindh, Pakistan",
     logo: "/avialdo.png",
-    description: "Worked on backend systems using Django and managed databases to ensure effective application performance.",
+    description: "Developed and maintained features for logistics and B2B platforms using Django and Python REST APIs, contributing to 20+ backend tasks weekly.",
     level: "Junior",
     startYear: 2023,
     skills: ["Django", "REST APIs", "Code Review", "Continuous Integration and Continuous Delivery (CI/CD)", "jQuery"],
     details: [
-      "Worked on backend systems using Django, gaining expertise in Django REST framework, Ninja APIs, and GraphQL",
-      "Managed and optimized databases including PostgreSQL, SQLite, and MySQL to ensure effective application performance",
-      "Utilized GIT to manage and maintain codebases, ensuring smooth version control and collaboration"
+      "Implemented async tasks with Celery + Redis, increasing background processing efficiency by 30%.",
+      "Collaborated with frontend teams to integrate APIs into Next.js-based apps, ensuring smooth UX and reliable API responses.",
+      "Improved development workflows by mastering Git and participating in code reviews, enhancing team collaboration and code quality.",
+      "Contributed to 20+ backend tasks weekly, supporting rapid product iteration and feature delivery."
     ]
   },
   {
@@ -70,7 +71,7 @@ const timelineData: TimelineItem[] = [
     duration: "2019 - 2023",
     location: "Karachi, Pakistan",
     logo: "/ned.png",
-    description: "Elected Academic Representative for the Computer Science Department. Bridged the gap between students and faculty, addressed academic concerns, and ensured effective communication.",
+  description: "Graduated with a BSCS degree, actively represented the Computer Science Department and facilitated communication between students and faculty.",
     status: "Graduated",
     gpa: "CGPA: 3.2",
     startYear: 2019,
@@ -90,7 +91,7 @@ const timelineData: TimelineItem[] = [
     duration: "Jun 2022 - May 2023",
     location: "Karāchi, Sindh, Pakistan",
     logo: "/dow.jpeg",
-    description: "Developed a web application integrating deep learning and image processing for rapid classification and feature extraction of Drosophila melanogaster species.",
+  description: "Pioneered automation in genetic research by building a deep learning web app for fruit fly analysis and feature extraction at DUHS.",
     level: "Junior",
     startYear: 2022,
     skills: ["Python (Programming Language)", "Collaborative Problem Solving", "Research and Development (R&D)", "JavaScript"],
@@ -100,25 +101,6 @@ const timelineData: TimelineItem[] = [
       "Applied research and development skills in a healthcare/academic environment"
     ]
   },
-  {
-    id: "college-hsc-2019",
-    type: "education" as const,
-    title: "HSC, Pre-Engineering",
-    organization: "Government Degree Science & Commerce College - Malir Cantonment",
-    duration: "Oct 2017 - May 2019",
-    location: "Karachi, Pakistan",
-    logo: "/college.jpeg",
-    description: "Completed Higher Secondary Certificate in Pre-Engineering with excellent grades.",
-    status: "Completed",
-    gpa: "Grade: A",
-    startYear: 2017,
-    skills: ["Mathematics", "Physics", "Chemistry"],
-    details: [
-      "Completed Higher Secondary Certificate in Pre-Engineering",
-      "Achieved excellent academic performance",
-      "Built strong foundation in mathematics and sciences"
-    ]
-  }
 ].sort((a, b) => b.startYear - a.startYear); // Sort by most recent first
 
 function TimelineCard({ item, index }: { item: TimelineItem; index: number }) {
@@ -132,9 +114,7 @@ function TimelineCard({ item, index }: { item: TimelineItem; index: number }) {
       
       {/* Card */}
       <div className={`w-full md:w-5/12 ${isLeft ? 'md:pr-8' : 'md:pl-8'}`}>
-        <Card className={`professional-card p-6 hover:shadow-xl transition-all duration-500 group-hover:-translate-y-1 ${
-          item.type === 'experience' ? 'border-l-4 border-l-blue-500' : 'border-l-4 border-l-emerald-500'
-        }`}>
+  <Card className={`professional-card p-6 hover:shadow-xl transition-all duration-500 group-hover:-translate-y-1 border-l-4 border-l-emerald-500`}>
           
           {/* Header */}
           <div className="flex items-start gap-4 mb-4">
@@ -146,9 +126,7 @@ function TimelineCard({ item, index }: { item: TimelineItem; index: number }) {
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className={`absolute -bottom-1 -right-1 p-1.5 rounded-full ${
-                item.type === 'experience' ? 'bg-blue-500' : 'bg-emerald-500'
-              }`}>
+              <div className="absolute -bottom-1 -right-1 p-1.5 rounded-full bg-emerald-500">
                 {item.type === 'experience' ? 
                   <Briefcase className="h-3 w-3 text-white" /> : 
                   <GraduationCap className="h-3 w-3 text-white" />
@@ -158,13 +136,11 @@ function TimelineCard({ item, index }: { item: TimelineItem; index: number }) {
             
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-2 mb-2 flex-wrap">
-                <Badge variant="outline" className={`text-xs ${
-                  item.type === 'experience' ? 'border-blue-500 text-blue-600 dark:text-blue-400' : 'border-emerald-500 text-emerald-600 dark:text-emerald-400'
-                }`}>
+                <Badge variant="outline" className="text-xs border-emerald-500 text-emerald-600 dark:text-emerald-400">
                   {item.type === 'experience' ? 'Work' : 'Education'}
                 </Badge>
                 {item.level && (
-                  <Badge variant="secondary" className="text-xs">
+                  <Badge className="bg-emerald-500 text-white border-0 text-xs">
                     {item.level}
                   </Badge>
                 )}
@@ -177,9 +153,7 @@ function TimelineCard({ item, index }: { item: TimelineItem; index: number }) {
               <h3 className="text-lg font-bold text-gray-900 dark:text-white leading-tight mb-1">
                 {item.title}
               </h3>
-              <p className={`font-semibold text-base mb-2 ${
-                item.type === 'experience' ? 'text-blue-600 dark:text-blue-400' : 'text-emerald-600 dark:text-emerald-400'
-              }`}>
+              <p className="font-semibold text-base mb-2 text-emerald-600 dark:text-emerald-400">
                 {item.organization}
               </p>
             </div>
