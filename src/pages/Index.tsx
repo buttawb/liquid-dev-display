@@ -1,10 +1,9 @@
 
 import { Hero } from "@/components/sections/Hero";
 import { About } from "@/components/sections/About";
-import { Experience } from "@/components/sections/Experience";
+import { Timeline } from "@/components/sections/Timeline";
 import { Achievements } from "@/components/sections/Achievements";
 import { Projects } from "@/components/sections/Projects";
-import { Education } from "@/components/sections/Education";
 import { Skills } from "@/components/sections/Skills";
 import { Contact } from "@/components/sections/Contact";
 import { Navigation } from "@/components/Navigation";
@@ -26,11 +25,10 @@ const Index = () => {
       <main className="overflow-x-hidden">
         <Hero />
         <About />
-        <Experience />
+        <Timeline />
         <Achievements />
         <Projects />
         <Skills />
-        <Education />
         <Contact />
       </main>
     </div>
