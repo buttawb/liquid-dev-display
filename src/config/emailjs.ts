@@ -16,4 +16,4 @@ export interface EmailTemplateParams {
   subject: string;
   message: string;
   reply_to: string;
-} 
+}
