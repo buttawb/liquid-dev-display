@@ -1,69 +1,127 @@
 import { Card } from "@/components/ui/card";
-import { User, GraduationCap, Calendar, Award } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { User, Target, Zap, Heart, Coffee, Code, Clock, Sparkles, Rocket, Brain, MapPin } from "lucide-react";
 
 export function About() {
+  const highlights = [
+    "2+ Years Experience",
+    "Full-Stack Development", 
+    "Django & Next.js Expert",
+    "Cloud Deployment",
+    "Team Leadership"
+  ];
+
+  const values = [
+    {
+      icon: Target,
+      title: "Ownership Mindset",
+      description: "I treat every project like it's my own"
+    },
+    {
+      icon: Zap,
+      title: "Fast Learner",
+      description: "Diving into new technologies with confidence"
+    },
+    {
+      icon: Heart,
+      title: "Builder's Heart",
+      description: "Creating products that solve real problems"
+    }
+  ];
+
   return (
-    <section id="about" className="py-24 px-4 bg-background">
+    <section id="about" className="py-24 px-4 bg-gradient-to-b from-background to-muted/20">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 glass-card px-4 py-2 rounded-full text-sm font-medium mb-6">
-            <User className="h-4 w-4 text-primary" />
+            <User className="h-4 w-4 text-emerald-500" />
             <span>Get to know me</span>
           </div>
           <h2 className="text-3xl md:text-5xl font-bold mb-4">
             About <span className="gradient-text">Me</span>
           </h2>
+          {/* <div className="inline-flex items-center gap-2 text-lg text-muted-foreground mb-4">
+            <MapPin className="h-5 w-5 text-emerald-500" />
+            <span>Based in Karachi, Pakistan</span>
+          </div> */}
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+            Learn who I am and what I do.
+          </p>
         </div>
-
-        <div className="grid lg:grid-cols-5 gap-12 items-start">
-          {/* Content - Takes 3 columns */}
-          <div className="lg:col-span-3 space-y-6">
-            <div className="space-y-5 text-lg leading-relaxed text-muted-foreground">
-              <p>
-                I'm a <strong className="text-foreground">Backend Engineer</strong> with <strong className="text-primary">3+ years</strong> of experience building enterprise SaaS platforms. I specialize in Python and Django, with expertise in multi-tenant architecture, REST APIs, GraphQL, and real-time features using Django Channels and WebSockets.
+       
+        <div className="grid lg:grid-cols-3 gap-12 items-start mb-16">
+          {/* Content - Takes 2 columns */}
+          <div className="lg:col-span-2 space-y-6">
+            <div className="space-y-5">
+              <p className="text-base leading-relaxed text-muted-foreground">
+                Hi, I'm <strong className="text-foreground">Abdul Wahab Butt</strong>, a passionate Full-Stack Developer based in Karachi, Pakistan, with nearly 2+ years of professional experience building scalable, efficient, and user-centric web applications.
               </p>
               
-              <p>
-                At <strong className="text-foreground">Avialdo Solutions</strong> (US-based company), I architect backend systems that serve thousands of users daily. My work includes building scalable APIs, optimizing database performance with PostgreSQL and Redis, implementing secure authentication systems, and integrating third-party services. I collaborate with distributed teams across time zones and focus on writing clean, maintainable code.
+              <p className="text-base leading-relaxed text-muted-foreground">
+                From crafting clean backend architectures in Django to collaborating closely with frontend teams and deploying to cloud environments, I love turning complex problems into practical, production-ready solutions.
               </p>
 
-              <p>
-                I'm passionate about solving complex technical challenges, mentoring teammates through code reviews, and building reliable systems that make a real impact.
+              <p className="text-base leading-relaxed text-muted-foreground">
+                I'm not just a coder; I care deeply about <em>why</em> things are being built and <em>who</em> they're being built for. This has led me to take on responsibilities like mentoring junior engineers, collaborating with UI/UX designers, and contributing to architectural decisions that make products truly scalable.
               </p>
             </div>
           </div>
 
-          {/* Education Card - Takes 2 columns */}
-          <div className="lg:col-span-2">
-            <Card className="neo-card p-6 glow-hover">
-              <div className="flex items-start gap-4 mb-4">
-                <div className="p-3 rounded-xl gradient-primary">
-                  <GraduationCap className="h-6 w-6 text-primary-foreground" />
+          {/* Stats Grid - Takes 1 column */}
+          <div className="grid grid-cols-2 gap-3">
+            {[
+              { 
+                number: "2+", 
+                label: "Years Experience", 
+                color: "from-emerald-400 to-green-500",
+                icon: Clock
+              },
+              { 
+                number: "15+", 
+                label: "Projects Completed", 
+                color: "from-green-400 to-teal-500",
+                icon: Code
+              },
+              { 
+                number: "500+", 
+                label: "Coffee Cups", 
+                color: "from-teal-400 to-cyan-500",
+                icon: Coffee
+              },
+              { 
+                number: "∞", 
+                label: "Ideas Generated", 
+                color: "from-cyan-400 to-blue-500",
+                icon: Brain
+              },
+            ].map((stat) => (
+              <Card key={stat.label} className="neo-card p-4 text-center hover:scale-105 transition-all duration-300 group">
+                <div className="flex justify-center mb-2">
+                  <stat.icon className={`h-5 w-5 bg-gradient-to-r ${stat.color} bg-clip-text text-transparent`} />
                 </div>
-                <div>
-                  <h3 className="text-xl font-bold mb-1">Education</h3>
+                <div className={`text-xl md:text-2xl font-black bg-gradient-to-r ${stat.color} bg-clip-text text-transparent mb-1`}>
+                  {stat.number}
                 </div>
-              </div>
-              
-              <div className="space-y-4">
-                <div>
-                  <h4 className="font-semibold text-foreground">Bachelor of Science in Computer Science</h4>
-                  <p className="text-muted-foreground">Usman Institute of Technology</p>
-                  <p className="text-sm text-muted-foreground">(Affiliated with NED University)</p>
+                <div className="text-xs font-medium text-muted-foreground group-hover:text-foreground transition-colors">
+                  {stat.label}
                 </div>
+              </Card>
+            ))}
+          </div>
+        </div>
 
-                <div className="flex flex-wrap gap-4 text-sm">
-                  <div className="flex items-center gap-2 text-muted-foreground">
-                    <Calendar className="h-4 w-4 text-primary" />
-                    <span>2019 - 2023</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-muted-foreground">
-                    <Award className="h-4 w-4 text-primary" />
-                    <span>GPA: 3.2/4.0</span>
-                  </div>
-                </div>
-              </div>
-            </Card>
+         {/* What sets me apart box - full width */}
+         <div className="w-full mt-8 mb-8 bg-gradient-to-r from-emerald-50 to-green-50 dark:from-emerald-950/30 dark:to-green-950/30 p-6 rounded-xl border-l-4 border-emerald-500">
+          <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
+            <Sparkles className="h-5 w-5 text-emerald-500" />
+            What sets me apart?
+          </h3>
+          <div className="space-y-3 text-sm leading-relaxed text-muted-foreground">
+            <p><strong className="text-emerald-600 dark:text-emerald-400">Ownership mindset:</strong> I treat every project like it's my own — from ideation to deployment and beyond.</p>
+            <p><strong className="text-emerald-600 dark:text-emerald-400">Fast learner:</strong> Whether it's integrating a new framework like Next.js or picking up a new cloud tool, I dive in with confidence and curiosity.</p>
+            <p><strong className="text-emerald-600 dark:text-emerald-400">Team player:</strong> I thrive in collaborative environments where knowledge sharing, peer reviews, and problem-solving go hand in hand.</p>
+            {/* <p><strong className="text-emerald-600 dark:text-emerald-400">Builder's heart:</strong> I enjoy creating real-world products that solve genuine problems — whether it's an internal logistics platform or an automated classification system using image processing and deep learning.</p> */}
+            <p><strong className="text-emerald-600 dark:text-emerald-400">Growth-oriented:</strong> I value constant improvement — in code, in systems, and in myself. I'm always learning, always iterating.</p>
           </div>
         </div>
       </div>
