@@ -1,147 +1,170 @@
+import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Zap, Star, Code, Database, Smartphone, Cpu } from "lucide-react";
+import { Zap, Server, Database, Cog, Cloud, TestTube, Link, ChevronDown, ChevronUp } from "lucide-react";
 
 const skillCategories = [
   {
-    title: "AI & Machine Learning",
-    icon: Cpu,
-    color: "from-cyan-400 to-blue-500",
-    skills: [
-      { name: "OpenAI", level: "Advanced" },
-      { name: "Google Gemini", level: "Advanced" },
-      { name: "Artificial Intelligence (AI)", level: "Beginner" },
-      { name: "Machine Learning", level: "Beginner" },
-      { name: "Research and Development (R&D)", level: "Advanced" },
-      { name: "TensorFlow", level: "Beginner" },
-    ]
-  },
-  {
     title: "Backend & APIs",
-    icon: Database,
-    color: "from-green-400 to-teal-500",
+    icon: Server,
+    color: "from-primary to-blue-500",
     skills: [
-      { name: "Django", level: "Advanced" },
-      { name: "REST APIs", level: "Advanced" },
-      { name: "GraphQL", level: "Intermediate" },
-      { name: "WebSocket", level: "Intermediate" },
-      { name: "JSON Web Token (JWT)", level: "Intermediate" },
-      { name: "CI/CD", level: "Intermediate" },
-      { name: "Code Review", level: "Advanced" },
-      { name: "Version Control (Git)", level: "Advanced" },
-      { name: "Amazon Web Services (AWS)", level: "Intermediate" },
+      { name: "Python", years: "3+" },
+      { name: "Django", years: "3+" },
+      { name: "Flask", years: "2+" },
+      { name: "REST APIs", years: "3+" },
+      { name: "GraphQL", years: "2+" },
+      { name: "Django Channels", years: "2+" },
+      { name: "WebSockets", years: "2+" },
+      { name: "Multi-Tenant Architecture", years: "2+" },
+      { name: "Service-Oriented Architecture", years: "2+" },
     ]
   },
   {
-    title: "Frontend & UI/UX",
-    icon: Code,
-    color: "from-emerald-400 to-green-500",
+    title: "Databases & Performance",
+    icon: Database,
+    color: "from-blue-500 to-accent",
     skills: [
-      { name: "Figma", level: "Intermediate" },
-      { name: "Next.js", level: "Beginner" },
-      { name: "HTML", level: "Advanced" },
-      { name: "CSS", level: "Advanced" },
-      { name: "JavaScript", level: "Beginner" },
-      { name: "jQuery", level: "Intermediate" },
-      { name: "Tailwind CSS", level: "Intermediate" },
+      { name: "PostgreSQL", years: "3+" },
+      { name: "MySQL", years: "3+" },
+      { name: "Redis", years: "2+" },
+      { name: "Query Optimization", years: "2+" },
+      { name: "Caching Strategies", years: "2+" },
+      { name: "Database Indexing", years: "2+" },
     ]
   },
-  // {
-  //   title: "Mobile & Android",
-  //   icon: Smartphone,
-  //   color: "from-teal-400 to-cyan-500",
-  //   skills: [
-  //     { name: "Kotlin", level: "Beginner" },
-  //     { name: "Java", level: "Beginner" },
-  //     { name: "XML (Android)", level: "Beginner" },
-  //     { name: "Android SDK", level: "Beginner" },
-  //   ]
-  // },
   {
-    title: "Databases & Cloud",
-    icon: Database,
-    color: "from-purple-400 to-indigo-500",
+    title: "Async & Messaging",
+    icon: Cog,
+    color: "from-accent to-cyan-400",
     skills: [
-      { name: "MySQL", level: "Advanced" },
-      { name: "PostgreSQL", level: "Intermediate" },
-      { name: "MongoDB", level: "Intermediate" },
-      { name: "SQLite", level: "Advanced" },
+      { name: "Celery", years: "2+" },
+      { name: "Redis Queue", years: "2+" },
+      { name: "Asynchronous Programming", years: "2+" },
+      { name: "Message Queues", years: "2+" },
+    ]
+  },
+  {
+    title: "Cloud & DevOps",
+    icon: Cloud,
+    color: "from-cyan-400 to-primary",
+    skills: [
+      { name: "AWS (EC2, S3, RDS, Lambda)", years: "2+" },
+      { name: "Docker", years: "2+" },
+      { name: "CI/CD Pipelines", years: "2+" },
+      { name: "Git", years: "3+" },
+      { name: "Linux", years: "3+" },
+    ]
+  },
+  {
+    title: "Testing & Quality",
+    icon: TestTube,
+    color: "from-primary to-purple-400",
+    skills: [
+      { name: "Unit Testing", years: "3+" },
+      { name: "Integration Testing", years: "2+" },
+      { name: "Code Review", years: "3+" },
+      { name: "Test-Driven Development (TDD)", years: "2+" },
+    ]
+  },
+  {
+    title: "Integrations & Additional",
+    icon: Link,
+    color: "from-purple-400 to-accent",
+    skills: [
+      { name: "OAuth2", years: "2+" },
+      { name: "JWT", years: "3+" },
+      { name: "Third-Party APIs", years: "3+" },
+      { name: "AI APIs (GPT, Gemini)", years: "1+" },
+      { name: "Next.js", years: "1+" },
+      { name: "JavaScript", years: "2+" },
     ]
   },
 ];
 
-const getLevelColor = (level: string) => {
-  switch (level) {
-    case "Expert":
-      return "bg-emerald-500/20 text-emerald-400 border-emerald-500/30";
-    case "Advanced":
-      return "bg-green-500/20 text-green-400 border-green-500/30";
-    case "Intermediate":
-      return "bg-teal-500/20 text-teal-400 border-teal-500/30";
-    default:
-      return "bg-gray-500/20 text-gray-400 border-gray-500/30";
-  }
-};
-
-const getLevelStars = (level: string) => {
-  switch (level) {
-    case "Expert":
-      return 5;
-    case "Advanced":
-      return 4;
-    case "Intermediate":
-      return 3;
-    default:
-      return 2;
-  }
-};
-
 export function Skills() {
+  const [expandedCategory, setExpandedCategory] = useState<number | null>(null);
+
+  const toggleCategory = (index: number) => {
+    setExpandedCategory(expandedCategory === index ? null : index);
+  };
+
   return (
-    <section id="skills" className="py-32 px-6 bg-gradient-to-b from-background to-muted/20">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-20">
-          <div className="inline-flex items-center gap-2 glass-card px-4 py-2 rounded-full text-sm font-medium mb-8">
-            <Zap className="h-4 w-4 text-emerald-500" />
+    <section id="skills" className="py-24 px-4 bg-background">
+      <div className="max-w-6xl mx-auto">
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center gap-2 glass-card px-4 py-2 rounded-full text-sm font-medium mb-6">
+            <Zap className="h-4 w-4 text-primary" />
             <span>Technical expertise</span>
           </div>
-          <h2 className="text-4xl md:text-6xl font-bold mb-6">
-            Skills & <span className="gradient-text">Expertise</span>
+          <h2 className="text-3xl md:text-5xl font-bold mb-4">
+            Technical <span className="gradient-text">Skills</span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Constantly evolving technical skills to stay at the forefront of technology
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Comprehensive expertise across the backend development stack
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
-          {skillCategories.map((category, index) => (
-            <Card key={index} className="neo-card p-6 hover:scale-[1.02] transition-all duration-300 group">
-              <div className="text-center mb-6">
-                <div className={`inline-flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-r ${category.color} mb-4 group-hover:scale-110 transition-transform`}>
-                  <category.icon className="h-6 w-6 text-white" />
-                </div>
-                <h3 className="text-lg font-bold group-hover:gradient-text transition-all duration-300">
-                  {category.title}
-                </h3>
-              </div>
-              
-              <div className="space-y-2">
-                {category.skills.map((skill, skillIndex) => (
-                  <div key={skillIndex} className="flex flex-col md:flex-row md:items-center justify-between flex-wrap gap-2">
-                    <div className="flex-1 min-w-0 pr-2">
-                      <span className="text-sm font-medium">{skill.name}</span>
-                    </div>
-                    <Badge 
-                      variant="outline" 
-                      className={`text-xs ${getLevelColor(skill.level)} border ml-2 flex-shrink-0 mt-1 md:mt-0`}
-                    >
-                      {skill.level}
-                    </Badge>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {skillCategories.map((category, index) => {
+            const isExpanded = expandedCategory === index;
+            const visibleSkills = isExpanded ? category.skills : category.skills.slice(0, 4);
+            const hasMore = category.skills.length > 4;
+
+            return (
+              <Card 
+                key={index} 
+                className="neo-card p-6 hover:scale-[1.02] transition-all duration-300 glow-hover"
+              >
+                <div className="flex items-center gap-3 mb-6">
+                  <div className={`p-3 rounded-xl bg-gradient-to-r ${category.color}`}>
+                    <category.icon className="h-5 w-5 text-primary-foreground" />
                   </div>
-                ))}
-              </div>
-            </Card>
-          ))}
+                  <h3 className="text-lg font-bold">{category.title}</h3>
+                </div>
+                
+                <div className="space-y-3">
+                  {visibleSkills.map((skill, skillIndex) => (
+                    <div key={skillIndex} className="space-y-1">
+                      <div className="flex items-center justify-between">
+                        <span className="text-sm font-medium">{skill.name}</span>
+                        <Badge variant="outline" className="text-xs bg-primary/10 text-primary border-primary/20">
+                          {skill.years}
+                        </Badge>
+                      </div>
+                      <div className="progress-bar">
+                        <div 
+                          className="progress-bar-fill"
+                          style={{ 
+                            width: skill.years.includes("3") ? "90%" : skill.years.includes("2") ? "70%" : "50%",
+                          }}
+                        />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {hasMore && (
+                  <button
+                    onClick={() => toggleCategory(index)}
+                    className="flex items-center gap-1 text-sm text-primary hover:text-primary/80 mt-4 transition-colors"
+                  >
+                    {isExpanded ? (
+                      <>
+                        <ChevronUp className="h-4 w-4" />
+                        Show less
+                      </>
+                    ) : (
+                      <>
+                        <ChevronDown className="h-4 w-4" />
+                        Show {category.skills.length - 4} more
+                      </>
+                    )}
+                  </button>
+                )}
+              </Card>
+            );
+          })}
         </div>
       </div>
     </section>
