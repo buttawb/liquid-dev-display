@@ -101,13 +101,6 @@ export function ToolsWorkflow() {
             </Card>
           ))}
         </div>
-
-        <div className="mt-12 text-center">
-          <div className="inline-flex items-center gap-2 glass-card px-6 py-3 rounded-full text-sm text-muted-foreground">
-            <Bot className="h-4 w-4 text-emerald-500" />
-            <span>Right tool for the right job</span>
-          </div>
-        </div>
       </div>
     </section>
   );
