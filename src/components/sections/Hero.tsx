@@ -1,161 +1,116 @@
-import { useState, useEffect } from "react";
-import { Github, Linkedin, ChevronDown, Code, Sparkles } from "lucide-react";
+import { Github, Linkedin, ArrowDown, Briefcase, Users, Server, Building2 } from "lucide-react";
+import { Button } from "@/components/ui/button";
+
+const stats = [
+  { icon: Briefcase, value: "3+", label: "Years Experience" },
+  { icon: Users, value: "1,000+", label: "Daily Users" },
+  { icon: Server, value: "99.5%", label: "System Uptime" },
+  { icon: Building2, value: "2,000+", label: "Organizations" },
+];
 
 export function Hero() {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, []);
+  const scrollToProjects = () => {
+    document.querySelector("#projects")?.scrollIntoView({ behavior: "smooth" });
+  };
 
   const scrollToAbout = () => {
-    const aboutSection = document.querySelector("#about");
-    if (aboutSection) {
-      aboutSection.scrollIntoView({ behavior: "smooth" });
-    }
+    document.querySelector("#about")?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
-      {/* Animated Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-emerald-50/50 via-green-50/30 to-teal-50/50 dark:from-emerald-950/30 dark:via-green-950/20 dark:to-teal-950/30">
-        <div 
-          className="absolute inset-0 opacity-20"
-          style={{
-            background: `radial-gradient(600px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(16, 185, 129, 0.15), transparent 40%)`,
-          }}
-        />
-      </div>
+    <section id="hero" className="relative min-h-screen flex items-center justify-center pt-20 pb-16">
+      {/* Subtle gradient background */}
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-muted/20" />
+      
+      {/* Subtle grid pattern */}
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(16,185,129,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(16,185,129,0.03)_1px,transparent_1px)] bg-[size:64px_64px]" />
 
-      {/* Floating Elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        {[...Array(6)].map((_, i) => (
-          <div
-            key={i}
-            className={`floating absolute blob-shape gradient-green opacity-10`}
-            style={{
-              width: `${30 + i * 10}px`,
-              height: `${30 + i * 10}px`,
-              left: `${10 + i * 15}%`,
-              top: `${20 + i * 10}%`,
-              animationDelay: `${i * 0.8}s`,
-            }}
-          />
-        ))}
-      </div>
-
-      <div className="relative z-10 px-4 max-w-7xl mx-auto w-full">
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
-          {/* Content Section */}
-          <div className="space-y-8 text-center lg:text-left order-2 lg:order-1">
-            <div className="space-y-6">
-              <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight">
-                <span className="block text-foreground/90 mb-2">Hello World, I'm</span>
-                <span className="block gradient-text font-black">
-                  Abdul Wahab Butt
-                </span>
-              </h1>
-              
-              <div className="text-lg md:text-xl text-muted-foreground font-light flex items-center justify-center lg:justify-start gap-2">
-                <Code className="h-6 w-6 text-emerald-500" />
-                <span className="typing-text">Software Engineer</span>
-              </div>
-            </div>
-
-
-            {/* Available Badge */}
-            <div className="inline-flex items-center gap-2 glass-card px-3 py-2 rounded-full text-sm font-medium">
-              <Sparkles className="h-4 w-4 text-emerald-500" />
-              <span className="gradient-text">Available for new opportunities</span>
-            </div>
-
-            {/* CTA Buttons */}
-            {/* <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center">
-              <Button 
-                size="lg" 
-                className="gradient-green text-white border-0 hover:scale-105 transition-all duration-300 px-6 py-3 text-base font-semibold rounded-xl shadow-lg hover:shadow-xl"
-                asChild
-              >
-                <a href="/AbdulWahabButtCV.pdf" download>
-                  <Download className="mr-2 h-4 w-4" />
-                  Download Resume
-                </a>
-              </Button>
-              
-              <Button 
-                variant="outline" 
-                size="lg" 
-                className="glass-button hover:scale-105 transition-all duration-300 px-6 py-3 text-base font-semibold rounded-xl"
-                onClick={scrollToAbout}
-              >
-                Explore My Work
-              </Button>
-            </div> */}
-
-            {/* Social Links */}
-            <div className="flex justify-center lg:justify-start space-x-6 pt-6">
-              {[
-                { icon: Github, href: "https://github.com/buttawb", label: "GitHub", color: "hover:text-gray-600" },
-                { icon: Linkedin, href: "https://www.linkedin.com/in/buttawb/", label: "LinkedIn", color: "hover:text-blue-600" },
-                // { icon: Mail, href: "mailto:buttawb@gmail.com", label: "Email", color: "hover:text-emerald-600" },
-              ].map(({ icon: Icon, href, label, color }) => (
-                <a
-                  key={label}
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`glass-button p-3 rounded-xl hover:scale-110 transition-all duration-300 group ${color}`}
-                  aria-label={label}
-                >
-                  <Icon className="h-5 w-5 transition-colors" />
-                </a>
-              ))}
-            </div>
-          </div>
-
-          {/* Photo Section */}
-          <div className="flex justify-center lg:justify-end order-1 lg:order-2">
-            <div className="relative">
-              <div className="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96">
-                {/* Main photo container with gradient border */}
-                <div className="absolute inset-0 rounded-full border-4 border-emerald-500 p-0">
-                  <div className="w-full h-full rounded-full overflow-hidden">
-                    <img
-                      src="/profile.png"
-                      alt="Abdul Wahab Butt"
-                      className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
-                    />
-                  </div>
-                </div>
-
-                {/* Floating decoration elements */}
-                <div className="absolute -top-4 -right-4 w-12 h-12 gradient-green rounded-full flex items-center justify-center floating">
-                  <Code className="h-6 w-6 text-white" />
-                </div>
-                
-                <div className="absolute -bottom-4 -left-4 w-10 h-10 glass-card rounded-full flex items-center justify-center floating" style={{animationDelay: '1s'}}>
-                  <Sparkles className="h-5 w-5 text-emerald-500" />
-                </div>
-              </div>
-            </div>
-          </div>
+      <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
+        {/* Status badge */}
+        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-sm font-medium text-emerald-600 dark:text-emerald-400 mb-8">
+          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+          Available for opportunities
         </div>
 
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
-          <button
-            onClick={scrollToAbout}
-            className="animate-bounce p-3 rounded-full glass-button hover:scale-110 transition-all duration-300"
-            aria-label="Scroll to about section"
+        {/* Main heading */}
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4">
+          <span className="text-foreground">Backend Engineer</span>
+        </h1>
+        
+        <p className="text-xl md:text-2xl text-emerald-600 dark:text-emerald-400 font-medium mb-4">
+          Python & Django Specialist
+        </p>
+
+        <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
+          Building scalable SaaS platforms with 3+ years of production experience
+        </p>
+
+        {/* CTA Buttons */}
+        <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+          <Button 
+            size="lg" 
+            onClick={scrollToProjects}
+            className="bg-emerald-600 hover:bg-emerald-700 text-white px-8"
           >
-            <ChevronDown className="h-5 w-5" />
-          </button>
+            View Projects
+          </Button>
+          <Button 
+            size="lg" 
+            variant="outline"
+            className="border-border hover:bg-muted"
+            asChild
+          >
+            <a href="/AbdulWahabButtCV.pdf" download>
+              Download Resume
+            </a>
+          </Button>
         </div>
+
+        {/* Stats Grid */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+          {stats.map((stat, index) => (
+            <div 
+              key={index}
+              className="p-4 rounded-xl bg-card/50 border border-border/50 hover:border-emerald-500/30 transition-colors"
+            >
+              <stat.icon className="h-5 w-5 text-emerald-500 mx-auto mb-2" />
+              <div className="text-2xl font-bold text-foreground">{stat.value}</div>
+              <div className="text-sm text-muted-foreground">{stat.label}</div>
+            </div>
+          ))}
+        </div>
+
+        {/* Social Links */}
+        <div className="flex justify-center gap-4 mb-12">
+          <a
+            href="https://github.com/buttawb"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-3 rounded-lg bg-card border border-border hover:border-emerald-500/50 hover:text-emerald-500 transition-colors"
+            aria-label="GitHub"
+          >
+            <Github className="h-5 w-5" />
+          </a>
+          <a
+            href="https://www.linkedin.com/in/buttawb/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-3 rounded-lg bg-card border border-border hover:border-emerald-500/50 hover:text-emerald-500 transition-colors"
+            aria-label="LinkedIn"
+          >
+            <Linkedin className="h-5 w-5" />
+          </a>
+        </div>
+
+        {/* Scroll indicator */}
+        <button
+          onClick={scrollToAbout}
+          className="inline-flex flex-col items-center gap-2 text-muted-foreground hover:text-emerald-500 transition-colors"
+          aria-label="Scroll to about section"
+        >
+          <span className="text-sm">Scroll to explore</span>
+          <ArrowDown className="h-4 w-4 animate-bounce" />
+        </button>
       </div>
     </section>
   );
