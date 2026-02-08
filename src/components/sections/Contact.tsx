@@ -2,7 +2,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Mail, MapPin, Phone, Send, MessageCircle, Github, Linkedin, Twitter, Instagram } from "lucide-react";
+import { Mail, MapPin, Phone, Send, MessageCircle, Github, Linkedin, Twitter, Instagram, Calendar } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 import emailjs from 'emailjs-com';
@@ -116,8 +116,7 @@ export function Contact() {
             Get In <span className="gradient-text">Touch</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Ready to bring your next project to life? Let's discuss how we can work together 
-            to create something amazing.
+            Got a project in mind? Want to chat about tech? Feel free to reach out.
           </p>
         </div>
 
@@ -125,11 +124,10 @@ export function Contact() {
           {/* Contact Information */}
           <div className="space-y-12">
             <div>
-              <h3 className="text-3xl font-bold mb-6">Let's Start a Conversation</h3>
+              <h3 className="text-3xl font-bold mb-6">Say Hello</h3>
               <p className="text-muted-foreground text-lg leading-relaxed mb-8">
-                I'm always excited to discuss new opportunities, collaborations, 
-                or just chat about the latest in technology and innovation. 
-                Choose your preferred way to connect below.
+                Whether it's a job opportunity, freelance work, or just a tech discussion —
+                I'm happy to connect. Pick whatever works for you.
               </p>
             </div>
 
@@ -152,6 +150,27 @@ export function Contact() {
                 </Card>
               ))}
             </div>
+
+            {/* Book a Call */}
+            <Card className="neo-card p-6 border-2 border-emerald-500/20 bg-gradient-to-r from-emerald-50/50 to-green-50/50 dark:from-emerald-950/20 dark:to-green-950/20">
+              <div className="flex items-center gap-4">
+                <div className="gradient-green p-4 rounded-2xl">
+                  <Calendar className="h-6 w-6 text-white" />
+                </div>
+                <div className="flex-1">
+                  <h4 className="font-semibold text-lg">Prefer a quick chat?</h4>
+                  <p className="text-sm text-muted-foreground">Book a 15-min call to discuss your project</p>
+                </div>
+                <a
+                  href="https://calendly.com/buttawb"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="gradient-green text-white px-6 py-3 rounded-xl font-medium hover:scale-105 transition-all"
+                >
+                  Book a Call
+                </a>
+              </div>
+            </Card>
 
             {/* Social Links */}
             <div className="space-y-6">

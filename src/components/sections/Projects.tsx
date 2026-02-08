@@ -1,11 +1,50 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Github, ExternalLink, Eye, Folder, ChevronLeft, ChevronRight, Info, Play } from "lucide-react";
+import { Github, ExternalLink, Eye, Folder, ChevronLeft, ChevronRight, Info, Play, Filter } from "lucide-react";
+
+const filterTags = ["All", "Django", "Next.js", "Flutter", "Python", "AWS"];
 
 const projects = [
+  {
+    id: "oilflow",
+    title: "Oil & Gas SaaS Platform",
+    description: "Backend and some frontend work on a big platform for oil and gas companies. Handles fuel distribution, fleet management, and a bunch of operational stuff.",
+    fullDescription: "A multi-module platform for oil and gas industry operations. I worked mainly on the backend — Django REST APIs, Celery tasks, database optimization. Also helped with the Next.js dashboard and coordinated with the mobile team (Flutter). The platform handles fuel distribution tracking, fleet management, contractor coordination, and reporting. It's multi-tenant so different companies have their own isolated data.",
+    images: [
+      "/oilflow1.png",
+      "/oilflow2.png",
+    ],
+    tech: ["Django", "Next.js", "Flutter", "PostgreSQL", "AWS", "Redis", "Celery", "WebSockets"],
+    github: "#",
+    live: "#",
+    featured: true,
+    hideCodeButton: true,
+    developedDate: "2024-2025",
+    purpose: "Managing oil & gas operations",
+    teamSize: "8 Engineers",
+    duration: "Ongoing",
+    role: "Software Engineer",
+    features: [
+      "Multi-tenant architecture with data isolation",
+      "Mobile apps for iOS and Android",
+      "Real-time dashboards",
+      "Role-based access control",
+      "Automated reports",
+      "Third-party integrations",
+      "Offline mode for field workers",
+      "English and Arabic support"
+    ],
+    challenges: [
+      "Handling lots of concurrent users",
+      "Making mobile work offline in remote areas",
+      "Keeping data consistent across services",
+      "Security and compliance requirements"
+    ],
+    outcome: "Platform is live and being used by several companies. Learned a lot about building systems that need to be reliable and handle real business operations."
+  },
   {
     id: "ai-ux",
     title: "AI-UX",
@@ -166,7 +205,16 @@ const projects = [
 
 export function Projects() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const featuredProject = projects[0];
+  const [activeFilter, setActiveFilter] = useState("All");
+
+  const filteredProjects = useMemo(() => {
+    if (activeFilter === "All") return projects;
+    return projects.filter(p =>
+      p.tech.some(t => t.toLowerCase().includes(activeFilter.toLowerCase()))
+    );
+  }, [activeFilter]);
+
+  const featuredProject = filteredProjects[0] || projects[0];
 
   // Auto-slide functionality
   useEffect(() => {
@@ -203,8 +251,25 @@ export function Projects() {
             Featured <span className="gradient-text">Projects</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            A showcase of my technical skills and creative problem-solving abilities
+            Some stuff I've built
           </p>
+
+          {/* Filter Buttons */}
+          <div className="flex flex-wrap justify-center gap-2 mt-8">
+            {filterTags.map((tag) => (
+              <button
+                key={tag}
+                onClick={() => setActiveFilter(tag)}
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
+                  activeFilter === tag
+                    ? "gradient-green text-white"
+                    : "glass-button hover:scale-105"
+                }`}
+              >
+                {tag}
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* Featured Project with Image Slider */}
@@ -308,7 +373,7 @@ export function Projects() {
 
         {/* Other Projects Grid */}
         <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
-          {projects.slice(1).map((project, index) => (
+          {filteredProjects.slice(1).map((project, index) => (
             <Card 
               key={index} 
               className="neo-card group hover:scale-[1.02] transition-all duration-500 overflow-hidden h-full flex flex-col"

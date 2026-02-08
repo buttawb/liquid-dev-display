@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import { Github, Linkedin, Mail, Download, ChevronDown, Code, Sparkles } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Github, Linkedin, ChevronDown, Code, Sparkles } from "lucide-react";
 
 export function Hero() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -68,9 +67,6 @@ export function Hero() {
               </div>
             </div>
 
-            <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-              Driven to create meaningful digital experiences by writing clean, maintainable code and solving problems that matter.
-            </p>
 
             {/* Available Badge */}
             <div className="inline-flex items-center gap-2 glass-card px-3 py-2 rounded-full text-sm font-medium">

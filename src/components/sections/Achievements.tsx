@@ -1,32 +1,48 @@
 
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Trophy, FileText, Shield, Clock, Users, Award, Star } from "lucide-react";
+import { Trophy, Shield, Clock, Users, Award, Star } from "lucide-react";
 
 const achievements = [
   {
-    title: "Streamlined Onboarding Process",
-    description: "Authored technical documentation, reducing onboarding time by 40% for new developers.",
-    icon: FileText,
-    category: "Documentation",
-    impact: "40% Time Reduction",
+    title: "Better Code Quality",
+    description: "Did 50+ code reviews, caught bugs before they hit production, and helped the team write cleaner code.",
+    icon: Shield,
+    category: "Quality",
+    impact: "30% Fewer Bugs",
+    color: "from-emerald-500 to-green-500"
+  },
+  {
+    title: "Scale",
+    description: "Worked on multi-tenant platform serving thousands of organizations. Learned a lot about data isolation and handling different use cases.",
+    icon: Users,
+    category: "Scale",
+    impact: "2,000+ Orgs",
     color: "from-blue-500 to-cyan-500"
   },
   {
-    title: "Outstanding Team Player Award",
-    description: "Acknowledged by Avialdo Solutions for effective collaboration and contributions during the quarter May 2024 to August 2024.",
+    title: "Production Support",
+    description: "On-call rotation, debugging production issues at odd hours. Got good at reading logs and traces to find problems fast.",
+    icon: Clock,
+    category: "Operations",
+    impact: "<10 Min Response",
+    color: "from-purple-500 to-indigo-500"
+  },
+  {
+    title: "System Reliability",
+    description: "Helped keep systems running smoothly through monitoring, alerts, and fixing issues before users notice.",
     icon: Trophy,
-    category: "Recognition",
-    impact: "Q2 2024 Winner",
+    category: "Reliability",
+    impact: "99.5% Uptime",
     color: "from-yellow-500 to-orange-500"
   },
   {
-    title: "Production Support & On-Call Duties",
-    description: "Participated in on-call rotation, ensuring 24/7 availability to resolve critical production issues within 10 minutes and minimize downtime.",
-    icon: Shield,
-    category: "Operations",
-    impact: "<10min Response",
-    color: "from-emerald-500 to-green-500"
+    title: "Team Player Award",
+    description: "Got recognized at Avialdo for being helpful to the team and shipping stuff on time.",
+    icon: Award,
+    category: "Recognition",
+    impact: "Q2 2024",
+    color: "from-pink-500 to-rose-500"
   }
 ];
 
@@ -43,7 +59,7 @@ export function Achievements() {
             Professional <span className="gradient-text">Highlights</span>
           </h2>
           <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed">
-            Notable accomplishments that demonstrate impact and excellence in my professional journey
+            Some things I'm proud of
           </p>
         </div>
 
@@ -95,7 +111,7 @@ export function Achievements() {
         <div className="text-center mt-12">
           <div className="inline-flex items-center gap-2 bg-gray-100 dark:bg-gray-800 px-6 py-3 rounded-full text-sm text-gray-600 dark:text-gray-300">
             <Users className="h-4 w-4 text-emerald-500" />
-            <span>Committed to continuous growth and impactful contributions</span>
+            <span>Always learning, always shipping</span>
           </div>
         </div>
       </div>

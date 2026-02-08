@@ -4,21 +4,38 @@ import { Briefcase, Calendar, MapPin, TrendingUp, Users, Award, Building2 } from
 
 const experiences = [
   {
-    title: "Backend Engineer",
+    title: "Software Engineer",
     company: "Avialdo Solutions",
-    duration: "Aug 2024 - Present",
+    duration: "Jan 2025 - Present",
     location: "Karāchi, Sindh, Pakistan",
     type: "Full-time",
     level: "Mid Level",
     logo: "/avialdo.png",
-    description: "Leading the development of complex backend modules and managing projects effectively using modern development practices and cloud services.",
-    skills: ["Django", "WebSocket", "GraphQL", "Cross-team Collaboration", "Amazon Web Services (AWS)", "Next.js"],
+    description: "Working on multi-tenant SaaS platforms, handling architecture decisions, and helping the team with code quality and production support.",
+    skills: ["Django", "Terraform", "Datadog", "New Relic", "AWS", "Next.js", "GraphQL"],
     achievements: [
-      "Leading the development of complex backend modules",
-      "Utilizing AWS services for DevOps tasks",
-      "Managing projects effectively using JIRA, Confluence, and other Atlassian tools",
-      "Developing detailed flowcharts, UML diagrams, and other visual representations to clarify backend processes",
-      "Working closely with designers to enhance design solutions for seamless frontend-backend integration"
+      "Working on platform serving 2,000+ organizations",
+      "Set up monitoring with Datadog and New Relic",
+      "Helping with infrastructure using Terraform",
+      "Code reviews and mentoring junior devs",
+      "On-call for production issues"
+    ]
+  },
+  {
+    title: "Backend Engineer",
+    company: "Avialdo Solutions",
+    duration: "Aug 2024 - Dec 2024",
+    location: "Karāchi, Sindh, Pakistan",
+    type: "Full-time",
+    level: "Mid Level",
+    logo: "/avialdo.png",
+    description: "Led backend development for logistics and B2B platforms, built real-time features, and started taking on more ownership.",
+    skills: ["Django", "WebSocket", "GraphQL", "AWS", "Next.js", "Celery"],
+    achievements: [
+      "Integrated third-party services (OneSignal, Twilio, Firebase)",
+      "Built real-time features - dashboards, chat, 2FA",
+      "Started doing architecture work and code reviews",
+      "Worked on AWS and Docker pipelines"
     ]
   },
   {

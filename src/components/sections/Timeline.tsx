@@ -25,23 +25,43 @@ interface TimelineItem {
 const timelineData: TimelineItem[] = [
   // Experiences
   {
+    id: "avialdo-software-2025",
+    type: "experience" as const,
+    title: "Software Engineer",
+    organization: "Avialdo Solutions",
+    duration: "Jan 2025 - Present",
+    location: "Karāchi, Sindh, Pakistan",
+    logo: "/avialdo.png",
+    description: "Working on multi-tenant SaaS platforms, handling architecture decisions, and helping the team with code quality and production support.",
+    level: "Mid Level",
+    startYear: 2025,
+    skills: ["Django", "Terraform", "Datadog", "New Relic", "AWS", "Next.js", "GraphQL"],
+    details: [
+      "Working on platform serving 2,000+ organizations with focus on reliability and performance",
+      "Set up monitoring with Datadog APM and New Relic for faster incident response",
+      "Helping with infrastructure work using Terraform",
+      "Doing code reviews and helping junior devs get up to speed",
+      "On-call rotation for production issues"
+    ]
+  },
+  {
     id: "avialdo-backend-2024",
     type: "experience" as const,
     title: "Backend Engineer",
     organization: "Avialdo Solutions",
-    duration: "Aug 2024 - Present",
+    duration: "Aug 2024 - Dec 2024",
     location: "Karāchi, Sindh, Pakistan",
     logo: "/avialdo.png",
-    description: "Led backend development for logistics and B2B platforms using Django and Flask, contributing to systems used by 1,000+ daily users.",
+    description: "Led backend development for logistics and B2B platforms, built real-time features, and started taking on more ownership of systems.",
     level: "Mid Level",
     startYear: 2024,
-    skills: ["Django", "WebSocket", "GraphQL", "Cross-team Collaboration", "Amazon Web Services (AWS)", "Next.js"],
+    skills: ["Django", "WebSocket", "GraphQL", "AWS", "Next.js", "Celery"],
     details: [
-      "Integrated 4+ third-party services (OneSignal, Twilio, Firebase, Google OAuth2), improving user communication and authentication flow by 35%.",
-      "Built real-time features with Django Channels and WebSockets, including live dashboards, chat module, and 2FA — reducing user response latency by 40%.",
-      "Conducted 70%+ code reviews and refactored major modules, improving code quality and maintainability by 20%.",
-      "Troubleshot system-level issues within AWS infrastructure and Docker-based pipelines, improving deployment stability and backend performance under load.",
-      "Delivered critical features across 8+ product sprints with <5% delay and maintained a bug-to-feature ratio under 0.1 post-release."
+      "Integrated third-party services (OneSignal, Twilio, Firebase, Google OAuth2)",
+      "Built real-time features with Django Channels - live dashboards, chat, 2FA",
+      "Started doing more code reviews and helping with architecture decisions",
+      "Worked on AWS infrastructure and Docker pipelines",
+      "Shipped features across multiple sprints with good reliability"
     ]
   },
   {
@@ -258,7 +278,7 @@ export function Timeline() {
             My <span className="gradient-text">Journey</span>
           </h2>
           <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed">
-            A story of continuous growth, learning, and professional development through experience and education
+            Where I've worked and what I studied
           </p>
         </div>
 
@@ -278,10 +298,10 @@ export function Timeline() {
         {/* Journey Stats */}
         <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6">
           {[
-            { label: "Years Experience", value: "2+", icon: Briefcase },
-            { label: "Projects Completed", value: "15+", icon: Award },
-            { label: "Technologies", value: "10+", icon: TrendingUp },
-            { label: "Certifications", value: "4+", icon: GraduationCap }
+            { label: "Years Experience", value: "3+", icon: Briefcase },
+            { label: "Organizations Served", value: "2,000+", icon: Award },
+            { label: "System Uptime", value: "99.5%", icon: TrendingUp },
+            { label: "Users Reached", value: "1M+", icon: GraduationCap }
           ].map((stat, index) => (
             <Card key={index} className="professional-card p-4 text-center hover:shadow-lg transition-all duration-300 group">
               <div className="flex items-center justify-center mb-2">

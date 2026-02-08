@@ -1,10 +1,11 @@
-
 import { Hero } from "@/components/sections/Hero";
 import { About } from "@/components/sections/About";
+import { ToolsWorkflow } from "@/components/sections/ToolsWorkflow";
+import { Skills } from "@/components/sections/Skills";
 import { Timeline } from "@/components/sections/Timeline";
 import { Achievements } from "@/components/sections/Achievements";
 import { Projects } from "@/components/sections/Projects";
-import { Skills } from "@/components/sections/Skills";
+import { Testimonials } from "@/components/sections/Testimonials";
 import { Contact } from "@/components/sections/Contact";
 import { Navigation } from "@/components/Navigation";
 import { useEffect } from "react";
@@ -25,10 +26,12 @@ const Index = () => {
       <main className="overflow-x-hidden">
         <Hero />
         <About />
+        <ToolsWorkflow />
+        <Skills />
         <Timeline />
         <Achievements />
         <Projects />
-        <Skills />
+        <Testimonials />
         <Contact />
       </main>
     </div>

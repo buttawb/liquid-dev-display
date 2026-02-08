@@ -7,10 +7,10 @@ import { useTheme } from "@/components/theme-provider";
 const navItems = [
   { name: "Home", href: "#hero" },
   { name: "About", href: "#about" },
-  { name: "Journey", href: "#journey" },
-  { name: "Achievements", href: "#achievements" },
-  { name: "Projects", href: "#projects" },
+  { name: "Tools", href: "#tools" },
   { name: "Skills", href: "#skills" },
+  { name: "Journey", href: "#journey" },
+  { name: "Projects", href: "#projects" },
   { name: "Contact", href: "#contact" },
 ];
 

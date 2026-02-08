@@ -36,6 +36,111 @@ import {
 
 // Project data (in a real app, this would be fetched from an API)
 const projectData = {
+  "oilflow": {
+    id: "oilflow",
+    title: "Oil & Gas SaaS Platform",
+    role: "Software Engineer",
+    shortDescription: "Backend and some frontend work on a big platform for oil and gas companies. Handles fuel distribution, fleet management, and operational stuff.",
+    fullStory: `Working on this project has been one of the most challenging and rewarding experiences in my career. It's a large-scale SaaS platform serving the oil and gas industry - think fuel distribution tracking, fleet management, contractor coordination, and lots of operational workflows.
+
+I joined the team and worked mainly on the backend - Django REST APIs, Celery tasks for async processing, database optimization, and integrations with third-party services. As the project grew, I also got involved with the Next.js dashboard and helped coordinate with the mobile team building the Flutter apps.
+
+The platform is multi-tenant, meaning different companies have completely isolated data. This adds complexity to pretty much everything - from database queries to caching to user permissions. We serve thousands of organizations and the system needs to be reliable 24/7 since it handles real business operations.
+
+I've learned a ton about building systems that actually need to work in production, handling scale, and dealing with the messiness of real-world business requirements.`,
+
+    techStack: {
+      backend: ["Django", "Django REST Framework", "Celery", "Redis"],
+      frontend: ["Next.js", "TypeScript", "Tailwind CSS"],
+      mobile: ["Flutter", "Dart"],
+      database: ["PostgreSQL", "Redis"],
+      infrastructure: ["AWS", "Docker", "Terraform"],
+      monitoring: ["Datadog", "New Relic", "Sentry"]
+    },
+
+    keyFeatures: [
+      "Multi-tenant architecture with strict data isolation",
+      "iOS and Android mobile apps for field workers",
+      "Real-time dashboards and analytics",
+      "Role-based access control with complex permission hierarchies",
+      "Automated reporting and compliance tracking",
+      "Third-party integrations (payment, SMS, etc.)",
+      "Offline mode for areas with poor connectivity",
+      "Multi-language support (English, Arabic)"
+    ],
+
+    architecture: {
+      description: "Microservices-ish architecture with Django as the main backend, separate services for specific tasks:",
+      modules: [
+        {
+          name: "Core API",
+          description: "Main Django app handling business logic, user management, and most CRUD operations",
+          tech: ["Django", "DRF", "PostgreSQL"]
+        },
+        {
+          name: "Async Workers",
+          description: "Celery workers for background tasks - reports, notifications, data sync",
+          tech: ["Celery", "Redis", "RabbitMQ"]
+        },
+        {
+          name: "Real-time Services",
+          description: "WebSocket connections for live updates on dashboards",
+          tech: ["Django Channels", "Redis"]
+        }
+      ]
+    },
+
+    images: [
+      "/oilflow1.png",
+      "/oilflow2.png"
+    ],
+
+    demoVideo: null,
+    githubRepo: "#",
+    liveDemo: null,
+
+    challenges: [
+      {
+        problem: "Multi-tenant data isolation at scale",
+        solution: "Implemented tenant-scoped queries at the ORM level, with middleware that automatically filters based on the current tenant. Added database-level row security as an extra layer."
+      },
+      {
+        problem: "Handling offline scenarios for mobile users in remote areas",
+        solution: "Built a sync mechanism that queues operations locally and syncs when connection is restored. Conflict resolution based on timestamps and operation types."
+      },
+      {
+        problem: "Complex permission requirements across different organization types",
+        solution: "Created a flexible RBAC system with hierarchical permissions. Permissions can be assigned at org, team, or individual level."
+      },
+      {
+        problem: "Performance under load with lots of concurrent users",
+        solution: "Database query optimization, aggressive caching with Redis, and async processing for non-critical operations. Added read replicas for reporting queries."
+      }
+    ],
+
+    achievements: [
+      "Platform serving 2,000+ organizations",
+      "99.5% uptime over the past year",
+      "Helped onboard major oil & gas companies",
+      "Reduced report generation time from minutes to seconds",
+      "Built monitoring setup that catches issues before users notice"
+    ],
+
+    whatILearned: [
+      "How to build and maintain systems that actually need to work reliably",
+      "Multi-tenant architecture patterns and their trade-offs",
+      "Working with Terraform for infrastructure management",
+      "Setting up proper observability with Datadog and New Relic",
+      "Coordinating between backend, frontend, and mobile teams",
+      "Dealing with the complexity of real business requirements"
+    ],
+
+    developedDate: "2024-2025",
+    teamSize: "8 Engineers",
+    duration: "Ongoing",
+    status: "Live in Production"
+  },
+
   "ai-ux": {
     id: "ai-ux",
     title: "AI-UX Tester",

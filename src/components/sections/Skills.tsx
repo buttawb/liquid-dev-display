@@ -4,68 +4,77 @@ import { Zap, Star, Code, Database, Smartphone, Cpu } from "lucide-react";
 
 const skillCategories = [
   {
-    title: "AI & Machine Learning",
-    icon: Cpu,
-    color: "from-cyan-400 to-blue-500",
-    skills: [
-      { name: "OpenAI", level: "Advanced" },
-      { name: "Google Gemini", level: "Advanced" },
-      { name: "Artificial Intelligence (AI)", level: "Beginner" },
-      { name: "Machine Learning", level: "Beginner" },
-      { name: "Research and Development (R&D)", level: "Advanced" },
-      { name: "TensorFlow", level: "Beginner" },
-    ]
-  },
-  {
-    title: "Backend & APIs",
-    icon: Database,
-    color: "from-green-400 to-teal-500",
-    skills: [
-      { name: "Django", level: "Advanced" },
-      { name: "REST APIs", level: "Advanced" },
-      { name: "GraphQL", level: "Intermediate" },
-      { name: "WebSocket", level: "Intermediate" },
-      { name: "JSON Web Token (JWT)", level: "Intermediate" },
-      { name: "CI/CD", level: "Intermediate" },
-      { name: "Code Review", level: "Advanced" },
-      { name: "Version Control (Git)", level: "Advanced" },
-      { name: "Amazon Web Services (AWS)", level: "Intermediate" },
-    ]
-  },
-  {
-    title: "Frontend & UI/UX",
+    title: "Core Stack",
     icon: Code,
     color: "from-emerald-400 to-green-500",
     skills: [
-      { name: "Figma", level: "Intermediate" },
-      { name: "Next.js", level: "Beginner" },
-      { name: "HTML", level: "Advanced" },
-      { name: "CSS", level: "Advanced" },
-      { name: "JavaScript", level: "Beginner" },
-      { name: "jQuery", level: "Intermediate" },
-      { name: "Tailwind CSS", level: "Intermediate" },
+      { name: "Python", level: "Expert" },
+      { name: "Django", level: "Expert" },
+      { name: "Next.js", level: "Advanced" },
+      { name: "TypeScript", level: "Advanced" },
+      { name: "REST APIs", level: "Expert" },
+      { name: "GraphQL", level: "Advanced" },
+      { name: "WebSockets", level: "Advanced" },
     ]
   },
-  // {
-  //   title: "Mobile & Android",
-  //   icon: Smartphone,
-  //   color: "from-teal-400 to-cyan-500",
-  //   skills: [
-  //     { name: "Kotlin", level: "Beginner" },
-  //     { name: "Java", level: "Beginner" },
-  //     { name: "XML (Android)", level: "Beginner" },
-  //     { name: "Android SDK", level: "Beginner" },
-  //   ]
-  // },
   {
-    title: "Databases & Cloud",
+    title: "Cloud & Infrastructure",
     icon: Database,
+    color: "from-cyan-400 to-blue-500",
+    skills: [
+      { name: "AWS (EC2, S3, RDS)", level: "Advanced" },
+      { name: "Azure", level: "Intermediate" },
+      { name: "Terraform", level: "Intermediate" },
+      { name: "Docker", level: "Advanced" },
+      { name: "CI/CD", level: "Advanced" },
+      { name: "GitHub Actions", level: "Advanced" },
+    ]
+  },
+  {
+    title: "Observability",
+    icon: Cpu,
     color: "from-purple-400 to-indigo-500",
     skills: [
-      { name: "MySQL", level: "Advanced" },
-      { name: "PostgreSQL", level: "Intermediate" },
-      { name: "MongoDB", level: "Intermediate" },
-      { name: "SQLite", level: "Advanced" },
+      { name: "Datadog APM", level: "Advanced" },
+      { name: "New Relic", level: "Intermediate" },
+      { name: "Log Analysis", level: "Advanced" },
+      { name: "Performance Tuning", level: "Advanced" },
+      { name: "Sentry", level: "Advanced" },
+    ]
+  },
+  {
+    title: "Data & Messaging",
+    icon: Database,
+    color: "from-green-400 to-teal-500",
+    skills: [
+      { name: "PostgreSQL", level: "Advanced" },
+      { name: "MySQL", level: "Expert" },
+      { name: "Redis", level: "Advanced" },
+      { name: "Celery", level: "Advanced" },
+      { name: "RabbitMQ", level: "Intermediate" },
+    ]
+  },
+  {
+    title: "AI Tooling",
+    icon: Cpu,
+    color: "from-violet-400 to-purple-500",
+    skills: [
+      { name: "Claude/GPT APIs", level: "Advanced" },
+      { name: "Claude Code", level: "Expert" },
+      { name: "Cursor IDE", level: "Advanced" },
+      { name: "GitHub Copilot", level: "Advanced" },
+    ]
+  },
+  {
+    title: "Engineering Practices",
+    icon: Code,
+    color: "from-orange-400 to-red-500",
+    skills: [
+      { name: "System Design", level: "Advanced" },
+      { name: "Multi-Tenant Architecture", level: "Advanced" },
+      { name: "TDD", level: "Intermediate" },
+      { name: "Code Review", level: "Expert" },
+      { name: "Technical Documentation", level: "Advanced" },
     ]
   },
 ];
@@ -77,7 +86,7 @@ const getLevelColor = (level: string) => {
     case "Advanced":
       return "bg-green-500/20 text-green-400 border-green-500/30";
     case "Intermediate":
-      return "bg-teal-500/20 text-teal-400 border-teal-500/30";
+      return "bg-cyan-500/20 text-cyan-400 border-cyan-500/30";
     default:
       return "bg-gray-500/20 text-gray-400 border-gray-500/30";
   }
@@ -109,11 +118,11 @@ export function Skills() {
             Skills & <span className="gradient-text">Expertise</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Constantly evolving technical skills to stay at the forefront of technology
+            Technologies I work with regularly
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
           {skillCategories.map((category, index) => (
             <Card key={index} className="neo-card p-6 hover:scale-[1.02] transition-all duration-300 group">
               <div className="text-center mb-6">
