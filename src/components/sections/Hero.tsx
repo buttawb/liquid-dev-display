@@ -1,12 +1,5 @@
-import { Github, Linkedin, ArrowDown, Briefcase, Users, Server, Building2, MessageCircle } from "lucide-react";
+import { Github, Linkedin, ArrowDown, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
-
-const stats = [
-  { icon: Briefcase, value: "3+", label: "Years Experience" },
-  { icon: Users, value: "1,000+", label: "Daily Users" },
-  { icon: Server, value: "99.5%", label: "System Uptime" },
-  { icon: Building2, value: "2,000+", label: "Organizations" },
-];
 
 export function Hero() {
   const scrollToProjects = () => {
@@ -22,12 +15,49 @@ export function Hero() {
   };
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center pt-20 pb-16">
+    <section id="hero" className="relative min-h-screen flex items-center justify-center pt-20 pb-16 overflow-hidden">
       {/* Subtle gradient background */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-muted/20" />
-      
+
       {/* Subtle grid pattern */}
       <div className="absolute inset-0 bg-[linear-gradient(rgba(16,185,129,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(16,185,129,0.03)_1px,transparent_1px)] bg-[size:64px_64px]" />
+
+      {/* Floating geometric shapes */}
+      <div className="absolute inset-0 pointer-events-none">
+        {/* Circle - top left */}
+        <div
+          className="absolute top-[15%] left-[10%] w-16 h-16 rounded-full border-2 border-emerald-500/40 animate-float-slow"
+        />
+        {/* Square - top right */}
+        <div
+          className="absolute top-[20%] right-[15%] w-12 h-12 border-2 border-emerald-500/30 rotate-45 animate-float-medium"
+        />
+        {/* Circle - bottom left */}
+        <div
+          className="absolute bottom-[25%] left-[8%] w-8 h-8 rounded-full bg-emerald-500/15 animate-float-medium"
+        />
+        {/* Triangle - right side */}
+        <div
+          className="absolute top-[45%] right-[8%] w-0 h-0 border-l-[15px] border-l-transparent border-r-[15px] border-r-transparent border-b-[26px] border-b-emerald-500/30 animate-float-slow"
+        />
+        {/* Small circle - bottom right */}
+        <div
+          className="absolute bottom-[30%] right-[20%] w-6 h-6 rounded-full border-2 border-emerald-500/35 animate-float-fast"
+        />
+        {/* Hexagon shape - left middle */}
+        <div
+          className="absolute top-[55%] left-[15%] w-10 h-10 bg-emerald-500/15 rotate-12 animate-float-medium"
+          style={{ clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)' }}
+        />
+        {/* Small square - top center */}
+        <div
+          className="absolute top-[12%] left-[45%] w-5 h-5 border-2 border-emerald-500/25 animate-float-fast"
+        />
+        {/* Ring - bottom center */}
+        <div
+          className="absolute bottom-[15%] left-[40%] w-14 h-14 rounded-full border-2 border-emerald-500/30 animate-float-slow"
+        />
+      </div>
 
       <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
         {/* Profile Photo */}
@@ -51,13 +81,14 @@ export function Hero() {
           Available for opportunities
         </div>
 
-        {/* Main heading */}
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4">
-          <span className="text-foreground">Software Engineer</span>
+        {/* Name */}
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-2">
+          <span className="text-foreground">Abdul Wahab Butt</span>
         </h1>
-        
+
+        {/* Role */}
         <p className="text-xl md:text-2xl text-emerald-600 dark:text-emerald-400 font-medium mb-4">
-          Python & Django Specialist
+          Software Engineer
         </p>
 
         <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
@@ -66,15 +97,15 @@ export function Hero() {
 
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-          <Button 
-            size="lg" 
+          <Button
+            size="lg"
             onClick={scrollToProjects}
             className="bg-emerald-600 hover:bg-emerald-700 text-white px-8"
           >
             View Projects
           </Button>
-          <Button 
-            size="lg" 
+          <Button
+            size="lg"
             variant="outline"
             onClick={scrollToContact}
             className="border-emerald-500/50 hover:bg-emerald-500/10 hover:border-emerald-500"
@@ -82,30 +113,6 @@ export function Hero() {
             <MessageCircle className="mr-2 h-4 w-4" />
             Let's Talk
           </Button>
-          <Button 
-            size="lg" 
-            variant="ghost"
-            className="hover:bg-muted"
-            asChild
-          >
-            <a href="/AbdulWahabButtCV.pdf" download>
-              Download Resume
-            </a>
-          </Button>
-        </div>
-
-        {/* Stats Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
-          {stats.map((stat, index) => (
-            <div 
-              key={index}
-              className="p-4 rounded-xl bg-card/50 border border-border/50 hover:border-emerald-500/30 transition-colors"
-            >
-              <stat.icon className="h-5 w-5 text-emerald-500 mx-auto mb-2" />
-              <div className="text-2xl font-bold text-foreground">{stat.value}</div>
-              <div className="text-sm text-muted-foreground">{stat.label}</div>
-            </div>
-          ))}
         </div>
 
         {/* Social Links */}

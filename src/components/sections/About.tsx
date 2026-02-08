@@ -89,7 +89,7 @@ export function About() {
           <div className="lg:col-span-2 space-y-6">
             <div className="space-y-5">
               <p className="text-base leading-relaxed text-muted-foreground">
-                Hey, I'm <strong className="text-foreground">Abdul Wahab Butt</strong> — a software engineer based in Karachi with 3+ years of building stuff that runs in production. Currently working on SaaS platforms that serve thousands of organizations.
+                Hey, I'm <strong className="text-foreground">Abdul Wahab Butt</strong>, a software engineer based in Karachi with 3+ years of building stuff that runs in production. Currently working on SaaS platforms that serve thousands of organizations.
               </p>
 
               <p className="text-base leading-relaxed text-muted-foreground">
@@ -97,7 +97,7 @@ export function About() {
               </p>
 
               <p className="text-base leading-relaxed text-muted-foreground">
-                Beyond coding, I do code reviews, help junior devs, and handle production issues when things go wrong. I like understanding the full picture — from writing the code to deploying it to fixing it at 2am when something breaks.
+                Beyond coding, I do code reviews, help junior devs, and handle production issues when things go wrong. I like understanding the full picture, from writing the code to deploying it to fixing it at 2am when something breaks.
               </p>
             </div>
           </div>
@@ -134,7 +134,7 @@ export function About() {
           <div className="space-y-3 text-sm leading-relaxed text-muted-foreground">
             <p><strong className="text-emerald-600 dark:text-emerald-400">I ship fast:</strong> Use modern tools to move quickly without cutting corners on quality.</p>
             <p><strong className="text-emerald-600 dark:text-emerald-400">I fix things:</strong> When production breaks, I dig into logs, traces, and metrics to figure out what's wrong.</p>
-            <p><strong className="text-emerald-600 dark:text-emerald-400">I own my work:</strong> From writing the code to deploying it to monitoring it — I see things through.</p>
+            <p><strong className="text-emerald-600 dark:text-emerald-400">I own my work:</strong> From writing the code to deploying it to monitoring it, I see things through.</p>
             <p><strong className="text-emerald-600 dark:text-emerald-400">I've worked at scale:</strong> Built systems handling thousands of organizations and lots of users.</p>
           </div>
         </div>
@@ -157,7 +157,7 @@ export function About() {
                   <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                   <div>
                     <span className="font-medium text-sm">{item.name}</span>
-                    <span className="text-xs text-muted-foreground ml-2">— {item.desc}</span>
+                    <span className="text-xs text-muted-foreground ml-2">- {item.desc}</span>
                   </div>
                 </div>
               ))}

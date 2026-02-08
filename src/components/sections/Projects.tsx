@@ -12,7 +12,7 @@ const projects = [
     id: "oilflow",
     title: "Oil & Gas SaaS Platform",
     description: "Backend and some frontend work on a big platform for oil and gas companies. Handles fuel distribution, fleet management, and a bunch of operational stuff.",
-    fullDescription: "A multi-module platform for oil and gas industry operations. I worked mainly on the backend — Django REST APIs, Celery tasks, database optimization. Also helped with the Next.js dashboard and coordinated with the mobile team (Flutter). The platform handles fuel distribution tracking, fleet management, contractor coordination, and reporting. It's multi-tenant so different companies have their own isolated data.",
+    fullDescription: "A multi-module platform for oil and gas industry operations. I worked mainly on the backend: Django REST APIs, Celery tasks, database optimization. Also helped with the Next.js dashboard and coordinated with the mobile team (Flutter). The platform handles fuel distribution tracking, fleet management, contractor coordination, and reporting. It's multi-tenant so different companies have their own isolated data.",
     images: [
       "/oilflow1.png",
       "/oilflow2.png",
