@@ -1,5 +1,5 @@
 import { Badge } from "@/components/ui/badge";
-import { Briefcase, GraduationCap, MapPin, ChevronDown } from "lucide-react";
+import { Briefcase, GraduationCap, MapPin, ChevronDown, Route } from "lucide-react";
 import { useState } from "react";
 
 interface TimelineEntry {
@@ -183,8 +183,12 @@ export function Timeline() {
       <div className="max-w-2xl mx-auto">
         {/* Section header */}
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-3">
-            My Journey
+          <div className="inline-flex items-center gap-2 glass-card px-4 py-2 rounded-full text-sm font-medium mb-6">
+            <Route className="h-4 w-4 text-emerald-500" />
+            <span>Career path</span>
+          </div>
+          <h2 className="text-3xl md:text-4xl font-bold mb-3">
+            My <span className="gradient-text">Journey</span>
           </h2>
           <p className="text-muted-foreground">
             Where I've worked and what I've learned along the way

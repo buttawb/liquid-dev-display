@@ -2,7 +2,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Mail, MapPin, Phone, Send, Github, Linkedin, Calendar, Copy, Check } from "lucide-react";
+import { Mail, MapPin, Phone, Send, Github, Linkedin, Calendar, Copy, Check, MessageSquare } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 import emailjs from 'emailjs-com';
@@ -71,8 +71,12 @@ export function Contact() {
       <div className="max-w-5xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-3">
-            Get In Touch
+          <div className="inline-flex items-center gap-2 glass-card px-4 py-2 rounded-full text-sm font-medium mb-6">
+            <MessageSquare className="h-4 w-4 text-emerald-500" />
+            <span>Contact me</span>
+          </div>
+          <h2 className="text-3xl md:text-4xl font-bold mb-3">
+            Get In <span className="gradient-text">Touch</span>
           </h2>
           <p className="text-muted-foreground max-w-lg mx-auto">
             Have a project in mind or want to discuss opportunities? I'd love to hear from you.

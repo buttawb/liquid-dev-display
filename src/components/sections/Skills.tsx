@@ -107,14 +107,14 @@ const getLevelStars = (level: string) => {
 
 export function Skills() {
   return (
-    <section id="skills" className="py-32 px-6 bg-gradient-to-b from-background to-muted/20">
-      <div className="max-w-7xl mx-auto">
+    <section id="skills" className="py-20 px-6 bg-gradient-to-b from-background to-muted/20">
+      <div className="max-w-5xl mx-auto">
         <div className="text-center mb-20">
           <div className="inline-flex items-center gap-2 glass-card px-4 py-2 rounded-full text-sm font-medium mb-8">
             <Zap className="h-4 w-4 text-emerald-500" />
             <span>Technical expertise</span>
           </div>
-          <h2 className="text-4xl md:text-6xl font-bold mb-6">
+          <h2 className="text-3xl md:text-4xl font-bold mb-3">
             Skills & <span className="gradient-text">Expertise</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">

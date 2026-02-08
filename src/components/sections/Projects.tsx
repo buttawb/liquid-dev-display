@@ -240,14 +240,14 @@ export function Projects() {
   };
 
   return (
-    <section id="projects" className="py-24 px-4">
-      <div className="max-w-6xl mx-auto">
+    <section id="projects" className="py-20 px-6">
+      <div className="max-w-5xl mx-auto">
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 glass-card px-4 py-2 rounded-full text-sm font-medium mb-6">
             <Folder className="h-4 w-4 text-emerald-500" />
             <span>My Work</span>
           </div>
-          <h2 className="text-3xl md:text-5xl font-bold mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold mb-3">
             Featured <span className="gradient-text">Projects</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
