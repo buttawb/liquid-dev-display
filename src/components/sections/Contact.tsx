@@ -2,7 +2,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Mail, MapPin, Phone, Send, MessageCircle, Github, Linkedin, Twitter, Instagram, Calendar } from "lucide-react";
+import { Mail, MapPin, Phone, Send, Github, Linkedin, Calendar, Copy, Check } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 import emailjs from 'emailjs-com';
@@ -10,6 +10,7 @@ import { EMAILJS_CONFIG } from '@/config/emailjs';
 
 export function Contact() {
   const [isLoading, setIsLoading] = useState(false);
+  const [copiedField, setCopiedField] = useState<string | null>(null);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -18,17 +19,19 @@ export function Contact() {
   });
   const { toast } = useToast();
 
-  // Initialize EmailJS
   useEffect(() => {
     emailjs.init(EMAILJS_CONFIG.USER_ID);
   }, []);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const copyToClipboard = async (text: string, field: string) => {
+    await navigator.clipboard.writeText(text);
+    setCopiedField(field);
+    setTimeout(() => setCopiedField(null), 2000);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -36,32 +39,21 @@ export function Contact() {
     setIsLoading(true);
     
     try {
-      const templateParams = {
-        to_email: EMAILJS_CONFIG.TO_EMAIL,
-        name: formData.name,
-        email: formData.email,
-        title: formData.subject,
-        message: formData.message,
-      };
-
       await emailjs.send(
         EMAILJS_CONFIG.SERVICE_ID, 
         EMAILJS_CONFIG.TEMPLATE_ID, 
-        templateParams, 
+        {
+          to_email: EMAILJS_CONFIG.TO_EMAIL,
+          name: formData.name,
+          email: formData.email,
+          title: formData.subject,
+          message: formData.message,
+        }, 
         EMAILJS_CONFIG.USER_ID
       );
       
-      // Reset form
-      setFormData({
-        name: '',
-        email: '',
-        subject: '',
-        message: ''
-      });
-      
-      toast({
-        title: "Message sent successfully!",
-      });
+      setFormData({ name: '', email: '', subject: '', message: '' });
+      toast({ title: "Message sent successfully!" });
     } catch (error) {
       console.error('Email sending failed:', error);
       toast({
@@ -74,202 +66,198 @@ export function Contact() {
     }
   };
 
-  const contactInfo = [
-    {
-      icon: Mail,
-      title: "Email",
-      value: "buttawb@gmail.com",
-      href: "mailto:buttawb@gmail.com",
-      description: "Drop me a line anytime"
-    },
-    {
-      icon: Phone,
-      title: "Phone",
-      value: "+92 3322109944",
-      href: "tel:+923322109944",
-      description: "Call for urgent matters"
-    },
-    {
-      icon: MapPin,
-      title: "Location",
-      value: "Karachi, Pakistan",
-      // href: "#",
-      description: "Available for work"
-    }
-  ];
-
-  const socialLinks = [
-    { icon: Github, href: "https://github.com/buttawb", label: "GitHub", color: "hover:text-gray-600" },
-    { icon: Linkedin, href: "https://www.linkedin.com/in/buttawb/", label: "LinkedIn", color: "hover:text-blue-600" },
-    // { icon: Instagram, href: "#", label: "Instagram", color: "hover:text-pink-500" },
-  ];
-
   return (
-    <section id="contact" className="py-32 px-6 bg-gradient-to-b from-muted/20 to-background">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-20">
-          <div className="inline-flex items-center gap-2 glass-card px-4 py-2 rounded-full text-sm font-medium mb-8">
-            <MessageCircle className="h-4 w-4 text-emerald-500" />
-            <span>Let's connect</span>
-          </div>
-          <h2 className="text-4xl md:text-6xl font-bold mb-6">
-            Get In <span className="gradient-text">Touch</span>
+    <section id="contact" className="py-20 px-6">
+      <div className="max-w-5xl mx-auto">
+        {/* Header */}
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-3">
+            Get In Touch
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Got a project in mind? Want to chat about tech? Feel free to reach out.
+          <p className="text-muted-foreground max-w-lg mx-auto">
+            Have a project in mind or want to discuss opportunities? I'd love to hear from you.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-16">
-          {/* Contact Information */}
-          <div className="space-y-12">
-            <div>
-              <h3 className="text-3xl font-bold mb-6">Say Hello</h3>
-              <p className="text-muted-foreground text-lg leading-relaxed mb-8">
-                Whether it's a job opportunity, freelance work, or just a tech discussion —
-                I'm happy to connect. Pick whatever works for you.
-              </p>
-            </div>
-
-            <div className="space-y-6">
-              {contactInfo.map((item, index) => (
-                <Card key={index} className="neo-card p-6 hover:scale-[1.02] transition-all duration-300 group">
-                  <a 
-                    href={item.href}
-                    className="flex items-center gap-6"
-                  >
-                    <div className="gradient-green p-4 rounded-2xl group-hover:scale-110 transition-transform">
-                      <item.icon className="h-6 w-6 text-white" />
-                    </div>
-                    <div className="flex-1">
-                      <h4 className="font-semibold text-lg">{item.title}</h4>
-                      <p className="text-muted-foreground">{item.value}</p>
-                      <p className="text-sm text-muted-foreground/70">{item.description}</p>
-                    </div>
-                  </a>
-                </Card>
-              ))}
-            </div>
-
-            {/* Book a Call */}
-            <Card className="neo-card p-6 border-2 border-emerald-500/20 bg-gradient-to-r from-emerald-50/50 to-green-50/50 dark:from-emerald-950/20 dark:to-green-950/20">
-              <div className="flex items-center gap-4">
-                <div className="gradient-green p-4 rounded-2xl">
-                  <Calendar className="h-6 w-6 text-white" />
+        <div className="grid lg:grid-cols-5 gap-12">
+          {/* Left Column - Contact Options */}
+          <div className="lg:col-span-2 space-y-6">
+            {/* Quick Call Card */}
+            <Card className="p-6 border-emerald-500/20 bg-emerald-500/5">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="p-2 rounded-lg bg-emerald-500/10">
+                  <Calendar className="h-5 w-5 text-emerald-500" />
                 </div>
-                <div className="flex-1">
-                  <h4 className="font-semibold text-lg">Prefer a quick chat?</h4>
-                  <p className="text-sm text-muted-foreground">Book a 15-min call to discuss your project</p>
+                <div>
+                  <h3 className="font-semibold text-foreground">Quick Chat</h3>
+                  <p className="text-sm text-muted-foreground">15-min call</p>
                 </div>
-                <a
-                  href="https://calendly.com/buttawb"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="gradient-green text-white px-6 py-3 rounded-xl font-medium hover:scale-105 transition-all"
-                >
+              </div>
+              <Button 
+                asChild
+                className="w-full bg-emerald-600 hover:bg-emerald-700 text-white"
+              >
+                <a href="https://calendly.com/buttawb" target="_blank" rel="noopener noreferrer">
                   Book a Call
                 </a>
-              </div>
+              </Button>
             </Card>
 
-            {/* Social Links */}
-            <div className="space-y-6">
-              <h4 className="text-xl font-semibold">Follow Me</h4>
-              <div className="flex gap-4">
-                {socialLinks.map(({ icon: Icon, href, label, color }) => (
-                  <a
-                    key={label}
-                    href={href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`glass-button p-4 rounded-2xl hover:scale-110 transition-all duration-300 ${color}`}
-                    aria-label={label}
-                  >
-                    <Icon className="h-6 w-6" />
-                  </a>
-                ))}
+            {/* Contact Info */}
+            <div className="space-y-3">
+              {/* Email */}
+              <div className="flex items-center justify-between p-4 rounded-lg bg-card border border-border hover:border-emerald-500/30 transition-colors">
+                <div className="flex items-center gap-3">
+                  <Mail className="h-4 w-4 text-emerald-500" />
+                  <div>
+                    <p className="text-xs text-muted-foreground">Email</p>
+                    <p className="text-sm font-medium">buttawb@gmail.com</p>
+                  </div>
+                </div>
+                <button 
+                  onClick={() => copyToClipboard('buttawb@gmail.com', 'email')}
+                  className="p-2 rounded-md hover:bg-muted transition-colors"
+                >
+                  {copiedField === 'email' ? (
+                    <Check className="h-4 w-4 text-emerald-500" />
+                  ) : (
+                    <Copy className="h-4 w-4 text-muted-foreground" />
+                  )}
+                </button>
               </div>
+
+              {/* Phone */}
+              <div className="flex items-center justify-between p-4 rounded-lg bg-card border border-border hover:border-emerald-500/30 transition-colors">
+                <div className="flex items-center gap-3">
+                  <Phone className="h-4 w-4 text-emerald-500" />
+                  <div>
+                    <p className="text-xs text-muted-foreground">Phone</p>
+                    <p className="text-sm font-medium">+92 332 2109944</p>
+                  </div>
+                </div>
+                <button 
+                  onClick={() => copyToClipboard('+923322109944', 'phone')}
+                  className="p-2 rounded-md hover:bg-muted transition-colors"
+                >
+                  {copiedField === 'phone' ? (
+                    <Check className="h-4 w-4 text-emerald-500" />
+                  ) : (
+                    <Copy className="h-4 w-4 text-muted-foreground" />
+                  )}
+                </button>
+              </div>
+
+              {/* Location */}
+              <div className="flex items-center gap-3 p-4 rounded-lg bg-card border border-border">
+                <MapPin className="h-4 w-4 text-emerald-500" />
+                <div>
+                  <p className="text-xs text-muted-foreground">Location</p>
+                  <p className="text-sm font-medium">Karachi, Pakistan</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Social Links */}
+            <div className="flex gap-3">
+              <a
+                href="https://github.com/buttawb"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 flex items-center justify-center gap-2 p-3 rounded-lg bg-card border border-border hover:border-emerald-500/30 transition-colors"
+              >
+                <Github className="h-4 w-4" />
+                <span className="text-sm">GitHub</span>
+              </a>
+              <a
+                href="https://www.linkedin.com/in/buttawb/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 flex items-center justify-center gap-2 p-3 rounded-lg bg-card border border-border hover:border-emerald-500/30 transition-colors"
+              >
+                <Linkedin className="h-4 w-4" />
+                <span className="text-sm">LinkedIn</span>
+              </a>
             </div>
           </div>
 
-          {/* Contact Form - Simplified styling */}
-          <Card className="neo-card p-8 lg:p-12">
-            <h3 className="text-2xl font-bold mb-8">Send a Message</h3>
+          {/* Right Column - Contact Form */}
+          <Card className="lg:col-span-3 p-6 lg:p-8">
+            <h3 className="text-lg font-semibold mb-6">Send a Message</h3>
             
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label htmlFor="name" className="text-sm font-medium">
-                    Your Full Name
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div className="grid sm:grid-cols-2 gap-4">
+                <div>
+                  <label htmlFor="name" className="text-sm text-muted-foreground mb-1.5 block">
+                    Name
                   </label>
                   <Input
                     id="name"
-                    placeholder="John Doe"
-                    required
                     name="name"
+                    placeholder="Your name"
+                    required
                     value={formData.name}
                     onChange={handleInputChange}
-                    className="h-12 border-border/50 bg-background/50 backdrop-blur-sm focus:border-emerald-500 transition-colors"
+                    className="bg-background"
                   />
                 </div>
-                <div className="space-y-2">
-                  <label htmlFor="email" className="text-sm font-medium">
-                    Your Email Address
+                <div>
+                  <label htmlFor="email" className="text-sm text-muted-foreground mb-1.5 block">
+                    Email
                   </label>
                   <Input
                     id="email"
-                    type="email"
-                    placeholder="john.doe@example.com"
-                    required
                     name="email"
+                    type="email"
+                    placeholder="you@example.com"
+                    required
                     value={formData.email}
                     onChange={handleInputChange}
-                    className="h-12 border-border/50 bg-background/50 backdrop-blur-sm focus:border-emerald-500 transition-colors"
+                    className="bg-background"
                   />
                 </div>
               </div>
 
-              <div className="space-y-2">
-                <label htmlFor="subject" className="text-sm font-medium">
+              <div>
+                <label htmlFor="subject" className="text-sm text-muted-foreground mb-1.5 block">
                   Subject
                 </label>
                 <Input
                   id="subject"
-                  placeholder="What would you like to discuss?"
-                  required
                   name="subject"
+                  placeholder="What's this about?"
+                  required
                   value={formData.subject}
                   onChange={handleInputChange}
-                  className="h-12 border-border/50 bg-background/50 backdrop-blur-sm focus:border-emerald-500 transition-colors"
+                  className="bg-background"
                 />
               </div>
 
-              <div className="space-y-2">
-                <label htmlFor="message" className="text-sm font-medium">
+              <div>
+                <label htmlFor="message" className="text-sm text-muted-foreground mb-1.5 block">
                   Message
                 </label>
                 <Textarea
                   id="message"
-                  placeholder="Tell me about your project or just say hello!"
-                  rows={6}
-                  required
                   name="message"
+                  placeholder="Your message..."
+                  rows={5}
+                  required
                   value={formData.message}
                   onChange={handleInputChange}
-                  className="border-border/50 bg-background/50 backdrop-blur-sm focus:border-emerald-500 transition-colors resize-none"
+                  className="bg-background resize-none"
                 />
               </div>
 
               <Button
                 type="submit"
                 disabled={isLoading}
-                className="w-full gradient-green text-white border-0 hover:scale-[1.02] transition-all duration-300 h-12 text-lg font-semibold"
+                className="w-full bg-emerald-600 hover:bg-emerald-700 text-white"
               >
                 {isLoading ? (
                   "Sending..."
                 ) : (
                   <>
-                    <Send className="mr-3 h-5 w-5" />
+                    <Send className="mr-2 h-4 w-4" />
                     Send Message
                   </>
                 )}
@@ -278,24 +266,12 @@ export function Contact() {
           </Card>
         </div>
 
-        {/* Enhanced Footer */}
-        <div className="mt-32 pt-16 border-t border-border/50">
-          {/* Bottom Footer */}
-          <div className="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-border/30">
-            <p className="text-muted-foreground text-sm">
-              © 2025 Abdul Wahab Butt. Built with React, TypeScript, and Tailwind CSS.
-            </p>
-            <div className="flex gap-6 mt-4 md:mt-0">
-              {/* <a href="#" className="text-muted-foreground hover:text-emerald-500 text-sm transition-colors">
-                Privacy Policy
-              </a>
-              <a href="#" className="text-muted-foreground hover:text-emerald-500 text-sm transition-colors">
-                Terms of Service
-              </a> */}
-            </div>
-          </div>
+        {/* Footer */}
+        <div className="mt-20 pt-8 border-t border-border text-center">
+          <p className="text-sm text-muted-foreground">
+            © 2025 Abdul Wahab Butt. Built with React & Tailwind CSS.
+          </p>
         </div>
-        
       </div>
     </section>
   );

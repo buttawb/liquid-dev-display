@@ -29,7 +29,7 @@ const timelineData: TimelineEntry[] = [
       "Infrastructure work using Terraform",
       "Code reviews and mentoring junior developers",
     ],
-    skills: ["Django", "Terraform", "AWS", "GraphQL", "Next.js"],
+    skills: ["Engineering", "Acting Team Lead", "Django", "Terraform", "AWS", "GraphQL", "Next.js"],
   },
   {
     id: "2",
