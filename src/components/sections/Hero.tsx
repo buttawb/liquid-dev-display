@@ -34,7 +34,7 @@ export function Hero() {
 
         {/* Main heading */}
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4">
-          <span className="text-foreground">Backend Engineer</span>
+          <span className="text-foreground">Software Engineer</span>
         </h1>
         
         <p className="text-xl md:text-2xl text-emerald-600 dark:text-emerald-400 font-medium mb-4">
