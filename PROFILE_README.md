@@ -8,7 +8,7 @@
 
 <p align="center">
   <i>Keeping multi-tenant SaaS platforms running for <b>2,000+ organizations</b>.<br/>
-  Django / Python services, AWS &amp; Terraform infra, Datadog observability, and the 2am page.</i>
+  Backend and infrastructure at the core, with full-stack delivery, frontend integration, and technical leadership on top.</i>
 </p>
 
 <p align="center">
@@ -26,50 +26,67 @@
 
 <br/>
 
-## &nbsp;&nbsp;🛠 &nbsp;Tech Stack
+## &nbsp;&nbsp;🧠 &nbsp;Engineering
+
+<p align="center"><i>The part that doesn't go away when the code writes itself.</i></p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/System%20Design-0F7A53?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/Multi--Tenant%20Architecture-0F7A53?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/Reliability%20%26%20Observability-0F7A53?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/Infrastructure%20as%20Code-0F7A53?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/Distributed%20Systems-0F7A53?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/Scaling%20%26%20Performance-0F7A53?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/API%20Design-0F7A53?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/On--Call%20%26%20Incident%20Response-0F7A53?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/Full--Stack%20Delivery-0F7A53?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/Technical%20Leadership-0F7A53?style=for-the-badge"/>
+</p>
+
+<br/>
+
+## &nbsp;&nbsp;🧰 &nbsp;Toolbox
 
 <table>
 <tr>
 <td valign="top" width="50%">
 
-**Languages &amp; Frameworks**
+<sub><b>APIs &amp; Real-time</b></sub>
 
 <p>
-  <img src="https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white"/>
-  <img src="https://img.shields.io/badge/Django-092E20?style=flat-square&logo=django&logoColor=white"/>
-  <img src="https://img.shields.io/badge/Next.js-000000?style=flat-square&logo=nextdotjs&logoColor=white"/>
-  <img src="https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white"/>
+  <img src="https://img.shields.io/badge/REST-009688?style=flat-square&logo=fastapi&logoColor=white"/>
+  <img src="https://img.shields.io/badge/GraphQL-E10098?style=flat-square&logo=graphql&logoColor=white"/>
+  <img src="https://img.shields.io/badge/WebSockets-1E88E5?style=flat-square&logo=socketdotio&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Celery-37814A?style=flat-square&logo=celery&logoColor=white"/>
 </p>
 
-**APIs &amp; Real-time**
+<sub><b>Data &amp; Caching</b></sub>
 
 <p>
-  <img src="https://img.shields.io/badge/REST%20APIs-005571?style=flat-square&logo=fastapi&logoColor=white"/>
-  <img src="https://img.shields.io/badge/GraphQL-E10098?style=flat-square&logo=graphql&logoColor=white"/>
-  <img src="https://img.shields.io/badge/WebSockets-010101?style=flat-square&logo=socketdotio&logoColor=white"/>
-  <img src="https://img.shields.io/badge/Celery-37814A?style=flat-square&logo=celery&logoColor=white"/>
+  <img src="https://img.shields.io/badge/PostgreSQL-4169E1?style=flat-square&logo=postgresql&logoColor=white"/>
+  <img src="https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=mysql&logoColor=white"/>
   <img src="https://img.shields.io/badge/Redis-DC382D?style=flat-square&logo=redis&logoColor=white"/>
 </p>
 
 </td>
 <td valign="top" width="50%">
 
-**Cloud, DevOps &amp; Data**
+<sub><b>Infrastructure &amp; DevOps</b></sub>
 
 <p>
-  <img src="https://img.shields.io/badge/AWS-232F3E?style=flat-square&logo=amazonwebservices&logoColor=white"/>
+  <img src="https://img.shields.io/badge/AWS-FF9900?style=flat-square&logo=amazonwebservices&logoColor=white"/>
   <img src="https://img.shields.io/badge/Terraform-7B42BC?style=flat-square&logo=terraform&logoColor=white"/>
   <img src="https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white"/>
   <img src="https://img.shields.io/badge/GitHub%20Actions-2088FF?style=flat-square&logo=githubactions&logoColor=white"/>
-  <img src="https://img.shields.io/badge/PostgreSQL-4169E1?style=flat-square&logo=postgresql&logoColor=white"/>
-  <img src="https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=mysql&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Nginx-009639?style=flat-square&logo=nginx&logoColor=white"/>
 </p>
 
-**Observability &amp; AI**
+<sub><b>Observability &amp; AI</b></sub>
 
 <p>
   <img src="https://img.shields.io/badge/Datadog-632CA6?style=flat-square&logo=datadog&logoColor=white"/>
   <img src="https://img.shields.io/badge/New%20Relic-1CE783?style=flat-square&logo=newrelic&logoColor=black"/>
+  <img src="https://img.shields.io/badge/Sentry-362D59?style=flat-square&logo=sentry&logoColor=white"/>
   <img src="https://img.shields.io/badge/OpenAI-412991?style=flat-square&logo=openai&logoColor=white"/>
   <img src="https://img.shields.io/badge/Claude-D97757?style=flat-square&logo=anthropic&logoColor=white"/>
 </p>
