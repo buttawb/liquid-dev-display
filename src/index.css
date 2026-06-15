@@ -24,15 +24,15 @@ html {
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    /* refined deeper jade — premium, not neon Bootstrap-green */
-    --primary: 156 52% 36%;
+    /* refined deeper jade — premium, not neon; darkened for AA text contrast on glass */
+    --primary: 156 56% 31%;
     --primary-foreground: 150 60% 98%;
 
     --secondary: 210 40% 98%;
     --secondary-foreground: 222.2 47.4% 11.2%;
 
     --muted: 210 40% 96%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted-foreground: 215 18% 40%;
 
     --accent: 210 40% 98%;
     --accent-foreground: 222.2 47.4% 11.2%;
@@ -42,7 +42,7 @@ html {
 
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 156 52% 36%;
+    --ring: 156 56% 31%;
 
     --radius: 1rem;
 
@@ -224,16 +224,9 @@ html {
     background: hsl(0 0% 100% / 0.16);
   }
 
-  .professional-card {
-    @apply bg-white dark:bg-gray-900 shadow-sm border border-gray-200 dark:border-gray-800 hover:shadow-md transition-all duration-200;
-  }
-
   /* ---- accent gradient text (refined, single jade→teal ramp) ---- */
-  .gradient-green {
-    @apply bg-gradient-to-r from-emerald-600 to-teal-600;
-  }
   .gradient-text {
-    @apply bg-gradient-to-br from-emerald-600 to-teal-600 dark:from-emerald-400 dark:to-teal-300 bg-clip-text text-transparent;
+    @apply bg-gradient-to-br from-emerald-700 to-teal-600 dark:from-emerald-400 dark:to-teal-300 bg-clip-text text-transparent;
   }
 
   /* ============================================================
@@ -281,19 +274,13 @@ html {
   .animate-marquee {
     animation: marquee 48s linear infinite;
   }
-  .marquee-group:hover .animate-marquee {
+  .marquee-group:hover .animate-marquee,
+  .marquee-group:focus-within .animate-marquee {
     animation-play-state: paused;
   }
   @keyframes marquee {
     0% { transform: translateX(0); }
     100% { transform: translateX(-50%); }
-  }
-
-  /* ---- legacy float (kept for any remaining decorative use) ---- */
-  .floating { animation: floating 8s ease-in-out infinite; }
-  @keyframes floating {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-8px); }
   }
 
   /* Professional Scrollbar */

@@ -42,7 +42,7 @@ const testimonials = [
 
 function TestimonialCard({ testimonial }: { testimonial: typeof testimonials[0] }) {
   return (
-    <GlassCard className="p-6 w-[350px] flex-shrink-0 flex flex-col">
+    <GlassCard className="p-6 w-[85vw] max-w-[350px] flex-shrink-0 flex flex-col">
       <Quote className="h-6 w-6 text-primary/40 mb-3" />
       <p className="text-muted-foreground leading-relaxed mb-4 flex-1 text-sm">
         "{testimonial.quote}"
@@ -56,7 +56,7 @@ function TestimonialCard({ testimonial }: { testimonial: typeof testimonials[0] 
               className="w-full h-full object-cover"
               onError={(e) => {
                 const target = e.target as HTMLImageElement;
-                target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(testimonial.name)}&background=10b981&color=fff`;
+                target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(testimonial.name)}&background=1f8a5c&color=fff&bold=true`;
               }}
             />
           </div>
@@ -92,9 +92,9 @@ export function Testimonials() {
             <span>What people say</span>
           </GlassPill>
           <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-3">
-            <span className="gradient-text">Testimonials</span>
+            Kind <span className="gradient-text">Words</span>
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             LinkedIn recommendations from colleagues and peers.
           </p>
         </div>
@@ -121,7 +121,7 @@ export function Testimonials() {
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
         >
-          <Linkedin className="h-4 w-4 text-blue-500" />
+          <Linkedin className="h-4 w-4 text-primary" />
           <span>See all on LinkedIn</span>
         </a>
       </div>

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { GlassCard, GlassPill } from "@/components/glass";
 import { Reveal } from "@/hooks/use-reveal";
 import { Github, Folder, ChevronLeft, ChevronRight, Play, Calendar, User, Clock, Briefcase, CheckCircle, Lightbulb, ArrowUpRight } from "lucide-react";
@@ -205,14 +205,14 @@ function ProjectModal({
         <button
           onClick={onPrev}
           aria-label="Previous project"
-          className="fixed left-4 top-1/2 -translate-y-1/2 z-50 glass-button p-3 rounded-full hover:text-primary"
+          className="hidden sm:flex fixed left-4 top-1/2 -translate-y-1/2 z-50 glass-button p-3 rounded-full hover:text-primary"
         >
           <ChevronLeft className="h-5 w-5" />
         </button>
         <button
           onClick={onNext}
           aria-label="Next project"
-          className="fixed right-4 top-1/2 -translate-y-1/2 z-50 glass-button p-3 rounded-full hover:text-primary"
+          className="hidden sm:flex fixed right-4 top-1/2 -translate-y-1/2 z-50 glass-button p-3 rounded-full hover:text-primary"
         >
           <ChevronRight className="h-5 w-5" />
         </button>
@@ -221,7 +221,7 @@ function ProjectModal({
           {/* Header */}
           <div className="mb-6">
             <div className="flex items-center gap-3 mb-2">
-              <h2 className="text-2xl font-bold tracking-tight">{project.title}</h2>
+              <DialogTitle className="text-2xl font-bold tracking-tight">{project.title}</DialogTitle>
               <span className="text-xs text-muted-foreground bg-foreground/[0.06] px-2 py-1 rounded-full">{currentIndex + 1} / {totalProjects}</span>
             </div>
             <div className="flex flex-wrap gap-3 text-sm text-muted-foreground">
@@ -272,7 +272,7 @@ function ProjectModal({
           </div>
 
           {/* Description */}
-          <p className="text-muted-foreground mb-6">{project.fullDescription}</p>
+          <DialogDescription className="text-muted-foreground mb-6 text-base">{project.fullDescription}</DialogDescription>
 
           {/* Tech stack */}
           <div className="mb-6">
@@ -360,6 +360,16 @@ function ProjectCard({
     <GlassCard
       interactive
       sheen
+      role="button"
+      tabIndex={0}
+      aria-label={`View details: ${project.title}`}
+      onClick={onOpen}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          onOpen();
+        }
+      }}
       className={`group overflow-hidden flex flex-col ${featured ? "md:flex-row" : ""}`}
     >
       <div className={`relative overflow-hidden ${featured ? "md:w-3/5" : ""}`}>
@@ -399,15 +409,10 @@ function ProjectCard({
             </Badge>
           )}
         </div>
-        <Button
-          variant="ghost"
-          size="sm"
-          onClick={onOpen}
-          className="self-start px-0 hover:bg-transparent hover:text-primary group/btn"
-        >
+        <span className="self-start inline-flex items-center text-sm font-medium text-muted-foreground group-hover:text-primary transition-colors">
           View details
-          <ArrowUpRight className="h-4 w-4 ml-1 transition-transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
-        </Button>
+          <ArrowUpRight className="h-4 w-4 ml-1 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+        </span>
       </div>
     </GlassCard>
   );
@@ -463,7 +468,7 @@ export function Projects() {
         </div>
 
         {/* Remaining projects */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {projects.slice(1).map((project, i) => (
             <ProjectCard key={project.id} project={project} onOpen={() => openModal(i + 1)} />
           ))}

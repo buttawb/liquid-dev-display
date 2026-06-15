@@ -93,7 +93,6 @@ export function Hero() {
                   alt="Abdul Wahab Butt"
                   width={352}
                   height={352}
-                  fetchPriority="high"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -106,7 +105,7 @@ export function Hero() {
       {/* Scroll cue */}
       <button
         onClick={() => scrollTo("#about")}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 inline-flex flex-col items-center gap-1.5 text-muted-foreground hover:text-primary transition-colors"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden sm:inline-flex flex-col items-center gap-1.5 text-muted-foreground hover:text-primary transition-colors"
         aria-label="Scroll to about section"
       >
         <span className="text-xs uppercase tracking-[0.2em]">Scroll</span>

@@ -47,7 +47,7 @@ const achievements = [
     category: "Recognition",
     metric: "Q2 '24",
     metricLabel: "Avialdo recognition",
-    span: "lg:col-span-4",
+    span: "md:col-span-2 lg:col-span-4",
   },
 ];
 
@@ -68,7 +68,7 @@ export function Achievements() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:auto-rows-[200px]">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:auto-rows-[minmax(200px,auto)]">
           {/* Featured hero tile */}
           <GlassCard
             interactive

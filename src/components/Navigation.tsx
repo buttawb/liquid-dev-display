@@ -99,6 +99,7 @@ export function Navigation() {
                   <button
                     key={item.name}
                     onClick={() => scrollToSection(item.href)}
+                    aria-current={active ? "page" : undefined}
                     className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
                       active
                         ? "text-primary bg-primary/10"
@@ -133,6 +134,7 @@ export function Navigation() {
                 className="glass-button rounded-xl"
                 aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
                 aria-expanded={isMobileMenuOpen}
+                aria-controls="mobile-menu"
               >
                 {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
               </Button>
@@ -142,7 +144,7 @@ export function Navigation() {
 
         {/* Mobile nav */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden pb-4">
+          <div id="mobile-menu" className="lg:hidden pb-4">
             <div className="px-3 pt-2 pb-4 space-y-1 glass-card rounded-2xl">
               {navItems.map((item) => {
                 const active = activeId === item.href.slice(1);
@@ -150,6 +152,7 @@ export function Navigation() {
                   <button
                     key={item.name}
                     onClick={() => scrollToSection(item.href)}
+                    aria-current={active ? "page" : undefined}
                     className={`block w-full text-left px-4 py-3 rounded-xl font-medium transition-colors ${
                       active ? "text-primary bg-primary/10" : "hover:bg-foreground/[0.06]"
                     }`}

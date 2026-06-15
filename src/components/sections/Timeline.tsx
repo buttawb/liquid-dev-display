@@ -105,6 +105,12 @@ function useRailProgress(count: number) {
   const [activeCount, setActiveCount] = useState(0);
 
   useEffect(() => {
+    // Respect reduced motion: render the rail fully filled, statically.
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setProgress(1);
+      setActiveCount(count);
+      return;
+    }
     let raf = 0;
     const update = () => {
       cancelAnimationFrame(raf);
@@ -172,13 +178,13 @@ function TimelineItem({
           isLeft ? "md:col-start-1 md:pr-14" : "md:col-start-2 md:pl-14"
         )}
       >
-        <GlassCard className="p-5">
+        <GlassCard className="p-6">
           <div className="flex flex-wrap items-start justify-between gap-2 mb-3">
             <div>
               <h3 className="font-semibold text-foreground">{entry.title}</h3>
               <p className="text-primary font-medium text-sm">{entry.organization}</p>
             </div>
-            <Badge variant="secondary" className="text-xs font-normal">
+            <Badge variant="outline" className="text-xs font-normal border-foreground/10 bg-foreground/[0.03]">
               {entry.duration}
             </Badge>
           </div>
@@ -239,7 +245,7 @@ export function Timeline() {
     <section id="journey" className="relative py-24 px-6">
       <div className="max-w-5xl mx-auto">
         <Reveal>
-          <div className="text-center mb-14">
+          <div className="text-center mb-16">
             <GlassPill className="mb-6">
               <Route className="h-4 w-4 text-primary" />
               <span>Career path</span>
