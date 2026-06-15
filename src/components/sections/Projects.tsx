@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
-import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
-import { Github, Folder, ChevronLeft, ChevronRight, Play, Calendar, User, Clock, Briefcase, CheckCircle, Lightbulb, Eye } from "lucide-react";
+import { GlassCard, GlassPill } from "@/components/glass";
+import { Reveal } from "@/hooks/use-reveal";
+import { Github, Folder, ChevronLeft, ChevronRight, Play, Calendar, User, Clock, Briefcase, CheckCircle, Lightbulb, ArrowUpRight } from "lucide-react";
 
 interface Project {
   id: string;
@@ -19,6 +20,8 @@ interface Project {
   teamSize: string;
   duration: string;
   role: string;
+  metric: string;
+  metricLabel: string;
   features: string[];
   challenges: string[];
   outcome: string;
@@ -30,8 +33,8 @@ const projects: Project[] = [
     title: "AI-UX",
     description: "AI-powered UX analysis & design iteration tool integrating Figma, OpenAI & GEMINI for instant heatmaps, user journeys, and design improvements.",
     fullDescription: "AI-UX Tester is an intelligent platform for designers and product teams. It bridges the gap between static designs and real user behavior using AI models and Figma integration. Built in 3 days for a hackathon with three modules: UX Analysis, User Journey, and Design Iteration.",
-    image: "/ux1.png",
-    images: ["/ux1.png", "/ux2.png", "/ux3.png", "/ux4.png"],
+    image: "/ux1.webp",
+    images: ["/ux1.webp", "/ux2.webp", "/ux3.webp", "/ux4.webp"],
     tech: ["Django REST Framework", "Python", "OpenAI GPT-4o-mini", "GEMINI", "Figma API", "Heatmap.js"],
     github: "https://github.com/buttawb/AI-UX",
     live: "#",
@@ -39,6 +42,8 @@ const projects: Project[] = [
     teamSize: "2 Engineers",
     duration: "3 days",
     role: "Full-Stack Developer",
+    metric: "85%",
+    metricLabel: "behavior-prediction accuracy",
     features: [
       "UX Analysis with heatmaps and finger reach zones",
       "AI-driven user journey simulation",
@@ -60,8 +65,8 @@ const projects: Project[] = [
     title: "Transporter Management System",
     description: "Comprehensive system for HGGC Transporters to manage fuel procurement and distribution nationwide.",
     fullDescription: "Built for HGGC Transporters to streamline fuel procurement and distribution. Handles drivers, vehicles, oil marketing companies, trip records, and expenses. Replaced paper-based processes with a digital solution.",
-    image: "/tms6.png",
-    images: ["/tms6.png", "/tms1.png", "/tms2.png", "/tms3.png", "/tms4.png", "/tms5.png"],
+    image: "/tms6.webp",
+    images: ["/tms6.webp", "/tms1.webp", "/tms2.webp", "/tms3.webp", "/tms4.webp", "/tms5.webp"],
     tech: ["Django", "MySQL", "HTML", "CSS", "JavaScript", "Git"],
     github: "https://github.com/buttawb/HGGC-WebApp",
     live: "#",
@@ -69,6 +74,8 @@ const projects: Project[] = [
     teamSize: "Solo Developer",
     duration: "3 months",
     role: "Full-Stack Developer",
+    metric: "40%",
+    metricLabel: "efficiency gain",
     features: [
       "Driver management with performance tracking",
       "Vehicle management with maintenance records",
@@ -90,8 +97,8 @@ const projects: Project[] = [
     title: "Driver Handbook",
     description: "Android app for heavy vehicle drivers with video player, PDF reader, and text-to-speech for road safety.",
     fullDescription: "Native Android app for HGGC's heavy vehicle drivers. Features video player for training, PDF reader for manuals, and text-to-speech for hands-free info. Built outside my comfort zone of web development.",
-    image: "/hggc1.jpeg",
-    images: ["/hggc1.jpeg", "/hggc2.jpeg", "/hggc3.jpeg", "/hggc4.jpeg"],
+    image: "/hggc1.webp",
+    images: ["/hggc1.webp", "/hggc2.webp", "/hggc3.webp", "/hggc4.webp"],
     tech: ["Java", "Kotlin", "Android SDK", "ExoPlayer"],
     github: "https://github.com/buttawb/HGGC-AndroidApp",
     live: "https://play.google.com/store/apps/details?id=com.hggc.driverapp",
@@ -99,6 +106,8 @@ const projects: Project[] = [
     teamSize: "Solo Developer",
     duration: "2 months",
     role: "Android Developer",
+    metric: "4.5★",
+    metricLabel: "Play Store · 500+ drivers",
     features: [
       "Video player for safety training content",
       "PDF reader for manuals and guidelines",
@@ -134,6 +143,8 @@ const projects: Project[] = [
     teamSize: "3 Developers",
     duration: "6 months",
     role: "Full-Stack Developer",
+    metric: "95%",
+    metricLabel: "accuracy · 98% faster",
     features: [
       "Automated species classification",
       "One-click feature calculation",
@@ -151,6 +162,15 @@ const projects: Project[] = [
     outcome: "Defended with highest honors. Achieved 95% accuracy compared to manual analysis. Reduced analysis time by 98%."
   }
 ];
+
+function MetricChip({ metric, label }: { metric: string; label: string }) {
+  return (
+    <div className="inline-flex items-baseline gap-1.5">
+      <span className="text-lg font-extrabold tracking-tight text-primary">{metric}</span>
+      <span className="text-xs text-muted-foreground">{label}</span>
+    </div>
+  );
+}
 
 function ProjectModal({
   project,
@@ -180,27 +200,29 @@ function ProjectModal({
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto p-0">
-        {/* Navigation Arrows - Outside content */}
+      <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto p-0 border-white/15">
+        {/* Navigation arrows */}
         <button
           onClick={onPrev}
-          className="fixed left-4 top-1/2 -translate-y-1/2 z-50 bg-background/90 border p-3 rounded-full hover:bg-muted transition-colors shadow-lg"
+          aria-label="Previous project"
+          className="fixed left-4 top-1/2 -translate-y-1/2 z-50 glass-button p-3 rounded-full hover:text-primary"
         >
           <ChevronLeft className="h-5 w-5" />
         </button>
         <button
           onClick={onNext}
-          className="fixed right-4 top-1/2 -translate-y-1/2 z-50 bg-background/90 border p-3 rounded-full hover:bg-muted transition-colors shadow-lg"
+          aria-label="Next project"
+          className="fixed right-4 top-1/2 -translate-y-1/2 z-50 glass-button p-3 rounded-full hover:text-primary"
         >
           <ChevronRight className="h-5 w-5" />
         </button>
 
-        <div className="p-6">
+        <div key={project.id} className="p-6 animate-in fade-in slide-in-from-bottom-2 duration-300">
           {/* Header */}
           <div className="mb-6">
             <div className="flex items-center gap-3 mb-2">
-              <h2 className="text-2xl font-bold">{project.title}</h2>
-              <span className="text-xs text-muted-foreground bg-muted px-2 py-1 rounded">{currentIndex + 1} / {totalProjects}</span>
+              <h2 className="text-2xl font-bold tracking-tight">{project.title}</h2>
+              <span className="text-xs text-muted-foreground bg-foreground/[0.06] px-2 py-1 rounded-full">{currentIndex + 1} / {totalProjects}</span>
             </div>
             <div className="flex flex-wrap gap-3 text-sm text-muted-foreground">
               <span className="flex items-center gap-1"><Briefcase className="h-3 w-3" />{project.role}</span>
@@ -210,33 +232,38 @@ function ProjectModal({
             </div>
           </div>
 
-          {/* Image Gallery */}
-          <div className="relative rounded-lg overflow-hidden bg-muted mb-6">
+          {/* Image gallery */}
+          <div className="relative rounded-2xl overflow-hidden bg-foreground/[0.04] mb-6">
             <img
               src={project.images[currentImageIndex]}
-              alt={project.title}
+              alt={`${project.title} screenshot ${currentImageIndex + 1}`}
+              loading="lazy"
+              decoding="async"
               className="w-full h-64 md:h-80 object-contain"
             />
             {project.images.length > 1 && (
               <>
                 <button
                   onClick={prevImage}
-                  className="absolute left-2 top-1/2 -translate-y-1/2 bg-background/80 p-1.5 rounded-full hover:bg-background"
+                  aria-label="Previous image"
+                  className="absolute left-2 top-1/2 -translate-y-1/2 glass-button p-1.5 rounded-full"
                 >
                   <ChevronLeft className="h-4 w-4" />
                 </button>
                 <button
                   onClick={nextImage}
-                  className="absolute right-2 top-1/2 -translate-y-1/2 bg-background/80 p-1.5 rounded-full hover:bg-background"
+                  aria-label="Next image"
+                  className="absolute right-2 top-1/2 -translate-y-1/2 glass-button p-1.5 rounded-full"
                 >
                   <ChevronRight className="h-4 w-4" />
                 </button>
-                <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1">
+                <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5">
                   {project.images.map((_, i) => (
                     <button
                       key={i}
                       onClick={() => setCurrentImageIndex(i)}
-                      className={`w-1.5 h-1.5 rounded-full ${i === currentImageIndex ? 'bg-white' : 'bg-white/50'}`}
+                      aria-label={`Go to image ${i + 1}`}
+                      className={`h-1.5 rounded-full transition-all ${i === currentImageIndex ? 'w-4 bg-primary' : 'w-1.5 bg-white/60'}`}
                     />
                   ))}
                 </div>
@@ -247,7 +274,7 @@ function ProjectModal({
           {/* Description */}
           <p className="text-muted-foreground mb-6">{project.fullDescription}</p>
 
-          {/* Tech Stack */}
+          {/* Tech stack */}
           <div className="mb-6">
             <h3 className="text-sm font-semibold mb-2">Tech Stack</h3>
             <div className="flex flex-wrap gap-1.5">
@@ -257,31 +284,31 @@ function ProjectModal({
             </div>
           </div>
 
-          {/* Features & Challenges */}
+          {/* Features & challenges */}
           <div className="grid md:grid-cols-2 gap-4 mb-6">
-            <div className="bg-muted/50 rounded-lg p-4">
+            <div className="rounded-2xl p-4 bg-foreground/[0.04]">
               <h3 className="text-sm font-semibold mb-3 flex items-center gap-2">
-                <CheckCircle className="h-4 w-4 text-emerald-500" />
+                <CheckCircle className="h-4 w-4 text-primary" />
                 Key Features
               </h3>
               <ul className="space-y-1.5">
                 {project.features.slice(0, 4).map((f, i) => (
                   <li key={i} className="text-xs text-muted-foreground flex items-start gap-2">
-                    <span className="w-1 h-1 rounded-full bg-emerald-500 mt-1.5 flex-shrink-0" />
+                    <span className="w-1 h-1 rounded-full bg-primary mt-1.5 flex-shrink-0" />
                     {f}
                   </li>
                 ))}
               </ul>
             </div>
-            <div className="bg-muted/50 rounded-lg p-4">
+            <div className="rounded-2xl p-4 bg-foreground/[0.04]">
               <h3 className="text-sm font-semibold mb-3 flex items-center gap-2">
-                <Lightbulb className="h-4 w-4 text-amber-500" />
+                <Lightbulb className="h-4 w-4 text-primary/70" />
                 Challenges Solved
               </h3>
               <ul className="space-y-1.5">
                 {project.challenges.slice(0, 4).map((c, i) => (
                   <li key={i} className="text-xs text-muted-foreground flex items-start gap-2">
-                    <span className="w-1 h-1 rounded-full bg-amber-500 mt-1.5 flex-shrink-0" />
+                    <span className="w-1 h-1 rounded-full bg-primary/60 mt-1.5 flex-shrink-0" />
                     {c}
                   </li>
                 ))}
@@ -290,12 +317,12 @@ function ProjectModal({
           </div>
 
           {/* Outcome */}
-          <div className="mb-6">
-            <h3 className="text-sm font-semibold mb-2">Outcome</h3>
+          <div className="mb-6 rounded-2xl p-4 bg-primary/[0.06] border border-primary/15">
+            <h3 className="text-sm font-semibold mb-1 flex items-center gap-2 text-primary">Outcome</h3>
             <p className="text-sm text-muted-foreground">{project.outcome}</p>
           </div>
 
-          {/* Action Buttons */}
+          {/* Actions */}
           <div className="flex gap-2">
             {project.github && project.github !== "#" && (
               <Button variant="outline" size="sm" asChild>
@@ -306,7 +333,7 @@ function ProjectModal({
               </Button>
             )}
             {project.live && project.live !== "#" && (
-              <Button size="sm" asChild>
+              <Button size="sm" asChild className="bg-primary text-primary-foreground hover:bg-primary/90">
                 <a href={project.live} target="_blank" rel="noopener noreferrer">
                   <Play className="h-4 w-4 mr-2" />
                   {project.live.includes('play.google.com') ? 'Get on Play Store' : 'View Live'}
@@ -317,6 +344,72 @@ function ProjectModal({
         </div>
       </DialogContent>
     </Dialog>
+  );
+}
+
+function ProjectCard({
+  project,
+  featured,
+  onOpen,
+}: {
+  project: Project;
+  featured?: boolean;
+  onOpen: () => void;
+}) {
+  return (
+    <GlassCard
+      interactive
+      sheen
+      className={`group overflow-hidden flex flex-col ${featured ? "md:flex-row" : ""}`}
+    >
+      <div className={`relative overflow-hidden ${featured ? "md:w-3/5" : ""}`}>
+        <img
+          src={project.image}
+          alt={project.title}
+          loading="lazy"
+          decoding="async"
+          className={`w-full object-cover transition-transform duration-700 group-hover:scale-105 ${featured ? "h-56 md:h-full" : "h-48"}`}
+        />
+        {featured && (
+          <div className="absolute top-4 left-4">
+            <GlassPill className="text-xs">Featured</GlassPill>
+          </div>
+        )}
+      </div>
+
+      <div className={`p-5 flex flex-col ${featured ? "md:w-2/5 md:p-7" : ""}`}>
+        <h3 className={`font-bold tracking-tight mb-1.5 ${featured ? "text-2xl" : "text-lg"}`}>
+          {project.title}
+        </h3>
+        <div className="mb-3">
+          <MetricChip metric={project.metric} label={project.metricLabel} />
+        </div>
+        <p className={`text-sm text-muted-foreground mb-4 ${featured ? "" : "line-clamp-2"}`}>
+          {project.description}
+        </p>
+        <div className="flex flex-wrap gap-1.5 mb-5 mt-auto">
+          {project.tech.slice(0, featured ? 5 : 3).map((tech) => (
+            <Badge key={tech} variant="outline" className="text-xs border-foreground/10 bg-foreground/[0.03]">
+              {tech}
+            </Badge>
+          ))}
+          {project.tech.length > (featured ? 5 : 3) && (
+            <Badge variant="outline" className="text-xs border-foreground/10 bg-foreground/[0.03]">
+              +{project.tech.length - (featured ? 5 : 3)}
+            </Badge>
+          )}
+        </div>
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={onOpen}
+          className="self-start px-0 hover:bg-transparent hover:text-primary group/btn"
+        >
+          View details
+          <ArrowUpRight className="h-4 w-4 ml-1 transition-transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
+        </Button>
+      </div>
+    </GlassCard>
   );
 }
 
@@ -338,82 +431,44 @@ export function Projects() {
     }
   };
 
-  // Keyboard navigation
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (selectedProjectIndex === null) return;
       if (e.key === 'ArrowLeft') goToPrev();
       if (e.key === 'ArrowRight') goToNext();
-      if (e.key === 'Escape') closeModal();
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [selectedProjectIndex]);
 
   return (
-    <section id="projects" className="py-20 px-6">
-      <div className="max-w-5xl mx-auto">
+    <section id="projects" className="relative py-24 px-6">
+      <Reveal className="max-w-5xl mx-auto">
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 glass-card px-4 py-2 rounded-full text-sm font-medium mb-6">
-            <Folder className="h-4 w-4 text-emerald-500" />
+          <GlassPill className="mb-6">
+            <Folder className="h-4 w-4 text-primary" />
             <span>My Work</span>
-          </div>
-          <h2 className="text-3xl md:text-4xl font-bold mb-3">
+          </GlassPill>
+          <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-3">
             Featured <span className="gradient-text">Projects</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Some stuff I've built
+            Production systems, shipped end-to-end.
           </p>
         </div>
 
-        {/* Projects Grid */}
-        <div className="grid md:grid-cols-2 gap-6">
-          {projects.map((project, index) => (
-            <Card
-              key={project.id}
-              className="neo-card group hover:scale-[1.02] transition-all duration-300 overflow-hidden"
-            >
-              <div className="relative overflow-hidden">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-              </div>
-              <div className="p-5">
-                <h3 className="text-lg font-semibold mb-2 group-hover:text-emerald-500 transition-colors">
-                  {project.title}
-                </h3>
-                <p className="text-sm text-muted-foreground line-clamp-2 mb-3">
-                  {project.description}
-                </p>
-                <div className="flex flex-wrap gap-1.5 mb-4">
-                  {project.tech.slice(0, 3).map((tech) => (
-                    <Badge key={tech} variant="outline" className="text-xs">
-                      {tech}
-                    </Badge>
-                  ))}
-                  {project.tech.length > 3 && (
-                    <Badge variant="outline" className="text-xs">
-                      +{project.tech.length - 3}
-                    </Badge>
-                  )}
-                </div>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => openModal(index)}
-                  className="w-full"
-                >
-                  <Eye className="h-3 w-3 mr-2" />
-                  View Details
-                </Button>
-              </div>
-            </Card>
+        {/* Featured project (full width) */}
+        <div className="mb-6">
+          <ProjectCard project={projects[0]} featured onOpen={() => openModal(0)} />
+        </div>
+
+        {/* Remaining projects */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {projects.slice(1).map((project, i) => (
+            <ProjectCard key={project.id} project={project} onOpen={() => openModal(i + 1)} />
           ))}
         </div>
 
-        {/* Modal */}
         {selectedProjectIndex !== null && (
           <ProjectModal
             project={projects[selectedProjectIndex]}
@@ -425,7 +480,7 @@ export function Projects() {
             totalProjects={projects.length}
           />
         )}
-      </div>
+      </Reveal>
     </section>
   );
 }

@@ -1,120 +1,121 @@
-
-import { Card } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import { GlassCard, GlassPill } from "@/components/glass";
+import { Reveal } from "@/hooks/use-reveal";
 import { Trophy, Shield, Clock, Users, Award, Star } from "lucide-react";
+
+const featured = {
+  title: "Scale",
+  description:
+    "Worked on a multi-tenant platform serving thousands of organizations — learned a lot about data isolation, tenancy, and handling wildly different use cases on one codebase.",
+  icon: Users,
+  category: "Scale",
+  metric: "2,000+",
+  metricLabel: "organizations served",
+};
 
 const achievements = [
   {
-    title: "Better Code Quality",
-    description: "Did 50+ code reviews, caught bugs before they hit production, and helped the team write cleaner code.",
-    icon: Shield,
-    category: "Quality",
-    impact: "30% Fewer Bugs",
-    color: "from-emerald-500 to-green-500"
+    title: "System Reliability",
+    description: "Kept systems running smoothly through monitoring, alerts, and fixing issues before users ever notice.",
+    icon: Trophy,
+    category: "Reliability",
+    metric: "99.5%",
+    metricLabel: "uptime",
+    span: "lg:col-span-2",
   },
   {
-    title: "Scale",
-    description: "Worked on multi-tenant platform serving thousands of organizations. Learned a lot about data isolation and handling different use cases.",
-    icon: Users,
-    category: "Scale",
-    impact: "2,000+ Orgs",
-    color: "from-blue-500 to-cyan-500"
+    title: "Better Code Quality",
+    description: "50+ code reviews — catching bugs before production and helping the team write cleaner code.",
+    icon: Shield,
+    category: "Quality",
+    metric: "30%",
+    metricLabel: "fewer bugs",
+    span: "lg:col-span-1",
   },
   {
     title: "Production Support",
-    description: "On-call rotation, debugging production issues at odd hours. Got good at reading logs and traces to find problems fast.",
+    description: "On-call rotation, debugging at odd hours. Got fast at reading logs and traces to pin down problems.",
     icon: Clock,
     category: "Operations",
-    impact: "<10 Min Response",
-    color: "from-purple-500 to-indigo-500"
-  },
-  {
-    title: "System Reliability",
-    description: "Helped keep systems running smoothly through monitoring, alerts, and fixing issues before users notice.",
-    icon: Trophy,
-    category: "Reliability",
-    impact: "99.5% Uptime",
-    color: "from-yellow-500 to-orange-500"
+    metric: "<10m",
+    metricLabel: "incident response",
+    span: "lg:col-span-1",
   },
   {
     title: "Team Player Award",
-    description: "Got recognized at Avialdo for being helpful to the team and shipping stuff on time.",
+    description: "Recognized at Avialdo for being helpful to the team and consistently shipping on time.",
     icon: Award,
     category: "Recognition",
-    impact: "Q2 2024",
-    color: "from-pink-500 to-rose-500"
-  }
+    metric: "Q2 '24",
+    metricLabel: "Avialdo recognition",
+    span: "lg:col-span-4",
+  },
 ];
 
 export function Achievements() {
   return (
-    <section id="achievements" className="py-20 px-6">
-      <div className="max-w-5xl mx-auto">
+    <section id="achievements" className="relative py-24 px-6">
+      <Reveal className="max-w-5xl mx-auto">
         <div className="text-center mb-16">
-        <div className="inline-flex items-center gap-2 bg-white dark:bg-gray-800 px-4 py-2 rounded-full text-sm font-medium mb-6 shadow-sm border">
-          <Star className="h-4 w-4 text-emerald-500" />
+          <GlassPill className="mb-6">
+            <Star className="h-4 w-4 text-primary" />
             <span>Key Achievements</span>
-          </div>
-          <h2 className="text-3xl md:text-4xl font-bold mb-3">
+          </GlassPill>
+          <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-3">
             Professional <span className="gradient-text">Highlights</span>
           </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed">
-            Some things I'm proud of
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+            99.5% uptime across platforms serving 2,000+ organizations.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {achievements.map((achievement, index) => (
-            <Card key={index} className="professional-card p-6 hover:shadow-xl transition-all duration-300 group relative overflow-hidden">
-              {/* Background Gradient */}
-              <div className={`absolute inset-0 bg-gradient-to-br ${achievement.color} opacity-0 group-hover:opacity-5 transition-opacity duration-300`}></div>
-              
-              <div className="relative z-10">
-                {/* Icon and Category */}
-                <div className="flex items-center justify-between mb-4">
-                  <div className={`p-3 rounded-xl bg-gradient-to-br ${achievement.color} text-white group-hover:scale-110 transition-transform duration-300`}>
-                    <achievement.icon className="h-6 w-6" />
-                  </div>
-                  <Badge variant="outline" className="text-xs">
-                    {achievement.category}
-                  </Badge>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:auto-rows-[200px]">
+          {/* Featured hero tile */}
+          <GlassCard
+            interactive
+            sheen
+            className="md:col-span-2 lg:col-span-2 lg:row-span-2 p-8 flex flex-col justify-between"
+          >
+            <div className="flex items-center justify-between">
+              <div className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-primary/12 text-primary ring-1 ring-primary/20">
+                <featured.icon className="h-6 w-6" />
+              </div>
+              <span className="text-xs text-muted-foreground uppercase tracking-wider">{featured.category}</span>
+            </div>
+            <div>
+              <div className="text-5xl md:text-6xl font-extrabold tracking-tight text-foreground">
+                {featured.metric}
+              </div>
+              <div className="text-sm font-medium text-primary mt-1">{featured.metricLabel}</div>
+              <h3 className="text-xl font-bold mt-5 mb-2">{featured.title}</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">{featured.description}</p>
+            </div>
+          </GlassCard>
+
+          {/* Supporting tiles */}
+          {achievements.map((a) => (
+            <GlassCard
+              key={a.title}
+              interactive
+              sheen
+              className={`${a.span} p-6 flex flex-col justify-between`}
+            >
+              <div className="flex items-start justify-between mb-4">
+                <div className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-primary/12 text-primary ring-1 ring-primary/20">
+                  <a.icon className="h-5 w-5" />
                 </div>
-
-                {/* Title */}
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
-                  {achievement.title}
-                </h3>
-
-                {/* Description */}
-                <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-4 text-sm">
-                  {achievement.description}
-                </p>
-
-                {/* Impact Badge */}
-                <div className="flex items-center gap-2">
-                  <Award className="h-4 w-4 text-emerald-500" />
-                  <Badge className={`bg-gradient-to-r ${achievement.color} text-white border-0 text-xs font-medium`}>
-                    {achievement.impact}
-                  </Badge>
+                <div className="text-right">
+                  <div className="text-2xl font-extrabold tracking-tight text-foreground leading-none">{a.metric}</div>
+                  <div className="text-[11px] text-muted-foreground mt-1">{a.metricLabel}</div>
                 </div>
               </div>
-
-              {/* Decorative Element */}
-              <div className="absolute top-0 right-0 w-20 h-20 transform translate-x-6 -translate-y-6">
-                <div className={`w-full h-full rounded-full bg-gradient-to-br ${achievement.color} opacity-10 group-hover:opacity-20 transition-opacity duration-300`}></div>
+              <div>
+                <h3 className="font-bold mb-1">{a.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{a.description}</p>
               </div>
-            </Card>
+            </GlassCard>
           ))}
         </div>
-
-        {/* Call to Action */}
-        <div className="text-center mt-12">
-          <div className="inline-flex items-center gap-2 bg-gray-100 dark:bg-gray-800 px-6 py-3 rounded-full text-sm text-gray-600 dark:text-gray-300">
-            <Users className="h-4 w-4 text-emerald-500" />
-            <span>Always learning, always shipping</span>
-          </div>
-        </div>
-      </div>
+      </Reveal>
     </section>
   );
 }

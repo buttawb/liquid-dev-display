@@ -1,7 +1,11 @@
 import { useState, useEffect, useRef } from "react";
-import { Card } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { User, Target, Zap, Heart, Code, Clock, Sparkles, Rocket, Brain, MapPin, BookOpen, Gamepad2, Music, Coffee } from "lucide-react";
+import { GlassCard, GlassPanel, GlassPill } from "@/components/glass";
+import { Reveal } from "@/hooks/use-reveal";
+import { User, Code, Clock, Sparkles, Rocket, Brain, BookOpen, Gamepad2, Music, Coffee } from "lucide-react";
+
+const prefersReducedMotion = () =>
+  typeof window !== "undefined" &&
+  window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 function AnimatedStat({ end, suffix = "", duration = 2000 }: { end: number; suffix?: string; duration?: number }) {
   const [count, setCount] = useState(0);
@@ -21,6 +25,10 @@ function AnimatedStat({ end, suffix = "", duration = 2000 }: { end: number; suff
 
   useEffect(() => {
     if (!hasStarted) return;
+    if (prefersReducedMotion()) {
+      setCount(end);
+      return;
+    }
     let startTime: number;
     let frame: number;
     const animate = (timestamp: number) => {
@@ -38,53 +46,23 @@ function AnimatedStat({ end, suffix = "", duration = 2000 }: { end: number; suff
 }
 
 export function About() {
-  const highlights = [
-    "3+ Years Experience",
-    "Full-Stack Development",
-    "Django & Next.js Expert",
-    "Cloud & Infrastructure",
-    "Acting Technical Lead"
-  ];
-
-  const values = [
-    {
-      icon: Target,
-      title: "Ownership Mindset",
-      description: "I treat every project like it's my own"
-    },
-    {
-      icon: Zap,
-      title: "Fast Learner",
-      description: "Diving into new technologies with confidence"
-    },
-    {
-      icon: Heart,
-      title: "Builder's Heart",
-      description: "Creating products that solve real problems"
-    }
-  ];
-
   return (
-    <section id="about" className="py-20 px-6 bg-gradient-to-b from-background to-muted/20">
-      <div className="max-w-5xl mx-auto">
+    <section id="about" className="relative py-24 px-6">
+      <Reveal className="max-w-5xl mx-auto">
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 glass-card px-4 py-2 rounded-full text-sm font-medium mb-6">
-            <User className="h-4 w-4 text-emerald-500" />
+          <GlassPill className="mb-6">
+            <User className="h-4 w-4 text-primary" />
             <span>Get to know me</span>
-          </div>
-          <h2 className="text-3xl md:text-4xl font-bold mb-3">
+          </GlassPill>
+          <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-3">
             About <span className="gradient-text">Me</span>
           </h2>
-          {/* <div className="inline-flex items-center gap-2 text-lg text-muted-foreground mb-4">
-            <MapPin className="h-5 w-5 text-emerald-500" />
-            <span>Based in Karachi, Pakistan</span>
-          </div> */}
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Learn who I am and what I do.
+            Backend &amp; infrastructure engineer who ships and owns it end-to-end.
           </p>
         </div>
-       
-        <div className="grid lg:grid-cols-3 gap-12 items-start mb-16">
+
+        <div className="grid lg:grid-cols-3 gap-12 items-start mb-12">
           {/* Content - Takes 2 columns */}
           <div className="lg:col-span-2 space-y-6">
             <div className="space-y-5">
@@ -105,46 +83,46 @@ export function About() {
           {/* Stats Grid - Takes 1 column */}
           <div className="grid grid-cols-2 gap-3">
             {[
-              { end: 3, suffix: "+", label: "Years Experience", color: "from-emerald-400 to-green-500", icon: Clock },
-              { end: 2000, suffix: "+", label: "Orgs Served", color: "from-green-400 to-teal-500", icon: Code },
-              { end: 99, suffix: ".5%", label: "System Uptime", color: "from-teal-400 to-cyan-500", icon: Rocket },
-              { end: 1, suffix: "M+", label: "Users Reached", color: "from-cyan-400 to-blue-500", icon: Brain },
+              { end: 3, suffix: "+", label: "Years Experience", icon: Clock },
+              { end: 2000, suffix: "+", label: "Orgs Served", icon: Code },
+              { end: 99, suffix: ".5%", label: "System Uptime", icon: Rocket },
+              { end: 1, suffix: "M+", label: "Users Reached", icon: Brain },
             ].map((stat) => (
-              <Card key={stat.label} className="neo-card p-4 text-center hover:scale-105 transition-all duration-300 group">
+              <GlassCard key={stat.label} interactive sheen className="p-4 text-center group">
                 <div className="flex justify-center mb-2">
-                  <stat.icon className={`h-5 w-5 text-emerald-500`} />
+                  <stat.icon className="h-5 w-5 text-primary" />
                 </div>
-                <div className={`text-xl md:text-2xl font-black bg-gradient-to-r ${stat.color} bg-clip-text text-transparent mb-1`}>
+                <div className="text-2xl md:text-3xl font-extrabold tracking-tight text-foreground mb-1">
                   <AnimatedStat end={stat.end} suffix={stat.suffix} />
                 </div>
-                <div className="text-xs font-medium text-muted-foreground group-hover:text-foreground transition-colors">
+                <div className="text-xs font-medium text-muted-foreground">
                   {stat.label}
                 </div>
-              </Card>
+              </GlassCard>
             ))}
           </div>
         </div>
 
-         {/* What sets me apart box - full width */}
-         <div className="w-full mb-8 bg-gradient-to-r from-emerald-50 to-green-50 dark:from-emerald-950/30 dark:to-green-950/30 p-6 rounded-xl border-l-4 border-emerald-500">
+        {/* What sets me apart — full width glass panel with accent edge */}
+        <GlassPanel className="w-full mb-8 p-6 border-l-4 border-l-primary">
           <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
-            <Sparkles className="h-5 w-5 text-emerald-500" />
+            <Sparkles className="h-5 w-5 text-primary" />
             What I bring to the table
           </h3>
           <div className="space-y-3 text-sm leading-relaxed text-muted-foreground">
-            <p><strong className="text-emerald-600 dark:text-emerald-400">I ship fast:</strong> Use modern tools to move quickly without cutting corners on quality.</p>
-            <p><strong className="text-emerald-600 dark:text-emerald-400">I fix things:</strong> When production breaks, I dig into logs, traces, and metrics to figure out what's wrong.</p>
-            <p><strong className="text-emerald-600 dark:text-emerald-400">I own my work:</strong> From writing the code to deploying it to monitoring it, I see things through.</p>
-            <p><strong className="text-emerald-600 dark:text-emerald-400">I've worked at scale:</strong> Built systems handling thousands of organizations and lots of users.</p>
+            <p><strong className="text-foreground">I ship fast:</strong> Use modern tools to move quickly without cutting corners on quality.</p>
+            <p><strong className="text-foreground">I fix things:</strong> When production breaks, I dig into logs, traces, and metrics to figure out what's wrong.</p>
+            <p><strong className="text-foreground">I own my work:</strong> From writing the code to deploying it to monitoring it, I see things through.</p>
+            <p><strong className="text-foreground">I've worked at scale:</strong> Built systems handling thousands of organizations and lots of users.</p>
           </div>
-        </div>
+        </GlassPanel>
 
         {/* Currently Learning & Fun Facts Grid */}
         <div className="grid md:grid-cols-2 gap-6 mt-8">
           {/* Currently Learning */}
-          <Card className="neo-card p-6">
+          <GlassCard className="p-6">
             <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
-              <BookOpen className="h-5 w-5 text-emerald-500" />
+              <BookOpen className="h-5 w-5 text-primary" />
               Currently exploring
             </h3>
             <div className="space-y-3">
@@ -153,8 +131,8 @@ export function About() {
                 { name: "Kubernetes", desc: "Container orchestration" },
                 { name: "System Design", desc: "Distributed systems patterns" },
               ].map((item) => (
-                <div key={item.name} className="flex items-center gap-3 p-2 rounded-lg bg-muted/50">
-                  <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                <div key={item.name} className="flex items-center gap-3 p-2 rounded-lg bg-foreground/[0.04]">
+                  <div className="w-2 h-2 rounded-full bg-primary" />
                   <div>
                     <span className="font-medium text-sm">{item.name}</span>
                     <span className="text-xs text-muted-foreground ml-2">- {item.desc}</span>
@@ -162,12 +140,12 @@ export function About() {
                 </div>
               ))}
             </div>
-          </Card>
+          </GlassCard>
 
           {/* Fun Facts */}
-          <Card className="neo-card p-6">
+          <GlassCard className="p-6">
             <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
-              <Sparkles className="h-5 w-5 text-emerald-500" />
+              <Sparkles className="h-5 w-5 text-primary" />
               When I'm not coding
             </h3>
             <div className="space-y-3">
@@ -176,15 +154,15 @@ export function About() {
                 { icon: Music, text: "Listening to lo-fi while working" },
                 { icon: Coffee, text: "Finding the best chai spots in Karachi" },
               ].map((item, i) => (
-                <div key={i} className="flex items-center gap-3 p-2 rounded-lg bg-muted/50">
-                  <item.icon className="h-4 w-4 text-emerald-500" />
+                <div key={i} className="flex items-center gap-3 p-2 rounded-lg bg-foreground/[0.04]">
+                  <item.icon className="h-4 w-4 text-primary" />
                   <span className="text-sm">{item.text}</span>
                 </div>
               ))}
             </div>
-          </Card>
+          </GlassCard>
         </div>
-      </div>
+      </Reveal>
     </section>
   );
 }

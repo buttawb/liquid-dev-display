@@ -21,9 +21,21 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-background/95">
+    <div className="relative min-h-screen bg-background">
+      {/* Ambient backdrop — soft drifting color blooms for the glass to refract.
+          Fixed behind all content; sections sit transparent over this. */}
+      <div aria-hidden className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
+        <div className="absolute -top-[10%] -left-[5%] h-[55vh] w-[55vh] rounded-full bg-emerald-400/20 dark:bg-emerald-500/10 blur-[120px] animate-orb-a" />
+        <div className="absolute top-[35%] -right-[10%] h-[60vh] w-[60vh] rounded-full bg-teal-400/16 dark:bg-teal-500/10 blur-[130px] animate-orb-b" />
+        <div className="absolute bottom-[-10%] left-[20%] h-[50vh] w-[50vh] rounded-full bg-sky-300/14 dark:bg-indigo-500/10 blur-[120px] animate-orb-c" />
+        {/* faint grid texture, radially masked so it's a whisper not noise */}
+        <div
+          className="absolute inset-0 opacity-[0.5] [mask-image:radial-gradient(ellipse_at_center,black,transparent_75%)] bg-[linear-gradient(hsl(var(--foreground)/0.04)_1px,transparent_1px),linear-gradient(90deg,hsl(var(--foreground)/0.04)_1px,transparent_1px)] bg-[size:56px_56px]"
+        />
+      </div>
+
       <Navigation />
-      <main className="overflow-x-hidden">
+      <main className="relative overflow-x-hidden">
         <Hero />
         <About />
         <ToolsWorkflow />

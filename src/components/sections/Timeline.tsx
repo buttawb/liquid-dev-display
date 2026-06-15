@@ -1,6 +1,9 @@
 import { Badge } from "@/components/ui/badge";
+import { GlassCard, GlassPill } from "@/components/glass";
+import { Reveal } from "@/hooks/use-reveal";
+import { cn } from "@/lib/utils";
 import { Briefcase, GraduationCap, MapPin, ChevronDown, Route } from "lucide-react";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 
 interface TimelineEntry {
   id: string;
@@ -94,114 +97,181 @@ const timelineData: TimelineEntry[] = [
   },
 ];
 
-function TimelineItem({ entry, isLast }: { entry: TimelineEntry; isLast: boolean }) {
+/** Scroll-linked progress for the rail fill + which nodes have been passed. */
+function useRailProgress(count: number) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const nodeRefs = useRef<(HTMLElement | null)[]>([]);
+  const [progress, setProgress] = useState(0);
+  const [activeCount, setActiveCount] = useState(0);
+
+  useEffect(() => {
+    let raf = 0;
+    const update = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        const el = containerRef.current;
+        if (!el) return;
+        const rect = el.getBoundingClientRect();
+        const vh = window.innerHeight;
+        const p = Math.min(Math.max((vh * 0.5 - rect.top) / rect.height, 0), 1);
+        setProgress(p);
+        let c = 0;
+        nodeRefs.current.forEach((n) => {
+          if (n && n.getBoundingClientRect().top < vh * 0.55) c++;
+        });
+        setActiveCount(c);
+      });
+    };
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    update();
+    return () => {
+      window.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+      cancelAnimationFrame(raf);
+    };
+  }, [count]);
+
+  return { containerRef, nodeRefs, progress, activeCount };
+}
+
+function TimelineItem({
+  entry,
+  index,
+  isActive,
+  registerNode,
+}: {
+  entry: TimelineEntry;
+  index: number;
+  isActive: boolean;
+  registerNode: (el: HTMLElement | null) => void;
+}) {
   const [isExpanded, setIsExpanded] = useState(false);
   const Icon = entry.type === "work" ? Briefcase : GraduationCap;
+  const isLeft = index % 2 === 0;
+  const preview = entry.achievements.slice(0, 2);
+  const rest = entry.achievements.slice(2);
 
   return (
-    <div className="relative pl-8 pb-8">
-      {/* Timeline line */}
-      {!isLast && (
-        <div className="absolute left-[11px] top-8 bottom-0 w-px bg-border" />
-      )}
-      
-      {/* Timeline dot */}
-      <div className="absolute left-0 top-1 w-6 h-6 rounded-full bg-emerald-500/10 border-2 border-emerald-500 flex items-center justify-center">
-        <Icon className="h-3 w-3 text-emerald-500" />
+    <div className="relative md:grid md:grid-cols-2 md:gap-x-14 mb-8 last:mb-0">
+      {/* Node — left rail on mobile, center on desktop */}
+      <div
+        ref={registerNode}
+        className={cn(
+          "absolute z-10 left-0 top-1.5 md:left-1/2 md:-translate-x-1/2 w-8 h-8 rounded-full glass-card flex items-center justify-center transition-all duration-500",
+          isActive && "ring-2 ring-primary shadow-[0_0_18px_hsl(var(--primary)/0.45)]"
+        )}
+      >
+        <Icon className={cn("h-3.5 w-3.5 transition-colors", isActive ? "text-primary" : "text-muted-foreground")} />
       </div>
 
-      {/* Content */}
-      <div className="bg-card border border-border rounded-lg p-5 hover:border-emerald-500/30 transition-colors">
-        {/* Header */}
-        <div className="flex flex-wrap items-start justify-between gap-2 mb-3">
-          <div>
-            <h3 className="font-semibold text-foreground">{entry.title}</h3>
-            <p className="text-emerald-600 dark:text-emerald-400 font-medium text-sm">
-              {entry.organization}
-            </p>
-          </div>
-          <Badge variant="secondary" className="text-xs font-normal">
-            {entry.duration}
-          </Badge>
-        </div>
-
-        {/* Location */}
-        <div className="flex items-center gap-1 text-sm text-muted-foreground mb-3">
-          <MapPin className="h-3 w-3" />
-          {entry.location}
-        </div>
-
-        {/* Description */}
-        <p className="text-sm text-muted-foreground mb-3">
-          {entry.description}
-        </p>
-
-        {/* Achievements (collapsible) */}
-        <div className={`space-y-2 overflow-hidden transition-all ${isExpanded ? "max-h-96" : "max-h-0"}`}>
-          <div className="pt-2 border-t border-border">
-            <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide mb-2">
-              Key Achievements
-            </p>
-            <ul className="space-y-1">
-              {entry.achievements.map((achievement, i) => (
-                <li key={i} className="text-sm text-muted-foreground flex items-start gap-2">
-                  <span className="w-1 h-1 rounded-full bg-emerald-500 mt-2 flex-shrink-0" />
-                  {achievement}
-                </li>
-              ))}
-            </ul>
+      {/* Card */}
+      <div
+        className={cn(
+          "pl-12 md:pl-0",
+          isLeft ? "md:col-start-1 md:pr-14" : "md:col-start-2 md:pl-14"
+        )}
+      >
+        <GlassCard className="p-5">
+          <div className="flex flex-wrap items-start justify-between gap-2 mb-3">
+            <div>
+              <h3 className="font-semibold text-foreground">{entry.title}</h3>
+              <p className="text-primary font-medium text-sm">{entry.organization}</p>
+            </div>
+            <Badge variant="secondary" className="text-xs font-normal">
+              {entry.duration}
+            </Badge>
           </div>
 
-          {/* Skills */}
-          <div className="pt-2">
-            <div className="flex flex-wrap gap-1">
+          <div className="flex items-center gap-1 text-sm text-muted-foreground mb-3">
+            <MapPin className="h-3 w-3" />
+            {entry.location}
+          </div>
+
+          <p className="text-sm text-muted-foreground mb-3">{entry.description}</p>
+
+          <ul className="space-y-1">
+            {preview.map((achievement, i) => (
+              <li key={i} className="text-sm text-muted-foreground flex items-start gap-2">
+                <span className="w-1 h-1 rounded-full bg-primary mt-2 flex-shrink-0" />
+                {achievement}
+              </li>
+            ))}
+          </ul>
+
+          <div className={cn("overflow-hidden transition-all duration-300", isExpanded ? "max-h-96 mt-2" : "max-h-0")}>
+            {rest.length > 0 && (
+              <ul className="space-y-1">
+                {rest.map((achievement, i) => (
+                  <li key={i} className="text-sm text-muted-foreground flex items-start gap-2">
+                    <span className="w-1 h-1 rounded-full bg-primary mt-2 flex-shrink-0" />
+                    {achievement}
+                  </li>
+                ))}
+              </ul>
+            )}
+            <div className="pt-3 flex flex-wrap gap-1.5">
               {entry.skills.map((skill) => (
-                <Badge key={skill} variant="outline" className="text-xs">
+                <Badge key={skill} variant="outline" className="text-xs border-foreground/10 bg-foreground/[0.03]">
                   {skill}
                 </Badge>
               ))}
             </div>
           </div>
-        </div>
 
-        {/* Expand button */}
-        <button
-          onClick={() => setIsExpanded(!isExpanded)}
-          className="flex items-center gap-1 text-xs text-emerald-600 dark:text-emerald-400 hover:text-emerald-500 mt-3 transition-colors"
-        >
-          <ChevronDown className={`h-3 w-3 transition-transform ${isExpanded ? "rotate-180" : ""}`} />
-          {isExpanded ? "Show less" : "Show more"}
-        </button>
+          <button
+            onClick={() => setIsExpanded(!isExpanded)}
+            className="flex items-center gap-1 text-xs text-primary hover:opacity-80 mt-3 transition-opacity"
+          >
+            <ChevronDown className={cn("h-3 w-3 transition-transform", isExpanded && "rotate-180")} />
+            {isExpanded ? "Show less" : "Show more"}
+          </button>
+        </GlassCard>
       </div>
     </div>
   );
 }
 
 export function Timeline() {
-  return (
-    <section id="journey" className="py-20 px-6">
-      <div className="max-w-2xl mx-auto">
-        {/* Section header */}
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 glass-card px-4 py-2 rounded-full text-sm font-medium mb-6">
-            <Route className="h-4 w-4 text-emerald-500" />
-            <span>Career path</span>
-          </div>
-          <h2 className="text-3xl md:text-4xl font-bold mb-3">
-            My <span className="gradient-text">Journey</span>
-          </h2>
-          <p className="text-muted-foreground">
-            Where I've worked and what I've learned along the way
-          </p>
-        </div>
+  const { containerRef, nodeRefs, progress, activeCount } = useRailProgress(timelineData.length);
 
-        {/* Timeline */}
-        <div className="relative">
+  return (
+    <section id="journey" className="relative py-24 px-6">
+      <div className="max-w-5xl mx-auto">
+        <Reveal>
+          <div className="text-center mb-14">
+            <GlassPill className="mb-6">
+              <Route className="h-4 w-4 text-primary" />
+              <span>Career path</span>
+            </GlassPill>
+            <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-3">
+              My <span className="gradient-text">Journey</span>
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+              Where I've worked and what I've learned along the way.
+            </p>
+          </div>
+        </Reveal>
+
+        {/* Timeline with scroll-tracking rail */}
+        <div ref={containerRef} className="relative">
+          {/* Rail track */}
+          <div className="absolute top-0 bottom-0 left-4 md:left-1/2 w-px md:-translate-x-1/2 bg-border/70" />
+          {/* Rail fill (grows with scroll) + glowing tip */}
+          <div
+            className="absolute top-0 left-4 md:left-1/2 w-px md:-translate-x-1/2 bg-gradient-to-b from-primary via-primary to-primary/40"
+            style={{ height: `${progress * 100}%` }}
+          >
+            <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2.5 h-2.5 rounded-full bg-primary shadow-[0_0_12px_3px_hsl(var(--primary)/0.55)]" />
+          </div>
+
           {timelineData.map((entry, index) => (
-            <TimelineItem 
-              key={entry.id} 
-              entry={entry} 
-              isLast={index === timelineData.length - 1}
+            <TimelineItem
+              key={entry.id}
+              entry={entry}
+              index={index}
+              isActive={index < activeCount}
+              registerNode={(el) => (nodeRefs.current[index] = el)}
             />
           ))}
         </div>

@@ -1,12 +1,11 @@
-import { Card } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import { GlassCard, GlassPill } from "@/components/glass";
+import { Reveal } from "@/hooks/use-reveal";
 import { Wrench, Bot, Activity, Cloud, Plug } from "lucide-react";
 
 const toolCategories = [
   {
     title: "Dev Tools",
     icon: Bot,
-    color: "from-purple-400 to-indigo-500",
     description: "What I use to write code faster",
     tools: [
       { name: "Claude Code", description: "My main coding assistant" },
@@ -18,7 +17,6 @@ const toolCategories = [
   {
     title: "Monitoring",
     icon: Activity,
-    color: "from-emerald-400 to-green-500",
     description: "How I debug production issues",
     tools: [
       { name: "Datadog", description: "APM, logs, traces" },
@@ -30,7 +28,6 @@ const toolCategories = [
   {
     title: "Infrastructure",
     icon: Cloud,
-    color: "from-cyan-400 to-blue-500",
     description: "Deployment and cloud stuff",
     tools: [
       { name: "Terraform", description: "Infra as code" },
@@ -42,7 +39,6 @@ const toolCategories = [
   {
     title: "API Tools",
     icon: Plug,
-    color: "from-orange-400 to-red-500",
     description: "Testing and building APIs",
     tools: [
       { name: "Postman", description: "API testing" },
@@ -55,30 +51,30 @@ const toolCategories = [
 
 export function ToolsWorkflow() {
   return (
-    <section id="tools" className="py-20 px-6 bg-gradient-to-b from-muted/20 to-background">
-      <div className="max-w-5xl mx-auto">
+    <section id="tools" className="relative py-24 px-6">
+      <Reveal className="max-w-5xl mx-auto">
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 glass-card px-4 py-2 rounded-full text-sm font-medium mb-6">
-            <Wrench className="h-4 w-4 text-emerald-500" />
-            <span>Tools & Workflow</span>
-          </div>
-          <h2 className="text-3xl md:text-4xl font-bold mb-3">
+          <GlassPill className="mb-6">
+            <Wrench className="h-4 w-4 text-primary" />
+            <span>Tools &amp; Workflow</span>
+          </GlassPill>
+          <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-3">
             My <span className="gradient-text">Toolkit</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Tools I actually use day-to-day
+            The tools I actually reach for, day to day.
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-6">
           {toolCategories.map((category, index) => (
-            <Card key={index} className="neo-card p-6 hover:scale-[1.02] transition-all duration-300 group">
+            <GlassCard key={index} interactive sheen className="p-6 group">
               <div className="flex items-start gap-4 mb-4">
-                <div className={`p-3 rounded-xl bg-gradient-to-br ${category.color} text-white group-hover:scale-110 transition-transform duration-300`}>
+                <div className="p-3 rounded-2xl bg-primary/12 text-primary ring-1 ring-primary/20">
                   <category.icon className="h-6 w-6" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-bold group-hover:gradient-text transition-all duration-300">
+                  <h3 className="text-lg font-bold">
                     {category.title}
                   </h3>
                   <p className="text-sm text-muted-foreground">
@@ -91,17 +87,17 @@ export function ToolsWorkflow() {
                 {category.tools.map((tool, toolIndex) => (
                   <div
                     key={toolIndex}
-                    className="p-3 rounded-lg bg-muted/50 hover:bg-muted transition-colors duration-200"
+                    className="p-3 rounded-xl bg-foreground/[0.04] hover:bg-foreground/[0.07] transition-colors duration-200"
                   >
                     <div className="font-medium text-sm mb-1">{tool.name}</div>
                     <div className="text-xs text-muted-foreground">{tool.description}</div>
                   </div>
                 ))}
               </div>
-            </Card>
+            </GlassCard>
           ))}
         </div>
-      </div>
+      </Reveal>
     </section>
   );
 }

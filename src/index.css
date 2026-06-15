@@ -3,17 +3,19 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Global scaling to 90% */
+/* Intentional global scale (replaces the old `zoom: 0.9` hack so specular glass
+   edges render crisp at 1:1 device pixels) */
 html {
-  zoom: 0.9;
+  font-size: 15px;
   scroll-behavior: smooth;
 }
 
-/* Updated Professional Design System */
+/* Liquid Glass Design System */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
+    /* faint cool off-white so frosted glass has something to refract */
+    --background: 210 30% 99%;
     --foreground: 222.2 84% 4.9%;
 
     --card: 0 0% 100%;
@@ -22,13 +24,14 @@ html {
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 142.1 76.2% 36.3%;
-    --primary-foreground: 355.7 100% 97.3%;
+    /* refined deeper jade — premium, not neon Bootstrap-green */
+    --primary: 156 52% 36%;
+    --primary-foreground: 150 60% 98%;
 
     --secondary: 210 40% 98%;
     --secondary-foreground: 222.2 47.4% 11.2%;
 
-    --muted: 210 40% 98%;
+    --muted: 210 40% 96%;
     --muted-foreground: 215.4 16.3% 46.9%;
 
     --accent: 210 40% 98%;
@@ -39,9 +42,9 @@ html {
 
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 142.1 76.2% 36.3%;
+    --ring: 156 52% 36%;
 
-    --radius: 0.5rem;
+    --radius: 1rem;
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -54,7 +57,7 @@ html {
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
+    --background: 222 47% 5%;
     --foreground: 210 40% 98%;
 
     --card: 222.2 84% 4.9%;
@@ -63,8 +66,8 @@ html {
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 142.1 70.6% 45.3%;
-    --primary-foreground: 144.9 80.4% 10%;
+    --primary: 156 48% 46%;
+    --primary-foreground: 150 80% 8%;
 
     --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;
@@ -80,7 +83,7 @@ html {
 
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
-    --ring: 142.1 70.6% 45.3%;
+    --ring: 156 48% 46%;
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -101,109 +104,215 @@ html {
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
   }
 }
 
 @layer components {
-  /* Professional Glass Effects */
+  /* ============================================================
+     LIQUID GLASS MATERIAL
+     One primitive, used everywhere. !important so it wins over the
+     shadcn Card base utilities (bg-card / rounded-lg / border / shadow-sm)
+     that otherwise sit later in the cascade.
+     ============================================================ */
+  .neo-card {
+    position: relative;
+    border-radius: 1.5rem !important;
+    background: linear-gradient(180deg, hsl(0 0% 100% / 0.72), hsl(0 0% 100% / 0.55)) !important;
+    -webkit-backdrop-filter: blur(28px) saturate(180%);
+    backdrop-filter: blur(28px) saturate(180%);
+    border: 1px solid hsl(0 0% 100% / 0.6) !important;
+    box-shadow:
+      inset 0 1px 0 hsl(0 0% 100% / 0.7),
+      0 8px 24px -10px hsl(222 47% 11% / 0.14),
+      0 24px 64px -28px hsl(222 47% 11% / 0.20) !important;
+    transition: transform 0.32s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.32s ease;
+  }
+
+  /* bright top rim → reads as physically lit glass */
+  .neo-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    pointer-events: none;
+    background: linear-gradient(180deg, hsl(0 0% 100% / 0.85), hsl(0 0% 100% / 0) 45%);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+  }
+
+  .dark .neo-card {
+    background: linear-gradient(180deg, hsl(0 0% 100% / 0.08), hsl(0 0% 100% / 0.03)) !important;
+    border: 1px solid hsl(0 0% 100% / 0.12) !important;
+    box-shadow:
+      inset 0 1px 0 hsl(0 0% 100% / 0.10),
+      0 16px 48px -18px hsl(0 0% 0% / 0.6) !important;
+  }
+  .dark .neo-card::before {
+    background: linear-gradient(180deg, hsl(0 0% 100% / 0.18), hsl(0 0% 100% / 0) 45%);
+  }
+
+  /* interactive = lift on hover (NOT scale — scale re-rasterizes the blur
+     and softens text). Pair with .glass-sheen for the pointer specular. */
+  .neo-card.is-interactive {
+    cursor: pointer;
+  }
+  .neo-card.is-interactive:hover {
+    transform: translateY(-4px);
+    box-shadow:
+      inset 0 1px 0 hsl(0 0% 100% / 0.7),
+      0 18px 40px -14px hsl(222 47% 11% / 0.22),
+      0 40px 90px -34px hsl(222 47% 11% / 0.30) !important;
+  }
+  .dark .neo-card.is-interactive:hover {
+    box-shadow:
+      inset 0 1px 0 hsl(0 0% 100% / 0.14),
+      0 26px 64px -22px hsl(0 0% 0% / 0.72) !important;
+  }
+
+  /* pointer-tracked specular sheen (set --mx/--my on mousemove) */
+  .glass-sheen::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    background: radial-gradient(220px circle at var(--mx, 50%) var(--my, 50%), hsl(0 0% 100% / 0.28), transparent 60%);
+  }
+  .dark .glass-sheen::after {
+    background: radial-gradient(220px circle at var(--mx, 50%) var(--my, 50%), hsl(0 0% 100% / 0.12), transparent 60%);
+  }
+  .glass-sheen:hover::after {
+    opacity: 1;
+  }
+
+  /* ---- lighter glass for pills / nav / chips ---- */
   .glass-card {
-    @apply backdrop-blur-lg bg-white/60 dark:bg-white/5 border border-white/20 shadow-lg;
+    background: linear-gradient(180deg, hsl(0 0% 100% / 0.7), hsl(0 0% 100% / 0.5));
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid hsl(0 0% 100% / 0.55);
+    box-shadow: inset 0 1px 0 hsl(0 0% 100% / 0.6), 0 8px 24px -12px hsl(222 47% 11% / 0.16);
+  }
+  .dark .glass-card {
+    background: linear-gradient(180deg, hsl(0 0% 100% / 0.08), hsl(0 0% 100% / 0.04));
+    border: 1px solid hsl(0 0% 100% / 0.12);
+    box-shadow: inset 0 1px 0 hsl(0 0% 100% / 0.1), 0 8px 24px -12px hsl(0 0% 0% / 0.5);
   }
 
   .glass-button {
-    @apply backdrop-blur-md bg-white/80 dark:bg-white/10 border border-white/30 hover:bg-white/90 dark:hover:bg-white/20 transition-all duration-200;
+    background: hsl(0 0% 100% / 0.7);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    backdrop-filter: blur(16px) saturate(180%);
+    border: 1px solid hsl(0 0% 100% / 0.5);
+    box-shadow: inset 0 1px 0 hsl(0 0% 100% / 0.6);
+    transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .glass-button:hover {
+    background: hsl(0 0% 100% / 0.85);
+  }
+  .dark .glass-button {
+    background: hsl(0 0% 100% / 0.08);
+    border: 1px solid hsl(0 0% 100% / 0.14);
+  }
+  .dark .glass-button:hover {
+    background: hsl(0 0% 100% / 0.16);
   }
 
   .professional-card {
     @apply bg-white dark:bg-gray-900 shadow-sm border border-gray-200 dark:border-gray-800 hover:shadow-md transition-all duration-200;
   }
 
-  /* Refined Gradient Effects */
+  /* ---- accent gradient text (refined, single jade→teal ramp) ---- */
   .gradient-green {
-    @apply bg-gradient-to-r from-emerald-500 to-green-600;
+    @apply bg-gradient-to-r from-emerald-600 to-teal-600;
   }
-
   .gradient-text {
-    @apply bg-gradient-to-r from-emerald-600 to-green-700 bg-clip-text text-transparent;
+    @apply bg-gradient-to-br from-emerald-600 to-teal-600 dark:from-emerald-400 dark:to-teal-300 bg-clip-text text-transparent;
   }
 
-  /* Subtle Animations */
-  .floating {
-    animation: floating 8s ease-in-out infinite;
+  /* ============================================================
+     SCROLL REVEAL (wired by use-reveal hook)
+     ============================================================ */
+  .reveal {
+    opacity: 0;
+    transform: translateY(16px) scale(0.985);
+    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: opacity, transform;
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
   }
 
-  @keyframes floating {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-8px); }
+  /* ============================================================
+     AMBIENT BACKDROP ORBS (slow desynced drift)
+     ============================================================ */
+  .animate-orb-a { animation: orb-a 22s ease-in-out infinite; }
+  .animate-orb-b { animation: orb-b 28s ease-in-out infinite; }
+  .animate-orb-c { animation: orb-c 25s ease-in-out infinite; }
+
+  @keyframes orb-a {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(6%, -5%) scale(1.12); }
+  }
+  @keyframes orb-b {
+    0%, 100% { transform: translate(0, 0) scale(1.05); }
+    50% { transform: translate(-7%, 4%) scale(0.95); }
+  }
+  @keyframes orb-c {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(4%, 6%) scale(1.1); }
   }
 
-  /* Floating geometric shapes animations */
-  .animate-float-slow {
-    animation: float-slow 12s ease-in-out infinite;
+  /* ---- subtle breathing scroll cue ---- */
+  .animate-breathe { animation: breathe 2.6s ease-in-out infinite; }
+  @keyframes breathe {
+    0%, 100% { transform: translateY(0); opacity: 0.55; }
+    50% { transform: translateY(4px); opacity: 1; }
   }
 
-  .animate-float-medium {
-    animation: float-medium 8s ease-in-out infinite;
-  }
-
-  .animate-float-fast {
-    animation: float-fast 5s ease-in-out infinite;
-  }
-
-  @keyframes float-slow {
-    0%, 100% { transform: translateY(0px) rotate(0deg); }
-    50% { transform: translateY(-15px) rotate(5deg); }
-  }
-
-  @keyframes float-medium {
-    0%, 100% { transform: translateY(0px) rotate(0deg); }
-    50% { transform: translateY(-10px) rotate(-3deg); }
-  }
-
-  @keyframes float-fast {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-8px); }
-  }
-
-  /* Marquee Animation for Testimonials */
+  /* ---- marquee (testimonials) ---- */
   .animate-marquee {
-    animation: marquee 20s linear infinite;
+    animation: marquee 48s linear infinite;
   }
-
-  .animate-marquee:hover {
+  .marquee-group:hover .animate-marquee {
     animation-play-state: paused;
   }
-
   @keyframes marquee {
     0% { transform: translateX(0); }
     100% { transform: translateX(-50%); }
   }
 
+  /* ---- legacy float (kept for any remaining decorative use) ---- */
+  .floating { animation: floating 8s ease-in-out infinite; }
+  @keyframes floating {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+  }
+
   /* Professional Scrollbar */
   ::-webkit-scrollbar {
-    width: 6px;
+    width: 8px;
   }
-
   ::-webkit-scrollbar-track {
-    @apply bg-gray-100 dark:bg-gray-800;
+    background: transparent;
   }
-
   ::-webkit-scrollbar-thumb {
-    @apply bg-gray-300 dark:bg-gray-600 rounded-full;
+    @apply bg-foreground/15 rounded-full;
   }
-
   ::-webkit-scrollbar-thumb:hover {
-    @apply bg-gray-400 dark:bg-gray-500;
+    @apply bg-foreground/25;
   }
 
-  /* Smooth transitions */
-  button, a, input, textarea, .card {
-    @apply transition-all duration-200 ease-in-out;
-  }
-
-  /* Professional focus styles */
+  /* Focus styles — solid full-opacity ring, readable on light + dark glass */
   button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visible {
-    @apply ring-2 ring-emerald-500/50 ring-offset-2 ring-offset-background outline-none;
+    @apply ring-2 ring-primary ring-offset-2 ring-offset-background outline-none;
   }
 }
 
@@ -213,9 +322,14 @@ html {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
-  
-  .floating {
-    animation: none;
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .animate-marquee {
+    animation: none !important;
+    transform: none !important;
   }
 }

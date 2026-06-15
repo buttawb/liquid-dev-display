@@ -1,4 +1,5 @@
-import { Card } from "@/components/ui/card";
+import { GlassCard, GlassPill } from "@/components/glass";
+import { Reveal } from "@/hooks/use-reveal";
 import { Quote, Linkedin, Users } from "lucide-react";
 
 const testimonials = [
@@ -41,8 +42,8 @@ const testimonials = [
 
 function TestimonialCard({ testimonial }: { testimonial: typeof testimonials[0] }) {
   return (
-    <Card className="neo-card p-6 w-[350px] flex-shrink-0 flex flex-col">
-      <Quote className="h-6 w-6 text-emerald-500/30 mb-3" />
+    <GlassCard className="p-6 w-[350px] flex-shrink-0 flex flex-col">
+      <Quote className="h-6 w-6 text-primary/40 mb-3" />
       <p className="text-muted-foreground leading-relaxed mb-4 flex-1 text-sm">
         "{testimonial.quote}"
       </p>
@@ -68,12 +69,13 @@ function TestimonialCard({ testimonial }: { testimonial: typeof testimonials[0] 
           href={testimonial.linkedin}
           target="_blank"
           rel="noopener noreferrer"
-          className="glass-button p-2 rounded-lg hover:scale-110 transition-all hover:text-blue-500"
+          className="glass-button p-2 rounded-lg hover:text-primary"
+          aria-label={`${testimonial.name} on LinkedIn`}
         >
           <Linkedin className="h-4 w-4" />
         </a>
       </div>
-    </Card>
+    </GlassCard>
   );
 }
 
@@ -82,30 +84,30 @@ export function Testimonials() {
   const doubledTestimonials = [...testimonials, ...testimonials];
 
   return (
-    <section id="testimonials" className="py-20 bg-gradient-to-b from-background to-muted/20 overflow-hidden">
-      <div className="max-w-5xl mx-auto px-6">
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 glass-card px-4 py-2 rounded-full text-sm font-medium mb-6">
-            <Users className="h-4 w-4 text-emerald-500" />
+    <section id="testimonials" className="relative py-24 overflow-hidden">
+      <Reveal className="max-w-5xl mx-auto px-6">
+        <div className="text-center mb-16">
+          <GlassPill className="mb-6">
+            <Users className="h-4 w-4 text-primary" />
             <span>What people say</span>
-          </div>
-          <h2 className="text-3xl md:text-4xl font-bold mb-3">
+          </GlassPill>
+          <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-3">
             <span className="gradient-text">Testimonials</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            LinkedIn recommendations from colleagues and managers
+            LinkedIn recommendations from colleagues and peers.
           </p>
         </div>
-      </div>
+      </Reveal>
 
       {/* Marquee container */}
-      <div className="relative">
+      <div className="relative marquee-group">
         {/* Gradient fade on edges */}
-        <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
+        <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
 
-        {/* Scrolling container */}
-        <div className="flex gap-6 animate-marquee hover:pause-animation">
+        {/* Scrolling container (pauses on hover via .marquee-group:hover) */}
+        <div className="flex gap-6 animate-marquee w-max py-2">
           {doubledTestimonials.map((testimonial, index) => (
             <TestimonialCard key={index} testimonial={testimonial} />
           ))}

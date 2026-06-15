@@ -1,12 +1,12 @@
-import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Zap, Star, Code, Database, Smartphone, Cpu } from "lucide-react";
+import { GlassCard, GlassPill } from "@/components/glass";
+import { Reveal } from "@/hooks/use-reveal";
+import { Zap, Code, Database, Cpu } from "lucide-react";
 
 const skillCategories = [
   {
     title: "Core Stack",
     icon: Code,
-    color: "from-emerald-400 to-green-500",
     skills: [
       { name: "Python", level: "Expert" },
       { name: "Django", level: "Expert" },
@@ -20,7 +20,6 @@ const skillCategories = [
   {
     title: "Cloud & Infrastructure",
     icon: Database,
-    color: "from-cyan-400 to-blue-500",
     skills: [
       { name: "AWS (EC2, S3, RDS)", level: "Advanced" },
       { name: "Azure", level: "Intermediate" },
@@ -33,7 +32,6 @@ const skillCategories = [
   {
     title: "Observability",
     icon: Cpu,
-    color: "from-purple-400 to-indigo-500",
     skills: [
       { name: "Datadog APM", level: "Advanced" },
       { name: "New Relic", level: "Intermediate" },
@@ -45,7 +43,6 @@ const skillCategories = [
   {
     title: "Data & Messaging",
     icon: Database,
-    color: "from-green-400 to-teal-500",
     skills: [
       { name: "PostgreSQL", level: "Advanced" },
       { name: "MySQL", level: "Expert" },
@@ -57,7 +54,6 @@ const skillCategories = [
   {
     title: "AI Tooling",
     icon: Cpu,
-    color: "from-violet-400 to-purple-500",
     skills: [
       { name: "Claude/GPT APIs", level: "Advanced" },
       { name: "Claude Code", level: "Expert" },
@@ -68,7 +64,6 @@ const skillCategories = [
   {
     title: "Engineering Practices",
     icon: Code,
-    color: "from-orange-400 to-red-500",
     skills: [
       { name: "System Design", level: "Advanced" },
       { name: "Multi-Tenant Architecture", level: "Advanced" },
@@ -82,77 +77,62 @@ const skillCategories = [
 const getLevelColor = (level: string) => {
   switch (level) {
     case "Expert":
-      return "bg-emerald-500/20 text-emerald-400 border-emerald-500/30";
+      return "bg-primary/15 text-primary border-primary/25 font-semibold";
     case "Advanced":
-      return "bg-green-500/20 text-green-400 border-green-500/30";
+      return "bg-foreground/[0.06] text-foreground/80 border-foreground/10";
     case "Intermediate":
-      return "bg-cyan-500/20 text-cyan-400 border-cyan-500/30";
+      return "bg-foreground/[0.04] text-muted-foreground border-foreground/10";
     default:
-      return "bg-gray-500/20 text-gray-400 border-gray-500/30";
-  }
-};
-
-const getLevelStars = (level: string) => {
-  switch (level) {
-    case "Expert":
-      return 5;
-    case "Advanced":
-      return 4;
-    case "Intermediate":
-      return 3;
-    default:
-      return 2;
+      return "bg-foreground/[0.04] text-muted-foreground border-foreground/10";
   }
 };
 
 export function Skills() {
   return (
-    <section id="skills" className="py-20 px-6 bg-gradient-to-b from-background to-muted/20">
-      <div className="max-w-5xl mx-auto">
-        <div className="text-center mb-20">
-          <div className="inline-flex items-center gap-2 glass-card px-4 py-2 rounded-full text-sm font-medium mb-8">
-            <Zap className="h-4 w-4 text-emerald-500" />
+    <section id="skills" className="relative py-24 px-6">
+      <Reveal className="max-w-5xl mx-auto">
+        <div className="text-center mb-16">
+          <GlassPill className="mb-6">
+            <Zap className="h-4 w-4 text-primary" />
             <span>Technical expertise</span>
-          </div>
-          <h2 className="text-3xl md:text-4xl font-bold mb-3">
-            Skills & <span className="gradient-text">Expertise</span>
+          </GlassPill>
+          <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-3">
+            Skills &amp; <span className="gradient-text">Expertise</span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Technologies I work with regularly
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+            The stack I reach for to ship and keep things running.
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
           {skillCategories.map((category, index) => (
-            <Card key={index} className="neo-card p-6 hover:scale-[1.02] transition-all duration-300 group">
-              <div className="text-center mb-6">
-                <div className={`inline-flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-r ${category.color} mb-4 group-hover:scale-110 transition-transform`}>
-                  <category.icon className="h-6 w-6 text-white" />
+            <GlassCard key={index} interactive sheen className="p-6 group">
+              <div className="flex items-center gap-3 mb-5">
+                <div className="inline-flex items-center justify-center w-11 h-11 rounded-2xl bg-primary/12 text-primary ring-1 ring-primary/20">
+                  <category.icon className="h-5 w-5" />
                 </div>
-                <h3 className="text-lg font-bold group-hover:gradient-text transition-all duration-300">
+                <h3 className="text-lg font-bold">
                   {category.title}
                 </h3>
               </div>
-              
+
               <div className="space-y-2">
                 {category.skills.map((skill, skillIndex) => (
-                  <div key={skillIndex} className="flex flex-col md:flex-row md:items-center justify-between flex-wrap gap-2">
-                    <div className="flex-1 min-w-0 pr-2">
-                      <span className="text-sm font-medium">{skill.name}</span>
-                    </div>
-                    <Badge 
-                      variant="outline" 
-                      className={`text-xs ${getLevelColor(skill.level)} border ml-2 flex-shrink-0 mt-1 md:mt-0`}
+                  <div key={skillIndex} className="flex items-center justify-between gap-2">
+                    <span className="text-sm font-medium">{skill.name}</span>
+                    <Badge
+                      variant="outline"
+                      className={`text-xs border flex-shrink-0 ${getLevelColor(skill.level)}`}
                     >
                       {skill.level}
                     </Badge>
                   </div>
                 ))}
               </div>
-            </Card>
+            </GlassCard>
           ))}
         </div>
-      </div>
+      </Reveal>
     </section>
   );
 }
