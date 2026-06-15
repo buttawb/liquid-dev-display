@@ -6,7 +6,7 @@ interface GlassPillProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 /**
- * Small frosted glass chip — section eyebrows, status badges, tags.
+ * Small frosted glass chip - section eyebrows, status badges, tags.
  * Uses the lighter `.glass-card` recipe at a fully-rounded radius.
  */
 export const GlassPill = React.forwardRef<HTMLDivElement, GlassPillProps>(

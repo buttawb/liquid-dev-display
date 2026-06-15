@@ -103,7 +103,7 @@ export function About() {
           </div>
         </div>
 
-        {/* What sets me apart — full width glass panel with accent edge */}
+        {/* What sets me apart - full width glass panel with accent edge */}
         <GlassPanel className="w-full mb-8 p-6 border-l-4 border-l-primary">
           <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
             <Sparkles className="h-5 w-5 text-primary" />

@@ -29,7 +29,7 @@ export function Hero() {
 
           <p className="text-base sm:text-lg text-muted-foreground max-w-xl mx-auto lg:mx-0 mb-6">
             I keep multi-tenant SaaS running for{" "}
-            <span className="text-foreground font-semibold">2,000+ organizations</span> — from
+            <span className="text-foreground font-semibold">2,000+ organizations</span>, from
             Django services to Terraform infra to the 2am page.
           </p>
 

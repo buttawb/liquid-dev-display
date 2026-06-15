@@ -5,7 +5,7 @@ import { Trophy, Shield, Clock, Users, Award, Star } from "lucide-react";
 const featured = {
   title: "Scale",
   description:
-    "Worked on a multi-tenant platform serving thousands of organizations — learned a lot about data isolation, tenancy, and handling wildly different use cases on one codebase.",
+    "Worked on a multi-tenant platform serving thousands of organizations. Learned a lot about data isolation, tenancy, and handling wildly different use cases on one codebase.",
   icon: Users,
   category: "Scale",
   metric: "2,000+",
@@ -24,7 +24,7 @@ const achievements = [
   },
   {
     title: "Better Code Quality",
-    description: "50+ code reviews — catching bugs before production and helping the team write cleaner code.",
+    description: "50+ code reviews, catching bugs before production and helping the team write cleaner code.",
     icon: Shield,
     category: "Quality",
     metric: "30%",

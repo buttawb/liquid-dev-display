@@ -30,7 +30,7 @@ const Index = () => {
         Skip to content
       </a>
 
-      {/* Ambient backdrop — soft drifting color blooms for the glass to refract.
+      {/* Ambient backdrop - soft drifting color blooms for the glass to refract.
           Fixed behind all content; sections sit transparent over this. */}
       <div aria-hidden className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
         <div className="absolute -top-[10%] -left-[5%] h-[55vh] w-[55vh] rounded-full bg-emerald-400/20 dark:bg-emerald-500/10 blur-[120px] animate-orb-a" />

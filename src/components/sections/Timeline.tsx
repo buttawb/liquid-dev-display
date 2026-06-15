@@ -160,7 +160,7 @@ function TimelineItem({
 
   return (
     <div className="relative md:grid md:grid-cols-2 md:gap-x-14 mb-8 last:mb-0">
-      {/* Node — left rail on mobile, center on desktop */}
+      {/* Node - left rail on mobile, center on desktop */}
       <div
         ref={registerNode}
         className={cn(

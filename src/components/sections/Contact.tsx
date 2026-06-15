@@ -80,7 +80,7 @@ export function Contact() {
         </div>
 
         <div className="grid md:grid-cols-5 gap-8">
-          {/* Left — contact options */}
+          {/* Left - contact options */}
           <div className="md:col-span-2 space-y-4">
             <GlassCard className="p-6 ring-1 ring-primary/20">
               <div className="flex items-center gap-3 mb-4">
@@ -169,7 +169,7 @@ export function Contact() {
             </div>
           </div>
 
-          {/* Right — form */}
+          {/* Right - form */}
           <GlassCard className="md:col-span-3 p-6 lg:p-8">
             <h3 className="text-lg font-semibold mb-6">Send a Message</h3>
             <form onSubmit={handleSubmit} className="space-y-4">

@@ -24,7 +24,7 @@ html {
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    /* refined deeper jade — premium, not neon; darkened for AA text contrast on glass */
+    /* refined deeper jade - premium, not neon; darkened for AA text contrast on glass */
     --primary: 156 56% 31%;
     --primary-foreground: 150 60% 98%;
 
@@ -155,7 +155,7 @@ html {
     background: linear-gradient(180deg, hsl(0 0% 100% / 0.18), hsl(0 0% 100% / 0) 45%);
   }
 
-  /* interactive = lift on hover (NOT scale — scale re-rasterizes the blur
+  /* interactive = lift on hover (NOT scale - scale re-rasterizes the blur
      and softens text). Pair with .glass-sheen for the pointer specular. */
   .neo-card.is-interactive {
     cursor: pointer;
@@ -297,7 +297,7 @@ html {
     @apply bg-foreground/25;
   }
 
-  /* Focus styles — solid full-opacity ring, readable on light + dark glass */
+  /* Focus styles - solid full-opacity ring, readable on light + dark glass */
   button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visible {
     @apply ring-2 ring-primary ring-offset-2 ring-offset-background outline-none;
   }
